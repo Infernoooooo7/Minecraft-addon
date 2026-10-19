@@ -59,6 +59,21 @@ class McStructureTests(unittest.TestCase):
                     self.assertIn(p["name"], blocks, f"{f}: palette block {p['name']} is defined")
 
 
+class DeterminismTests(unittest.TestCase):
+    def test_generators_do_not_use_salted_hash(self):
+        """Python's built-in hash() of str is salted per process (PYTHONHASHSEED): seeding art with it makes
+        every regeneration paint different textures. Generators must use stable hashes (e.g. zlib.crc32)."""
+        import re
+        offenders = []
+        for path in glob.glob(os.path.join(ROOT, "tools", "**", "*.py"), recursive=True):
+            with open(path, encoding="utf-8") as f:
+                for n, line in enumerate(f, 1):
+                    code = line.split("#", 1)[0]
+                    if re.search(r"(?<![\w.])hash\(", code):
+                        offenders.append(f"{os.path.relpath(path, ROOT)}:{n}: {line.strip()}")
+        self.assertEqual(offenders, [])
+
+
 class JsonTests(unittest.TestCase):
     def test_strip_comments_keeps_strings(self):
         text = '{"a": "http://x//y", /* c */ "b": 1 // tail\n}'

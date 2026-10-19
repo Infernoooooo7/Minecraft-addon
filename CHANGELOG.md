@@ -37,3 +37,6 @@ First release.
 - An invalid vanilla block id (`minecraft:dead_bush` → `minecraft:deadbush`) in the ruin features.
 - Duplicate `undead` family on the Hollow Shade; Null Aegis rift immunity was described but not
   implemented.
+- Entity textures were seeded with Python's per-process salted `hash()`, so regenerating painted
+  slightly different textures each time; now seeded with CRC32 — regeneration is byte-identical.
+- Script files renamed to lowercase (Creator Tools recommendation; Android storage is case-sensitive).

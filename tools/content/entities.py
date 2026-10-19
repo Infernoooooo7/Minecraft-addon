@@ -1,6 +1,8 @@
 """All APOCALYPSE ENGINE entities: behavior JSON, client entities, animations, controllers, loot, spawns."""
 from __future__ import annotations
 
+import zlib
+
 from tools.content import model_defs
 from tools.content.common import (DENS_BOSS, DENS_MOB, ENT_TEX, ENTITY_FMT, NS, SPAWN_FMT, ident, is_family,
                                   item_entry, loot_table)
@@ -126,7 +128,7 @@ def register_model(name: str, dens: dict, glow: bool = True, extra_textures: dic
     """Register geometry + painted textures (base/balanced/enhanced) for an entity model."""
     model = model_defs.ALL_MODELS[name]()
     REG.add_rp(f"models/entity/{NS}/{name}.geo.json", model.to_json())
-    REG.add_texture(TexAsset(f"{ENT_TEX}/{name}", lambda d, m=model, s=hash(name) % 997: m.paint(d, seed=s),
+    REG.add_texture(TexAsset(f"{ENT_TEX}/{name}", lambda d, m=model, s=zlib.crc32(name.encode()) % 997: m.paint(d, seed=s),
                              dens, pbr=True, glow=glow))
     if extra_textures:
         for suffix, painter in extra_textures.items():

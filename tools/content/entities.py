@@ -598,7 +598,7 @@ def null_colossus():
     loot = loot_table([
         {"rolls": 1, "entries": [item_entry(ident("null_heart"), count=(1, 1))]},
         {"rolls": 1, "entries": [item_entry(ident("null_fragment"), count=(10, 16))]},
-        {"rolls": 1, "entries": [item_entry(ident("null_edge"), weight=1)]},
+        {"rolls": 1, "entries": [item_entry(ident("null_edge"), weight=1), {"type": "empty", "weight": 2}]},
     ])
     write_entity(name, bp, rp, a, c, "The Null Colossus", loot)
 

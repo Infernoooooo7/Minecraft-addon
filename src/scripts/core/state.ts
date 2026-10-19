@@ -14,6 +14,18 @@ export function readWorld(key: string): string | undefined {
   }
 }
 
+/** Numeric world property (accepts numbers and numeric strings); `fallback` when absent or invalid. */
+export function readWorldNumber(key: string, fallback = 0): number {
+  try {
+    const v = world.getDynamicProperty(key);
+    const n = typeof v === "number" ? v : typeof v === "string" ? Number(v) : NaN;
+    return Number.isFinite(n) ? n : fallback;
+  } catch (e) {
+    log.warn(`read ${key} failed: ${e}`);
+    return fallback;
+  }
+}
+
 export function writeWorld(key: string, value: string | number | boolean | undefined): void {
   try {
     if (typeof value === "string" && value.length > MAX_STRING) {

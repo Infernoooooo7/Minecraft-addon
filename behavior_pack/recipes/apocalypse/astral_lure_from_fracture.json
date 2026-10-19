@@ -1,0 +1,40 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "apocalypse:astral_lure_from_fracture"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "apocalypse:fracture_shard"
+      },
+      {
+        "item": "apocalypse:fracture_shard"
+      },
+      {
+        "item": "apocalypse:stardust"
+      },
+      {
+        "item": "apocalypse:stardust"
+      },
+      {
+        "item": "apocalypse:stardust"
+      },
+      {
+        "item": "apocalypse:aether_crystal"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "apocalypse:fracture_shard"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:astral_lure",
+      "count": 1
+    }
+  }
+}

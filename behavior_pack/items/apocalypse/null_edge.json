@@ -60,7 +60,8 @@
         "type": "use"
       },
       "apocalypse:on_hit": {
-        "kind": "null_mark"
+        "kind": "null_mark",
+        "base": 13
       }
     }
   }

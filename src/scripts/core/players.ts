@@ -127,3 +127,38 @@ export function damageHeld(p: Player, amount: number): void {
     /* ignore */
   }
 }
+
+/** Remove up to `amount` items of `typeId` from the inventory. Returns how many were removed. */
+export function removeItems(p: Player, typeId: string, amount: number): number {
+  let left = amount;
+  try {
+    const inv = p.getComponent(EntityComponentTypes.Inventory)?.container;
+    if (!inv) return 0;
+    for (let i = 0; i < inv.size && left > 0; i++) {
+      const it = inv.getItem(i);
+      if (it?.typeId !== typeId) continue;
+      const take = Math.min(left, it.amount);
+      left -= take;
+      if (take >= it.amount) inv.setItem(i, undefined);
+      else {
+        it.amount -= take;
+        inv.setItem(i, it);
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+  return amount - left;
+}
+
+export function isCreative(p: Player): boolean {
+  try {
+    return p.getGameMode() === GameMode.Creative;
+  } catch {
+    return false;
+  }
+}
+
+export function heldItem(p: Player): ItemStack | undefined {
+  return equipment(p, EquipmentSlot.Mainhand);
+}

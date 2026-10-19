@@ -133,6 +133,18 @@
         }
       ]
     },
+    "apocalypse.event.ancient_awakening": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/event/ancient_awakening",
+          "volume": 0.9,
+          "is3D": false
+        }
+      ]
+    },
     "apocalypse.event.blood_moon": {
       "category": "weather",
       "min_distance": 2.0,
@@ -140,6 +152,18 @@
       "sounds": [
         {
           "name": "sounds/apocalypse/event/blood_moon",
+          "volume": 0.9,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.event.corruption_surge": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/event/corruption_surge",
           "volume": 0.9,
           "is3D": false
         }

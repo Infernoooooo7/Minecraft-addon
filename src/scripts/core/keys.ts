@@ -19,6 +19,7 @@ export const DP = {
   EVENT_TAG: "apocalypse:event",
   PORTAL_DEST: "apocalypse:dest",
   PORTAL_EXPIRES: "apocalypse:expires",
+  AWAKENING_CACHES: "apocalypse:awakening_caches",
 } as const;
 
 export const TAG = {

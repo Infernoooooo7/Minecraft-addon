@@ -29,15 +29,23 @@ export interface Column {
 export const NEXUS: Island = { key: "nexus", cx: 0, cy: 96, cz: 0, r: 15, height: 2, depth: 14, seed: 11, flat: true };
 export const ARENA: Island = { key: "arena", cx: 0, cy: 92, cz: -120, r: 26, height: 1, depth: 18, seed: 23, flat: true };
 
-/** Small stepping-stone islands linking the Nexus to the Colossus Arena. */
+/** Minimum radius factor of a flat island's wobbly edge (see `columns`). */
+export const EDGE_MIN = 0.82;
+export const BRIDGE_COUNT = 26;
+export const BRIDGE_R = 3.5;
+
+/**
+ * A continuous, gently winding causeway of small overlapping islands from the Nexus to the Colossus
+ * Arena: consecutive pieces always overlap, so the Arena is reachable on foot without building.
+ */
 export function bridgeIslands(): Island[] {
   const out: Island[] = [];
-  for (let i = 1; i <= 7; i++) {
-    const t = i / 8;
+  for (let i = 1; i <= BRIDGE_COUNT; i++) {
+    const t = i / (BRIDGE_COUNT + 1);
     const z = NEXUS.cz + (ARENA.cz - NEXUS.cz) * t;
-    const x = Math.round(Math.sin(i * 1.7) * 5);
+    const x = Math.round(Math.sin(i * 0.35) * 3);
     const y = Math.round(NEXUS.cy + (ARENA.cy - NEXUS.cy) * t);
-    out.push({ key: `bridge_${i}`, cx: x, cy: y, cz: Math.round(z), r: 4, height: 1, depth: 4, seed: 100 + i, flat: true });
+    out.push({ key: `bridge_${i}`, cx: x, cy: y, cz: Math.round(z), r: BRIDGE_R, height: 1, depth: 3, seed: 100 + i, flat: true });
   }
   return out;
 }
@@ -82,11 +90,12 @@ function wobble(seed: number, x: number, z: number): number {
 export function columns(isl: Island): Column[] {
   const out: Column[] = [];
   const R = isl.r;
+  const B = Math.ceil(R); // integer loop bound keeps columns on whole blocks for fractional radii
   const rng = new Rng(isl.seed ^ 0x5bd1e995);
-  for (let dx = -R; dx <= R; dx++) {
-    for (let dz = -R; dz <= R; dz++) {
+  for (let dx = -B; dx <= B; dx++) {
+    for (let dz = -B; dz <= B; dz++) {
       const d = Math.hypot(dx, dz);
-      const edge = R * (0.82 + 0.18 * wobble(isl.seed, dx, dz));
+      const edge = R * (EDGE_MIN + (1 - EDGE_MIN) * wobble(isl.seed, dx, dz));
       if (d > edge) continue;
       const t = d / edge;
       const w = wobble(isl.seed + 7, dx, dz);

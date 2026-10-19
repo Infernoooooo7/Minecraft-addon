@@ -197,6 +197,8 @@ def catalogue() -> dict:
     add("apocalypse.event.meteor_shower", "weather", [lambda: S.mix(stinger([65.4, 98, 130.8], 4.0, 174, dark=False), chime([1046, 1318, 1568], 3.0, 175) * 0.5)], 0.9, is3d=False)
     add("apocalypse.event.reality_fracture", "weather", [lambda: S.mix(stinger([61.7, 87.3, 92.5], 3.5, 176), glitch(3.0, 177) * 0.4)], 0.9, is3d=False)
     add("apocalypse.event.eclipse", "weather", [lambda: S.mix(chime([65.4, 98.0, 131.0, 164.8], 4.5, 178, 0.6), drone([32.7, 49], 4.5, 179, lp=400) * 0.6)], 0.9, is3d=False)
+    add("apocalypse.event.ancient_awakening", "weather", [lambda: S.mix(drone([36.7, 55.0, 73.4], 4.5, 181, lp=700) * 0.8, creak(2.5, 182, 22) * 0.6, chime([293.7, 440, 587.3], 3.5, 183, 0.6) * 0.45)], 0.9, is3d=False)
+    add("apocalypse.event.corruption_surge", "weather", [lambda: S.mix(stinger([51.9, 61.7, 77.8], 4.0, 184), hiss(3.5, 185) * 0.35, whisper(3.0, 186) * 0.5)], 0.9, is3d=False)
     add("apocalypse.event.end", "weather", [lambda: chime([523, 659, 784, 1046], 2.5, 180, 0.5)], 0.7, is3d=False)
 
     # world / abilities ----------------------------------------------------------------------

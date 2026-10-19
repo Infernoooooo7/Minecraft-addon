@@ -29,7 +29,19 @@
       "minecraft:map_color": "#5a2a12",
       "apocalypse:ore_xp": {
         "min": 3,
-        "max": 7
+        "max": 7,
+        "drops": [
+          {
+            "item": "apocalypse:star_metal_chunk",
+            "min": 1,
+            "max": 2
+          },
+          {
+            "item": "apocalypse:stardust",
+            "min": 1,
+            "max": 3
+          }
+        ]
       },
       "minecraft:loot": "loot_tables/blocks/apocalypse/meteorite.json"
     }

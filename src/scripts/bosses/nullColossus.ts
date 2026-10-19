@@ -5,7 +5,7 @@ import { EquipmentSlot, Player } from "@minecraft/server";
 import { actionbar, burst, gravityPull, line, particle, ring, shake, sound, title } from "../core/fx.js";
 import { PROP } from "../core/keys.js";
 import { equipment, isTargetable, playersNear, targetablePlayers } from "../core/players.js";
-import { later } from "../core/scheduler.js";
+import { later, now } from "../core/scheduler.js";
 import { ACTIONS_NULL_COLOSSUS as A, ENTITIES, ITEMS, PARTICLES, SOUNDS } from "../generated/ids.js";
 import { add, dirTo, ringPoint, rotY, scale, V3 } from "../logic/vec.js";
 import { fireBolt } from "./starEater.js";
@@ -22,7 +22,8 @@ function wearsFullAegis(p: Player): boolean {
 }
 
 function openVent(c: Ctx, ticks = VENT_TICKS): void {
-  c.brain.vulnerableUntil = c.now + ticks;
+  // always the current tick: openVent is often called from delayed callbacks holding an older ctx
+  c.brain.vulnerableUntil = now() + ticks;
   c.brain.memory.ventOpen = true;
   try {
     c.boss.setProperty(PROP.VENTED, true);
@@ -84,7 +85,7 @@ const attacks: BossAttack[] = [
           shake(p, 0.7, 0.8);
         }
         // the effort of the slam exposes the core
-        openVent({ ...c, now: c.now + 32 }, 100);
+        openVent(c, 100);
       }, "gravity-slam");
     },
   },

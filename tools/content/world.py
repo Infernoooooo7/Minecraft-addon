@@ -163,6 +163,7 @@ FOGS = {
     "fog_eclipse": ("#0b0a10", 2.0, 44.0, 0.3, [0.02, 0.02, 0.025], [0.03, 0.03, 0.02]),
     "fog_fracture": ("#123a3e", 8.0, 80.0, 0.18, [0.02, 0.07, 0.08], [0.02, 0.0, 0.0]),
     "fog_expanse": ("#0a0716", 24.0, 180.0, 0.08, [0.03, 0.025, 0.07], [0.0, 0.01, 0.0]),
+    "fog_awakening": ("#4a3a1c", 10.0, 96.0, 0.14, [0.07, 0.055, 0.025], [0.0, 0.01, 0.03]),
 }
 
 
@@ -246,7 +247,7 @@ def structures():
                                 "block_intersection": {"block_allowlist": [
                                     "minecraft:air", "minecraft:short_grass", "minecraft:tall_grass", "minecraft:fern",
                                     "minecraft:large_fern", "minecraft:dandelion", "minecraft:poppy", "minecraft:snow_layer",
-                                    "minecraft:dead_bush", ident("blight_sprout")]}},
+                                    "minecraft:deadbush", ident("blight_sprout")]}},
             }})
         REG.add_bp(f"feature_rules/{NS}/{name}_rule.json", {
             "format_version": FEATURE_FMT,

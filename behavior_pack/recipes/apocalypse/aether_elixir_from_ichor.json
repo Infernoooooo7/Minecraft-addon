@@ -1,0 +1,34 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "apocalypse:aether_elixir_from_ichor"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:glass_bottle"
+      },
+      {
+        "item": "minecraft:glass_bottle"
+      },
+      {
+        "item": "apocalypse:aether_crystal"
+      },
+      {
+        "item": "apocalypse:void_ichor"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "apocalypse:void_ichor"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:aether_elixir",
+      "count": 2
+    }
+  }
+}

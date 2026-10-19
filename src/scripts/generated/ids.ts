@@ -75,6 +75,7 @@ export const ENTITIES = {
 } as const;
 
 export const FOGS = {
+  FOG_AWAKENING: "apocalypse:fog_awakening",
   FOG_BLIGHT: "apocalypse:fog_blight",
   FOG_BLOOD_MOON: "apocalypse:fog_blood_moon",
   FOG_ECLIPSE: "apocalypse:fog_eclipse",
@@ -174,7 +175,9 @@ export const SOUNDS = {
   BOSS_PHASE: "apocalypse.boss.phase",
   BOSS_WARN: "apocalypse.boss.warn",
   CODEX_OPEN: "apocalypse.codex.open",
+  EVENT_ANCIENT_AWAKENING: "apocalypse.event.ancient_awakening",
   EVENT_BLOOD_MOON: "apocalypse.event.blood_moon",
+  EVENT_CORRUPTION_SURGE: "apocalypse.event.corruption_surge",
   EVENT_ECLIPSE: "apocalypse.event.eclipse",
   EVENT_END: "apocalypse.event.end",
   EVENT_METEOR_SHOWER: "apocalypse.event.meteor_shower",

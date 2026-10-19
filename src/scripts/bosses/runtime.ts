@@ -178,8 +178,8 @@ function tickBrain(b: Brain, tick: number): void {
         break;
     }
   }
-  // leash: keep the fight near where it started
-  if (distXZ(e.location, b.arena) > b.def.leash) {
+  // leash: keep the fight near where it started (and pull back bosses that fell off an Expanse island)
+  if (distXZ(e.location, b.arena) > b.def.leash || e.location.y < b.arena.y - 16) {
     try {
       burst(e.dimension, PARTICLES.SPECTRAL_BURST, e.location, 2, 1);
       e.teleport(b.arena);

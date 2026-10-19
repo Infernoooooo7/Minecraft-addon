@@ -255,7 +255,7 @@ def weapon(name, display, dmg, dura, repair, ability, painter, on_hit=None, cool
         comps["minecraft:cooldown"] = {"category": f"{NS}_{name}", "duration": cooldown or ability.get("cooldown", 5),
                                        "type": "use"}
     if on_hit:
-        comps[f"{NS}:on_hit"] = on_hit
+        comps[f"{NS}:on_hit"] = {**on_hit, "base": dmg}
     item(name, display, comps, painter, category="equipment", group="minecraft:itemGroup.name.sword")
 
 
@@ -405,6 +405,15 @@ def recipes():
     recipe_shapeless("engine_codex", ["minecraft:book", I("rift_shard")], I("engine_codex"))
     recipe_shapeless("aether_elixir", ["minecraft:glass_bottle", I("aether_crystal"), "minecraft:glow_berries"],
                      I("aether_elixir"), unlock=[I("aether_crystal")])
+    # event materials: alternative routes that reward surviving world events
+    recipe_shapeless("aether_elixir_from_ichor", ["minecraft:glass_bottle", "minecraft:glass_bottle", I("aether_crystal"),
+                                                  I("void_ichor")], I("aether_elixir"), count=2, unlock=[I("void_ichor")])
+    recipe_shapeless("cursed_crown_from_eclipse", [I("eclipse_shard"), I("eclipse_shard"), I("soul_essence"),
+                                                   I("soul_essence"), "minecraft:gold_ingot"], I("cursed_crown"),
+                     unlock=[I("eclipse_shard")])
+    recipe_shapeless("astral_lure_from_fracture", [I("fracture_shard"), I("fracture_shard"), I("stardust"), I("stardust"),
+                                                   I("stardust"), I("aether_crystal")], I("astral_lure"),
+                     unlock=[I("fracture_shard")])
     # weapons
     recipe_shaped("rift_blade", ["A", "R", "S"], {"A": I("aether_crystal"), "R": I("rift_shard"), "S": "minecraft:stick"},
                   I("rift_blade"), unlock=[I("rift_shard")])

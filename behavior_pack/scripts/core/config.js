@@ -1,0 +1,52 @@
+import { getProfile } from "../logic/profiles.js";
+import { DP } from "./keys.js";
+import { log } from "./log.js";
+import { readWorld, writeWorld } from "./state.js";
+const DEFAULTS = {
+    profile: "balanced",
+    eventFrequency: "normal",
+    eventIntensity: "normal",
+    bossDifficulty: "normal",
+    terrainDamage: false,
+    lightning: true,
+    giveCodex: true,
+    events: {},
+    debug: false,
+};
+let current = { ...DEFAULTS };
+export function loadConfig() {
+    const raw = readWorld(DP.CONFIG);
+    if (raw) {
+        try {
+            current = { ...DEFAULTS, ...JSON.parse(raw) };
+        }
+        catch {
+            current = { ...DEFAULTS };
+        }
+    }
+    log.setDebug(current.debug);
+    return current;
+}
+export function config() {
+    return current;
+}
+export function profile() {
+    return getProfile(current.profile);
+}
+export function saveConfig(patch) {
+    current = { ...current, ...patch };
+    writeWorld(DP.CONFIG, JSON.stringify(current));
+    log.setDebug(current.debug);
+    return current;
+}
+export function intensityScale() {
+    return { mild: 0.6, normal: 1, brutal: 1.5 }[current.eventIntensity];
+}
+/** Damage multiplier for scripted boss attacks. */
+export function bossDamageScale() {
+    return { story: 0.6, normal: 1, nightmare: 1.45 }[current.bossDifficulty];
+}
+/** Health tier offset for bosses (story = fewer tiers). */
+export function bossTierBonus() {
+    return { story: -1, normal: 0, nightmare: 1 }[current.bossDifficulty];
+}

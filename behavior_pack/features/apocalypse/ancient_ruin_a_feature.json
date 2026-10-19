@@ -20,7 +20,7 @@
           "minecraft:dandelion",
           "minecraft:poppy",
           "minecraft:snow_layer",
-          "minecraft:dead_bush",
+          "minecraft:deadbush",
           "apocalypse:blight_sprout"
         ]
       }

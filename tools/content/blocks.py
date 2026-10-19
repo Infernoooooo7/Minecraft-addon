@@ -7,7 +7,6 @@ from tools.content.common import BLOCK_FMT, BLOCK_TEX, DENS_BLOCK, FEATURE_FMT, 
 from tools.content.registry import REG, TexAsset
 from tools.lib import tex
 
-PICKAXE = {"condition": "match_tool", "minecraft:match_tool_filter_any": ["minecraft:is_pickaxe"]}
 SILK = {"condition": "match_tool", "enchantments": [{"enchantment": "silk_touch", "levels": {"range_min": 1}}]}
 
 
@@ -267,15 +266,15 @@ def self_drop(name: str) -> dict:
     return loot_table([{"rolls": 1, "entries": [item_entry(ident(name))]}])
 
 
-def ore_loot(name: str, drop: str, count: tuple[int, int], extra: list | None = None) -> dict:
-    pools = [{"rolls": 1, "entries": [item_entry(ident(name))], "conditions": [SILK]},
-             {"rolls": 1, "conditions": [PICKAXE],
-              "entries": [{"type": "item", "name": drop, "weight": 1,
-                           "functions": [{"function": "set_count", "count": {"min": count[0], "max": count[1]}},
-                                         {"function": "explosion_decay"}]}]}]
-    if extra:
-        pools.extend(extra)
-    return loot_table(pools)
+def ore_loot(name: str) -> dict:
+    """Silk Touch drops the ore itself. Every other drop (shards, Fortune, XP) is rolled by the
+    apocalypse:ore_xp script component, because loot conditions cannot express "not Silk Touch"."""
+    return loot_table([{"rolls": 1, "entries": [item_entry(ident(name))], "conditions": [SILK]}])
+
+
+def ore_component(xp: tuple[int, int], drops: list[tuple[str, int, int]]) -> dict:
+    return {f"{NS}:ore_xp": {"min": xp[0], "max": xp[1],
+                             "drops": [{"item": i, "min": a, "max": b} for i, a, b in drops]}}
 
 
 def build():
@@ -289,8 +288,8 @@ def build():
         "minecraft:destructible_by_explosion": {"explosion_resistance": 3.0},
         "minecraft:light_emission": 3,
         "minecraft:map_color": "#2a8c99",
-        f"{NS}:ore_xp": {"min": 2, "max": 5},
-    }, "stone", ore_loot("rift_ore", ident("rift_shard"), (1, 3)), category="nature", group="minecraft:itemGroup.name.ore")
+        **ore_component((2, 5), [(ident("rift_shard"), 1, 3)]),
+    }, "stone", ore_loot("rift_ore"), category="nature", group="minecraft:itemGroup.name.ore")
 
     block_texture("deepslate_rift_ore", paint_deepslate_rift_ore)
     block("deepslate_rift_ore", "Deepslate Rift Ore", {
@@ -299,8 +298,8 @@ def build():
         "minecraft:destructible_by_explosion": {"explosion_resistance": 3.0},
         "minecraft:light_emission": 3,
         "minecraft:map_color": "#1d5f69",
-        f"{NS}:ore_xp": {"min": 3, "max": 6},
-    }, "deepslate", ore_loot("deepslate_rift_ore", ident("rift_shard"), (2, 4)), category="nature",
+        **ore_component((3, 6), [(ident("rift_shard"), 2, 4)]),
+    }, "deepslate", ore_loot("deepslate_rift_ore"), category="nature",
         group="minecraft:itemGroup.name.ore")
 
     block_texture("meteorite", paint_meteorite)
@@ -310,10 +309,8 @@ def build():
         "minecraft:destructible_by_explosion": {"explosion_resistance": 9.0},
         "minecraft:light_emission": 6,
         "minecraft:map_color": "#5a2a12",
-        f"{NS}:ore_xp": {"min": 3, "max": 7},
-    }, "stone", ore_loot("meteorite", ident("star_metal_chunk"), (1, 2),
-                         extra=[{"rolls": 1, "conditions": [PICKAXE],
-                                 "entries": [item_entry(ident("stardust"), count=(1, 3))]}]), category="nature",
+        **ore_component((3, 7), [(ident("star_metal_chunk"), 1, 2), (ident("stardust"), 1, 3)]),
+    }, "stone", ore_loot("meteorite"), category="nature",
         group="minecraft:itemGroup.name.ore")
 
     block_texture("aether_crystal_block", paint_aether_block)
@@ -390,10 +387,8 @@ def build():
         "minecraft:light_emission": 9,
         "minecraft:map_color": "#5cf0ff",
         "minecraft:placement_filter": {"conditions": [{"allowed_faces": ["up"]}]},
-    }, "amethyst_cluster", loot_table([
-        {"rolls": 1, "entries": [item_entry(ident("aether_cluster"))], "conditions": [SILK]},
-        {"rolls": 1, "entries": [item_entry(ident("rift_shard"), count=(1, 2))], "conditions": [PICKAXE]},
-    ]), category="nature")
+        **ore_component((0, 1), [(ident("rift_shard"), 1, 2)]),
+    }, "amethyst_cluster", ore_loot("aether_cluster"), category="nature")
 
     REG.add_texture(TexAsset(f"{BLOCK_TEX}/blight_sprout",
                              lambda d: _cross_sprite(d, 92, [(0, "#0f0a14"), (0.5, "#3b2a4a"), (0.85, "#6b8f2a"), (1, "#c8ff7a")], "sprout"),

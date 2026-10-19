@@ -53,7 +53,8 @@
       "apocalypse:on_hit": {
         "kind": "lifesteal",
         "ratio": 0.25,
-        "bleed": true
+        "bleed": true,
+        "base": 9
       }
     }
   }

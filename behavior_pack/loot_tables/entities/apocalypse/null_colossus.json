@@ -45,6 +45,10 @@
           "type": "item",
           "name": "apocalypse:null_edge",
           "weight": 1
+        },
+        {
+          "type": "empty",
+          "weight": 2
         }
       ]
     }

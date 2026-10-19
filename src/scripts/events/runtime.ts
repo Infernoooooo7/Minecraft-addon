@@ -1,12 +1,12 @@
 // Dynamic world event runtime: rolls, start/stop, persistence across reloads, fog, bounded spawns.
-import { Dimension, Entity, Player, system, world } from "@minecraft/server";
+import { Dimension, Entity, ItemStack, Player, system, Vector3, world } from "@minecraft/server";
 import { config, profile } from "../core/config.js";
 import { burst, playerSound, pushFog, removeFog, title } from "../core/fx.js";
-import { DIMENSION_EXPANSE, DP, FOG_ID, TAG } from "../core/keys.js";
+import { DP, FOG_ID, TAG } from "../core/keys.js";
 import { log } from "../core/log.js";
 import { allPlayers, isTargetable } from "../core/players.js";
 import { every, now } from "../core/scheduler.js";
-import { readEntity, readWorld, writeEntity, writeWorld } from "../core/state.js";
+import { readEntity, readWorld, readWorldNumber, writeEntity, writeWorld } from "../core/state.js";
 import { PARTICLES, SOUNDS } from "../generated/ids.js";
 import {
   end, EventMeta, eligible, EventState, parseState, pick, rebase, rollChance, ROLL_INTERVAL_TICKS, shouldEnd, start,
@@ -22,8 +22,20 @@ export interface EventCtx {
   rng: Rng;
 }
 
+/** Bonus drop rolled when a player kills a hostile mob while the event is active. */
+export interface KillDrop {
+  item: string;
+  chance: number;
+  min?: number;
+  max?: number;
+  /** Restrict to these entity types (default: any monster). */
+  types?: string[];
+}
+
 export interface WorldEvent {
   meta: EventMeta;
+  /** One-line gameplay summary for the Engine Codex. */
+  summary: string;
   color: string;
   fog?: string;
   startTitle: string;
@@ -33,6 +45,7 @@ export interface WorldEvent {
   /** Called every second while active. */
   onPulse(ctx: EventCtx): void;
   onEnd?(ctx: EventCtx): void;
+  killDrops?: KillDrop[];
 }
 
 const events = new Map<string, WorldEvent>();
@@ -183,6 +196,58 @@ export function spawnForEvent(p: Player, typeId: string, minDist: number, maxDis
   return undefined;
 }
 
+/** Spawn an event entity at a location (meteor impacts, caches) under the global cap. */
+export function spawnEventMobAt(dim: Dimension, typeId: string, loc: Vector3, spawnEvent?: string,
+  ignoreCap = false): Entity | undefined {
+  if (!ignoreCap && eventMobCount() >= profile().eventMobsGlobal) return undefined;
+  try {
+    const e = dim.spawnEntity(typeId, loc, spawnEvent ? { spawnEvent } : undefined);
+    e.addTag(TAG.EVENT_MOB);
+    writeEntity(e, DP.EVENT_TAG, state.active ?? "");
+    spawned.set(e.id, e);
+    return e;
+  } catch {
+    return undefined;
+  }
+}
+
+/** Live event entities, optionally of one type (used for hazard ticking). */
+export function eventEntities(typeId?: string): Entity[] {
+  pruneSpawned();
+  const out: Entity[] = [];
+  for (const e of spawned.values()) if (!typeId || e.typeId === typeId) out.push(e);
+  return out;
+}
+
+export function isEventEntity(id: string): boolean {
+  return spawned.has(id);
+}
+
+function rollKillDrops(dead: Entity, killer: Entity | undefined): void {
+  const ev = activeEvent();
+  if (!ev?.killDrops?.length || !killer || killer.typeId !== "minecraft:player") return;
+  let loc: Vector3;
+  let dim: Dimension;
+  try {
+    if (dead.dimension.id !== "minecraft:overworld") return;
+    if (!dead.matches({ families: ["monster"] }) || dead.matches({ families: ["apocalypse_boss"] })) return;
+    loc = dead.location;
+    dim = dead.dimension;
+  } catch {
+    return;
+  }
+  for (const d of ev.killDrops) {
+    if (d.types && !d.types.includes(dead.typeId)) continue;
+    if (!rng.chance(d.chance)) continue;
+    const n = Math.round(rng.range(d.min ?? 1, d.max ?? d.min ?? 1));
+    try {
+      dim.spawnItem(new ItemStack(d.item, Math.max(1, n)), loc);
+    } catch {
+      /* unloaded */
+    }
+  }
+}
+
 function despawnEventEntities(): void {
   for (const e of spawned.values()) {
     try {
@@ -220,7 +285,7 @@ export function syncPlayerFog(p: Player): void {
 }
 
 export function initEventRuntime(): void {
-  const savedAt = Number(readWorld(DP.EVENT_SAVED_AT) ?? 0) || 0;
+  const savedAt = readWorldNumber(DP.EVENT_SAVED_AT, 0);
   // tick counters restart with each session: rebase stored ticks onto the current clock
   state = rebase(parseState(readWorld(DP.EVENT_STATE)), savedAt, now());
   persist();
@@ -253,5 +318,9 @@ export function initEventRuntime(): void {
   world.afterEvents.playerDimensionChange.subscribe((e) => {
     system.run(() => syncPlayerFog(e.player));
   });
-  void DIMENSION_EXPANSE;
+
+  world.afterEvents.entityDie.subscribe((e) => {
+    spawned.delete(e.deadEntity.id);
+    rollKillDrops(e.deadEntity, e.damageSource.damagingEntity);
+  });
 }

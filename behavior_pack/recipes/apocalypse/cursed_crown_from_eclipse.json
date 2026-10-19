@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "apocalypse:cursed_crown_from_eclipse"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "apocalypse:eclipse_shard"
+      },
+      {
+        "item": "apocalypse:eclipse_shard"
+      },
+      {
+        "item": "apocalypse:soul_essence"
+      },
+      {
+        "item": "apocalypse:soul_essence"
+      },
+      {
+        "item": "minecraft:gold_ingot"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "apocalypse:eclipse_shard"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:cursed_crown",
+      "count": 1
+    }
+  }
+}

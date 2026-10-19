@@ -29,7 +29,14 @@
       "minecraft:map_color": "#2a8c99",
       "apocalypse:ore_xp": {
         "min": 2,
-        "max": 5
+        "max": 5,
+        "drops": [
+          {
+            "item": "apocalypse:rift_shard",
+            "min": 1,
+            "max": 3
+          }
+        ]
       },
       "minecraft:loot": "loot_tables/blocks/apocalypse/rift_ore.json"
     }

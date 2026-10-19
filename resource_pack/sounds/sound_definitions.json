@@ -1,0 +1,850 @@
+{
+  "format_version": "1.20.20",
+  "sound_definitions": {
+    "apocalypse.ability.bolt": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/ability/bolt",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.ability.crush": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/ability/crush",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.ability.dash": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/ability/dash",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.ability.gravity": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/ability/gravity",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.ability.lifesteal": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/ability/lifesteal",
+          "volume": 0.6,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.ability.reap": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/ability/reap",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.ability.slam": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/ability/slam",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.boss.defeat": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/boss/defeat",
+          "volume": 1.0,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.boss.phase": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/boss/phase",
+          "volume": 1.2,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.boss.warn": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/boss/warn",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.codex.open": {
+      "category": "ui",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/codex/open",
+          "volume": 0.6,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.event.blood_moon": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/event/blood_moon",
+          "volume": 0.9,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.event.eclipse": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/event/eclipse",
+          "volume": 0.9,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.event.end": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/event/end",
+          "volume": 0.7,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.event.meteor_shower": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/event/meteor_shower",
+          "volume": 0.9,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.event.reality_fracture": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/event/reality_fracture",
+          "volume": 0.9,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.event.void_storm": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/event/void_storm",
+          "volume": 0.9,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.hollow_king.chains": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/hollow_king/chains",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.hollow_king.quake": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 72,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/hollow_king/quake",
+          "volume": 1.3,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.hollow_king.slash": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/hollow_king/slash",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.hollow_king.summon": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/hollow_king/summon",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.hollow_king.teleport": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/hollow_king/teleport",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.meteor.impact": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 128,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/meteor/impact",
+          "volume": 1.4,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.meteor.whistle": {
+      "category": "weather",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/meteor/whistle",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.null_colossus.beam": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 80,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/null_colossus/beam",
+          "volume": 1.2,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.null_colossus.gravity": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 80,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/null_colossus/gravity",
+          "volume": 1.3,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.null_colossus.vent": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/null_colossus/vent",
+          "volume": 1.2,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.portal.open": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/portal/open",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.portal.travel": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/portal/travel",
+          "volume": 1.0,
+          "is3D": false
+        }
+      ]
+    },
+    "apocalypse.relic.use": {
+      "category": "player",
+      "min_distance": 2.0,
+      "max_distance": 64,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/relic/use",
+          "volume": 1.1,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.rift.close": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/rift/close",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.rift.hum": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/rift/hum",
+          "volume": 0.7,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.rift_sentinel.shoot": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/rift_sentinel/shoot",
+          "volume": 0.9,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.root_titan.eruption": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/root_titan/eruption",
+          "volume": 1.1,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.root_titan.slam": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 72,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/root_titan/slam",
+          "volume": 1.3,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.star_eater.bolt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/star_eater/bolt",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.star_eater.charge": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 80,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/star_eater/charge",
+          "volume": 1.2,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.star_eater.gravity": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/star_eater/gravity",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "apocalypse.star_eater.nova": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/apocalypse/star_eater/nova",
+          "volume": 1.4,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.astral_mite.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/astral_mite/ambient",
+          "volume": 0.7,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.astral_mite.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 32,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/astral_mite/death",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.astral_mite.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/astral_mite/hurt",
+          "volume": 0.9,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.hollow_king.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/hollow_king/ambient",
+          "volume": 0.8,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.hollow_king.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/hollow_king/death",
+          "volume": 1.2,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.hollow_king.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/hollow_king/hurt_1",
+          "volume": 1.0,
+          "is3D": true
+        },
+        {
+          "name": "sounds/mob/apocalypse/hollow_king/hurt_2",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.hollow_king.roar": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/hollow_king/roar",
+          "volume": 1.3,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.hollow_shade.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/hollow_shade/ambient",
+          "volume": 0.7,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.hollow_shade.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 32,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/hollow_shade/death",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.hollow_shade.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/hollow_shade/hurt",
+          "volume": 0.9,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.null_colossus.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/null_colossus/ambient",
+          "volume": 0.9,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.null_colossus.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 128,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/null_colossus/death",
+          "volume": 1.4,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.null_colossus.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/null_colossus/hurt",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.null_colossus.roar": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 128,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/null_colossus/roar",
+          "volume": 1.4,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.rift_sentinel.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/rift_sentinel/ambient",
+          "volume": 0.7,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.rift_sentinel.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 32,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/rift_sentinel/death",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.rift_sentinel.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/rift_sentinel/hurt",
+          "volume": 0.9,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.root_titan.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/root_titan/ambient",
+          "volume": 0.9,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.root_titan.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/root_titan/death",
+          "volume": 1.3,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.root_titan.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/root_titan/hurt",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.root_titan.roar": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/root_titan/roar",
+          "volume": 1.3,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.star_eater.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/star_eater/ambient",
+          "volume": 0.8,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.star_eater.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/star_eater/death",
+          "volume": 1.3,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.star_eater.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 48.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/star_eater/hurt",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.star_eater.roar": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 96,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/star_eater/roar",
+          "volume": 1.3,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.thornling.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/thornling/ambient",
+          "volume": 0.7,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.thornling.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 32,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/thornling/death",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.thornling.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/thornling/hurt",
+          "volume": 0.9,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.void_crawler.ambient": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/void_crawler/ambient",
+          "volume": 0.7,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.void_crawler.death": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 32,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/void_crawler/death",
+          "volume": 1.0,
+          "is3D": true
+        }
+      ]
+    },
+    "mob.apocalypse.void_crawler.hurt": {
+      "category": "hostile",
+      "min_distance": 2.0,
+      "max_distance": 24,
+      "sounds": [
+        {
+          "name": "sounds/mob/apocalypse/void_crawler/hurt",
+          "volume": 0.9,
+          "is3D": true
+        }
+      ]
+    }
+  }
+}

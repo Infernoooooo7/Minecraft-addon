@@ -1,0 +1,106 @@
+// Deterministic floating-island layout for the Shattered Expanse custom dimension.
+// Pure and unit tested: the same seed always produces the same islands.
+
+import { hash2, Rng } from "./rng.js";
+
+export const CELL = 64;
+export const WORLD_RADIUS = 640;
+
+export interface Island {
+  key: string;
+  cx: number;
+  cy: number;
+  cz: number;
+  r: number;
+  height: number;
+  depth: number;
+  seed: number;
+  flat: boolean;
+}
+
+export interface Column {
+  x: number;
+  z: number;
+  top: number;
+  bottom: number;
+  deco: "none" | "cluster" | "crystal";
+}
+
+export const NEXUS: Island = { key: "nexus", cx: 0, cy: 96, cz: 0, r: 15, height: 2, depth: 14, seed: 11, flat: true };
+export const ARENA: Island = { key: "arena", cx: 0, cy: 92, cz: -120, r: 26, height: 1, depth: 18, seed: 23, flat: true };
+
+/** Small stepping-stone islands linking the Nexus to the Colossus Arena. */
+export function bridgeIslands(): Island[] {
+  const out: Island[] = [];
+  for (let i = 1; i <= 7; i++) {
+    const t = i / 8;
+    const z = NEXUS.cz + (ARENA.cz - NEXUS.cz) * t;
+    const x = Math.round(Math.sin(i * 1.7) * 5);
+    const y = Math.round(NEXUS.cy + (ARENA.cy - NEXUS.cy) * t);
+    out.push({ key: `bridge_${i}`, cx: x, cy: y, cz: Math.round(z), r: 4, height: 1, depth: 4, seed: 100 + i, flat: true });
+  }
+  return out;
+}
+
+export const cellKey = (cx: number, cz: number): string => `${cx},${cz}`;
+
+/** Islands in procedural cells avoid the reserved corridor between Nexus and Arena. */
+export function islandForCell(cx: number, cz: number, worldSeed: number): Island | null {
+  const h = hash2(cx, cz, worldSeed);
+  const rng = new Rng(h);
+  if (!rng.chance(0.72)) return null;
+  const x = cx * CELL + rng.int(10, CELL - 10);
+  const z = cz * CELL + rng.int(10, CELL - 10);
+  if (Math.hypot(x, z) > WORLD_RADIUS) return null;
+  // keep the Nexus, Arena and bridge corridor clear
+  if (Math.abs(x) < 40 && z < 40 && z > ARENA.cz - 50) return null;
+  const r = rng.int(6, 17);
+  return {
+    key: cellKey(cx, cz), cx: x, cy: rng.int(72, 128), cz: z, r, height: rng.int(2, 6),
+    depth: Math.round(r * rng.range(0.9, 1.6)), seed: h, flat: false,
+  };
+}
+
+export function cellsNear(x: number, z: number, radius: number): Array<[number, number]> {
+  const out: Array<[number, number]> = [];
+  const c0x = Math.floor((x - radius) / CELL);
+  const c1x = Math.floor((x + radius) / CELL);
+  const c0z = Math.floor((z - radius) / CELL);
+  const c1z = Math.floor((z + radius) / CELL);
+  for (let cx = c0x; cx <= c1x; cx++) for (let cz = c0z; cz <= c1z; cz++) out.push([cx, cz]);
+  return out;
+}
+
+/** Smooth pseudo-noise in [0,1] from the island seed (cheap, deterministic). */
+function wobble(seed: number, x: number, z: number): number {
+  const a = Math.sin((x * 0.31 + seed * 0.001) * 1.7) * Math.cos((z * 0.27 - seed * 0.002) * 1.3);
+  const b = Math.sin((x * 0.11 + z * 0.13) + seed * 0.0007);
+  return (a * 0.6 + b * 0.4) * 0.5 + 0.5;
+}
+
+/** Column spans (top/bottom Y) of an island, deterministic. */
+export function columns(isl: Island): Column[] {
+  const out: Column[] = [];
+  const R = isl.r;
+  const rng = new Rng(isl.seed ^ 0x5bd1e995);
+  for (let dx = -R; dx <= R; dx++) {
+    for (let dz = -R; dz <= R; dz++) {
+      const d = Math.hypot(dx, dz);
+      const edge = R * (0.82 + 0.18 * wobble(isl.seed, dx, dz));
+      if (d > edge) continue;
+      const t = d / edge;
+      const w = wobble(isl.seed + 7, dx, dz);
+      const top = isl.flat ? isl.cy : isl.cy + Math.round((1 - t * t) * isl.height * (0.6 + 0.4 * w));
+      const under = Math.pow(1 - t, 0.75) * isl.depth * (0.55 + 0.45 * wobble(isl.seed + 13, dx, dz));
+      const bottom = Math.min(top - 1, isl.cy - Math.max(1, Math.round(under)));
+      let deco: Column["deco"] = "none";
+      if (!isl.flat) {
+        const roll = rng.next();
+        if (roll < 0.025) deco = "cluster";
+        else if (roll < 0.032) deco = "crystal";
+      }
+      out.push({ x: isl.cx + dx, z: isl.cz + dz, top, bottom, deco });
+    }
+  }
+  return out;
+}

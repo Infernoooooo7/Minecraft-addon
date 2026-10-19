@@ -1,0 +1,29 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "apocalypse:shattered_stone",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "apocalypse_shattered_stone",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        }
+      },
+      "minecraft:tags": [
+        "minecraft:is_pickaxe_item_destructible"
+      ],
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 2.0
+      },
+      "minecraft:light_emission": 1,
+      "minecraft:map_color": "#4a4660",
+      "minecraft:loot": "loot_tables/blocks/apocalypse/shattered_stone.json"
+    }
+  }
+}

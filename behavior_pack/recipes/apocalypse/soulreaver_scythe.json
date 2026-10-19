@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:soulreaver_scythe"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "HHE",
+      " S ",
+      "S  "
+    ],
+    "key": {
+      "H": {
+        "item": "apocalypse:hollow_crown_shard"
+      },
+      "E": {
+        "item": "apocalypse:soul_essence"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:hollow_crown_shard"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:soulreaver_scythe",
+      "count": 1
+    }
+  }
+}

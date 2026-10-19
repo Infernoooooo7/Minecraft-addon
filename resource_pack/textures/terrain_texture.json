@@ -1,0 +1,62 @@
+{
+  "resource_pack_name": "apocalypse",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "apocalypse_aether_cluster": {
+      "textures": "textures/blocks/apocalypse/aether_cluster"
+    },
+    "apocalypse_aether_crystal_block": {
+      "textures": "textures/blocks/apocalypse/aether_crystal_block"
+    },
+    "apocalypse_blight_sprout": {
+      "textures": "textures/blocks/apocalypse/blight_sprout"
+    },
+    "apocalypse_blighted_grass_side": {
+      "textures": "textures/blocks/apocalypse/blighted_grass_side"
+    },
+    "apocalypse_blighted_grass_top": {
+      "textures": "textures/blocks/apocalypse/blighted_grass_top"
+    },
+    "apocalypse_blighted_soil": {
+      "textures": "textures/blocks/apocalypse/blighted_soil"
+    },
+    "apocalypse_chiseled_runestone": {
+      "textures": "textures/blocks/apocalypse/chiseled_runestone"
+    },
+    "apocalypse_deepslate_rift_ore": {
+      "textures": "textures/blocks/apocalypse/deepslate_rift_ore"
+    },
+    "apocalypse_engine_cache_side": {
+      "textures": "textures/blocks/apocalypse/engine_cache_side"
+    },
+    "apocalypse_engine_cache_top": {
+      "textures": "textures/blocks/apocalypse/engine_cache_top"
+    },
+    "apocalypse_meteorite": {
+      "textures": "textures/blocks/apocalypse/meteorite"
+    },
+    "apocalypse_null_gate_side": {
+      "textures": "textures/blocks/apocalypse/null_gate_side"
+    },
+    "apocalypse_null_gate_top": {
+      "textures": "textures/blocks/apocalypse/null_gate_top"
+    },
+    "apocalypse_rift_ore": {
+      "textures": "textures/blocks/apocalypse/rift_ore"
+    },
+    "apocalypse_runestone_bricks": {
+      "textures": "textures/blocks/apocalypse/runestone_bricks"
+    },
+    "apocalypse_shattered_stone": {
+      "textures": "textures/blocks/apocalypse/shattered_stone"
+    },
+    "apocalypse_void_moss_side": {
+      "textures": "textures/blocks/apocalypse/void_moss_side"
+    },
+    "apocalypse_void_moss_top": {
+      "textures": "textures/blocks/apocalypse/void_moss_top"
+    }
+  }
+}

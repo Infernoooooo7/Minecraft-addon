@@ -1,0 +1,39 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "apocalypse:void_moss",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "apocalypse_void_moss_side",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        },
+        "up": {
+          "texture": "apocalypse_void_moss_top",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        },
+        "down": {
+          "texture": "apocalypse_shattered_stone",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        }
+      },
+      "minecraft:tags": [
+        "minecraft:is_pickaxe_item_destructible"
+      ],
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 1.2
+      },
+      "minecraft:light_emission": 4,
+      "minecraft:map_color": "#1f6b75",
+      "minecraft:loot": "loot_tables/blocks/apocalypse/void_moss.json"
+    }
+  }
+}

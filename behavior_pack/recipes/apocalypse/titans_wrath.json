@@ -1,0 +1,39 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:titans_wrath"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BWB",
+      "BIB",
+      " L "
+    ],
+    "key": {
+      "B": {
+        "item": "apocalypse:living_bark"
+      },
+      "W": {
+        "item": "apocalypse:titan_heartwood"
+      },
+      "I": {
+        "item": "minecraft:iron_block"
+      },
+      "L": {
+        "item": "minecraft:oak_log"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:titan_heartwood"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:titans_wrath",
+      "count": 1
+    }
+  }
+}

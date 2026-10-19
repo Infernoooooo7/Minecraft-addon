@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "bundler",
+    "lib": ["ES2020"],
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "exactOptionalPropertyTypes": false,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": false,
+    "rootDir": "src/scripts",
+    "outDir": "behavior_pack/scripts",
+    "removeComments": false,
+    "sourceMap": false,
+    "declaration": false,
+    "newLine": "lf",
+    "types": []
+  },
+  "include": ["src/scripts/**/*.ts"]
+}

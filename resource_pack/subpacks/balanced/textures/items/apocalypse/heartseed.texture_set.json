@@ -1,0 +1,7 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:texture_set": {
+    "color": "heartseed",
+    "metalness_emissive_roughness": "heartseed_mer"
+  }
+}

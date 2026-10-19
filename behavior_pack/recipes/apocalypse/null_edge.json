@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:null_edge"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "NNN",
+      "NHN",
+      " R "
+    ],
+    "key": {
+      "N": {
+        "item": "apocalypse:null_fragment"
+      },
+      "H": {
+        "item": "apocalypse:null_heart"
+      },
+      "R": {
+        "item": "apocalypse:rift_blade"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:null_heart"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:null_edge",
+      "count": 1
+    }
+  }
+}

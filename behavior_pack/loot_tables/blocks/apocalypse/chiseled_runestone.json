@@ -1,0 +1,14 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "apocalypse:chiseled_runestone",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

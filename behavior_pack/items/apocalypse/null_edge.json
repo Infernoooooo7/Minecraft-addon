@@ -1,0 +1,67 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "apocalypse:null_edge",
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.sword"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "apocalypse_null_edge"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.apocalypse:null_edge.name"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:damage": 13,
+      "minecraft:durability": {
+        "max_durability": 3000
+      },
+      "minecraft:enchantable": {
+        "slot": "sword",
+        "value": 15
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "apocalypse:null_fragment"
+            ],
+            "repair_amount": "query.max_durability * 0.25"
+          },
+          {
+            "items": [
+              "apocalypse:null_edge"
+            ],
+            "repair_amount": "context.other->query.remaining_durability + 0.05 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:can_destroy_in_creative": false,
+      "minecraft:rarity": "epic",
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_sword"
+        ]
+      },
+      "apocalypse:ability": {
+        "kind": "gravity_crush",
+        "cooldown": 14
+      },
+      "minecraft:cooldown": {
+        "category": "apocalypse_null_edge",
+        "duration": 14,
+        "type": "use"
+      },
+      "apocalypse:on_hit": {
+        "kind": "null_mark"
+      }
+    }
+  }
+}

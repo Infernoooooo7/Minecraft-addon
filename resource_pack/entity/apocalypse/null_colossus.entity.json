@@ -1,0 +1,62 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:null_colossus",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/null_colossus",
+        "glow": "textures/entity/apocalypse/null_colossus_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.null_colossus"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.boss",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "idle": "animation.apocalypse.null_colossus.idle",
+        "walk": "animation.apocalypse.null_colossus.walk",
+        "look_at_target": "animation.apocalypse.null_colossus.look_at_target",
+        "attack": "animation.apocalypse.null_colossus.attack",
+        "gravity_lift": "animation.apocalypse.null_colossus.gravity_lift",
+        "gravity_slam": "animation.apocalypse.null_colossus.gravity_slam",
+        "beam_charge": "animation.apocalypse.null_colossus.beam_charge",
+        "beam_fire": "animation.apocalypse.null_colossus.beam_fire",
+        "roar": "animation.apocalypse.null_colossus.roar",
+        "vent": "animation.apocalypse.null_colossus.vent",
+        "collapse": "animation.apocalypse.null_colossus.collapse",
+        "action_controller": "controller.animation.apocalypse.null_colossus.action",
+        "attack_controller": "controller.animation.apocalypse.null_colossus.attack",
+        "phase_controller": "controller.animation.apocalypse.null_colossus.phase",
+        "ambient_controller": "controller.animation.apocalypse.null_colossus.ambient"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          {
+            "walk": "query.modified_move_speed"
+          },
+          "look_at_target",
+          "action_controller",
+          "attack_controller",
+          "phase_controller",
+          "ambient_controller"
+        ]
+      },
+      "particle_effects": {
+        "aura1": "apocalypse:null_mote",
+        "aura2": "apocalypse:boss_aura_cyan",
+        "aura3": "apocalypse:boss_aura_crimson"
+      },
+      "spawn_egg": {
+        "base_color": "#020205",
+        "overlay_color": "#3ff3ff"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:rift_sentinel",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/rift_sentinel",
+        "glow": "textures/entity/apocalypse/rift_sentinel_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.rift_sentinel"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.default",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "idle": "animation.apocalypse.rift_sentinel.idle",
+        "charge": "animation.apocalypse.rift_sentinel.charge",
+        "ambient_controller": "controller.animation.apocalypse.rift_sentinel.ambient"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          {
+            "charge": "query.is_charging"
+          },
+          "ambient_controller"
+        ]
+      },
+      "particle_effects": {
+        "mote": "apocalypse:null_mote"
+      },
+      "spawn_egg": {
+        "base_color": "#020205",
+        "overlay_color": "#3ff3ff"
+      }
+    }
+  }
+}

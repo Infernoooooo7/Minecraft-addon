@@ -1,0 +1,568 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.apocalypse.root_titan.idle": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "rotation": [
+            "math.sin(query.life_time * 72.00) * 1.2",
+            0,
+            "math.sin(query.life_time * 51.43) * 1.0"
+          ]
+        },
+        "head": {
+          "rotation": [
+            "math.sin(query.life_time * 72.00 + 60) * 2.0",
+            0,
+            0
+          ]
+        },
+        "right_arm": {
+          "rotation": [
+            "math.sin(query.life_time * 72.00 + 90) * 3.0",
+            0,
+            4
+          ]
+        },
+        "left_arm": {
+          "rotation": [
+            "math.sin(query.life_time * 72.00 + 200) * 3.0",
+            0,
+            -4
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.walk": {
+      "loop": true,
+      "bones": {
+        "right_leg": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 24) * 18 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "left_leg": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 24 + 180) * 18 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "right_arm": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 24 + 180) * 12 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "left_arm": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 24) * 12 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "body": {
+          "rotation": [
+            0,
+            0,
+            "math.cos(query.modified_distance_moved * 24) * 3 * query.modified_move_speed"
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.look_at_target": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "rotation": [
+            "query.target_x_rotation * 0.5",
+            "query.target_y_rotation * 0.6",
+            0
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.attack": {
+      "loop": false,
+      "animation_length": 1.3,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.6": [
+              -150,
+              0,
+              -10
+            ],
+            "0.8": [
+              15,
+              0,
+              0
+            ],
+            "1.3": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.6": [
+              -8,
+              10,
+              0
+            ],
+            "0.8": [
+              15,
+              -10,
+              0
+            ],
+            "1.3": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.eruption": {
+      "loop": false,
+      "animation_length": 1.5,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -120,
+              0,
+              0
+            ],
+            "0.8": [
+              30,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -120,
+              0,
+              0
+            ],
+            "0.8": [
+              30,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -10,
+              0,
+              0
+            ],
+            "0.8": [
+              22,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.brood": {
+      "loop": false,
+      "animation_length": 1.5,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -60,
+              0,
+              60
+            ],
+            "1.2": [
+              -60,
+              0,
+              60
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -60,
+              0,
+              -60
+            ],
+            "1.2": [
+              -60,
+              0,
+              -60
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -25,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.slam_windup": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 1.0,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.0": [
+              -170,
+              0,
+              -15
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.0": [
+              -170,
+              0,
+              15
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.0": [
+              -15,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.slam": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 0.6,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              -170,
+              0,
+              -15
+            ],
+            "0.15": [
+              20,
+              0,
+              -5
+            ],
+            "0.6": [
+              10,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              -170,
+              0,
+              15
+            ],
+            "0.15": [
+              20,
+              0,
+              5
+            ],
+            "0.6": [
+              10,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              -15,
+              0,
+              0
+            ],
+            "0.15": [
+              28,
+              0,
+              0
+            ],
+            "0.6": [
+              18,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.roar": {
+      "loop": false,
+      "animation_length": 2.0,
+      "bones": {
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              -32,
+              0,
+              0
+            ],
+            "1.6": [
+              -32,
+              0,
+              0
+            ],
+            "2.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              -30,
+              0,
+              70
+            ],
+            "1.6": [
+              -30,
+              0,
+              70
+            ],
+            "2.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              -30,
+              0,
+              -70
+            ],
+            "1.6": [
+              -30,
+              0,
+              -70
+            ],
+            "2.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.sap_shield": {
+      "loop": false,
+      "animation_length": 1.0,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              -75,
+              35,
+              0
+            ],
+            "0.9": [
+              -75,
+              35,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              -75,
+              -35,
+              0
+            ],
+            "0.9": [
+              -75,
+              -35,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.root_titan.vine_pull": {
+      "loop": false,
+      "animation_length": 1.0,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.35": [
+              -95,
+              0,
+              0
+            ],
+            "0.6": [
+              -20,
+              0,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    }
+  }
+}

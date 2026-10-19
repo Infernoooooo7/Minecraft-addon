@@ -1,0 +1,129 @@
+{
+  "resource_pack_name": "apocalypse",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "apocalypse_aether_crystal": {
+      "textures": "textures/items/apocalypse/aether_crystal"
+    },
+    "apocalypse_aether_elixir": {
+      "textures": "textures/items/apocalypse/aether_elixir"
+    },
+    "apocalypse_astral_lure": {
+      "textures": "textures/items/apocalypse/astral_lure"
+    },
+    "apocalypse_blood_crystal": {
+      "textures": "textures/items/apocalypse/blood_crystal"
+    },
+    "apocalypse_bloodfang_cleaver": {
+      "textures": "textures/items/apocalypse/bloodfang_cleaver"
+    },
+    "apocalypse_cursed_crown": {
+      "textures": "textures/items/apocalypse/cursed_crown"
+    },
+    "apocalypse_eclipse_shard": {
+      "textures": "textures/items/apocalypse/eclipse_shard"
+    },
+    "apocalypse_engine_codex": {
+      "textures": "textures/items/apocalypse/engine_codex"
+    },
+    "apocalypse_engine_key": {
+      "textures": "textures/items/apocalypse/engine_key"
+    },
+    "apocalypse_event_horizon": {
+      "textures": "textures/items/apocalypse/event_horizon"
+    },
+    "apocalypse_fracture_shard": {
+      "textures": "textures/items/apocalypse/fracture_shard"
+    },
+    "apocalypse_heartseed": {
+      "textures": "textures/items/apocalypse/heartseed"
+    },
+    "apocalypse_hollow_crown_shard": {
+      "textures": "textures/items/apocalypse/hollow_crown_shard"
+    },
+    "apocalypse_living_bark": {
+      "textures": "textures/items/apocalypse/living_bark"
+    },
+    "apocalypse_null_aegis_boots": {
+      "textures": "textures/items/apocalypse/null_aegis_boots"
+    },
+    "apocalypse_null_aegis_chestplate": {
+      "textures": "textures/items/apocalypse/null_aegis_chestplate"
+    },
+    "apocalypse_null_aegis_helmet": {
+      "textures": "textures/items/apocalypse/null_aegis_helmet"
+    },
+    "apocalypse_null_aegis_leggings": {
+      "textures": "textures/items/apocalypse/null_aegis_leggings"
+    },
+    "apocalypse_null_edge": {
+      "textures": "textures/items/apocalypse/null_edge"
+    },
+    "apocalypse_null_fragment": {
+      "textures": "textures/items/apocalypse/null_fragment"
+    },
+    "apocalypse_null_heart": {
+      "textures": "textures/items/apocalypse/null_heart"
+    },
+    "apocalypse_rift_blade": {
+      "textures": "textures/items/apocalypse/rift_blade"
+    },
+    "apocalypse_rift_shard": {
+      "textures": "textures/items/apocalypse/rift_shard"
+    },
+    "apocalypse_riftwalker_boots": {
+      "textures": "textures/items/apocalypse/riftwalker_boots"
+    },
+    "apocalypse_riftwalker_chestplate": {
+      "textures": "textures/items/apocalypse/riftwalker_chestplate"
+    },
+    "apocalypse_riftwalker_helmet": {
+      "textures": "textures/items/apocalypse/riftwalker_helmet"
+    },
+    "apocalypse_riftwalker_leggings": {
+      "textures": "textures/items/apocalypse/riftwalker_leggings"
+    },
+    "apocalypse_soul_essence": {
+      "textures": "textures/items/apocalypse/soul_essence"
+    },
+    "apocalypse_soulreaver_scythe": {
+      "textures": "textures/items/apocalypse/soulreaver_scythe"
+    },
+    "apocalypse_star_eater_core": {
+      "textures": "textures/items/apocalypse/star_eater_core"
+    },
+    "apocalypse_star_metal_chunk": {
+      "textures": "textures/items/apocalypse/star_metal_chunk"
+    },
+    "apocalypse_star_metal_ingot": {
+      "textures": "textures/items/apocalypse/star_metal_ingot"
+    },
+    "apocalypse_stardust": {
+      "textures": "textures/items/apocalypse/stardust"
+    },
+    "apocalypse_starfall_scepter": {
+      "textures": "textures/items/apocalypse/starfall_scepter"
+    },
+    "apocalypse_starforged_boots": {
+      "textures": "textures/items/apocalypse/starforged_boots"
+    },
+    "apocalypse_starforged_chestplate": {
+      "textures": "textures/items/apocalypse/starforged_chestplate"
+    },
+    "apocalypse_starforged_helmet": {
+      "textures": "textures/items/apocalypse/starforged_helmet"
+    },
+    "apocalypse_starforged_leggings": {
+      "textures": "textures/items/apocalypse/starforged_leggings"
+    },
+    "apocalypse_titan_heartwood": {
+      "textures": "textures/items/apocalypse/titan_heartwood"
+    },
+    "apocalypse_titans_wrath": {
+      "textures": "textures/items/apocalypse/titans_wrath"
+    },
+    "apocalypse_void_ichor": {
+      "textures": "textures/items/apocalypse/void_ichor"
+    }
+  }
+}

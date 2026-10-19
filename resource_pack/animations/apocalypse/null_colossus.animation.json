@@ -1,0 +1,573 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.apocalypse.null_colossus.idle": {
+      "loop": true,
+      "bones": {
+        "orbitals": {
+          "rotation": [
+            0,
+            "query.life_time * 30",
+            0
+          ],
+          "position": [
+            0,
+            "math.sin(query.life_time * 90.00) * 2.0",
+            0
+          ]
+        },
+        "body": {
+          "rotation": [
+            "math.sin(query.life_time * 72.00) * 1.0",
+            0,
+            0
+          ]
+        },
+        "head": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 60.00) * 12",
+            0
+          ]
+        },
+        "core": {
+          "scale": "1 + math.sin(query.life_time * 240) * 0.04"
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.walk": {
+      "loop": true,
+      "bones": {
+        "right_leg": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 22) * 15 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "left_leg": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 22 + 180) * 15 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "right_arm": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 22 + 180) * 8 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "left_arm": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 22) * 8 * query.modified_move_speed",
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.look_at_target": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "rotation": [
+            "query.target_x_rotation * 0.5",
+            "query.target_y_rotation * 0.5",
+            0
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.attack": {
+      "loop": false,
+      "animation_length": 1.4,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.7": [
+              -60,
+              60,
+              0
+            ],
+            "0.9": [
+              -60,
+              -40,
+              0
+            ],
+            "1.4": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.7": [
+              0,
+              25,
+              0
+            ],
+            "0.9": [
+              0,
+              -20,
+              0
+            ],
+            "1.4": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.gravity_lift": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 1.5,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.8": [
+              -115,
+              0,
+              15
+            ],
+            "1.5": [
+              -115,
+              0,
+              15
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.8": [
+              -115,
+              0,
+              -15
+            ],
+            "1.5": [
+              -115,
+              0,
+              -15
+            ]
+          }
+        },
+        "orbitals": {
+          "rotation": [
+            0,
+            "query.anim_time * 400",
+            0
+          ],
+          "position": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              14,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.gravity_slam": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 0.7,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              -115,
+              0,
+              15
+            ],
+            "0.2": [
+              30,
+              0,
+              0
+            ],
+            "0.7": [
+              15,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              -115,
+              0,
+              -15
+            ],
+            "0.2": [
+              30,
+              0,
+              0
+            ],
+            "0.7": [
+              15,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.2": [
+              22,
+              0,
+              0
+            ],
+            "0.7": [
+              10,
+              0,
+              0
+            ]
+          }
+        },
+        "orbitals": {
+          "position": {
+            "0.0": [
+              0,
+              14,
+              0
+            ],
+            "0.2": [
+              0,
+              -20,
+              0
+            ],
+            "0.7": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.beam_charge": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 2.0,
+      "bones": {
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.0": [
+              -14,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.0": [
+              -20,
+              0,
+              30
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.0": [
+              -20,
+              0,
+              -30
+            ]
+          }
+        },
+        "head": {
+          "scale": {
+            "0.0": 1,
+            "2.0": 1.15
+          }
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.beam_fire": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 2.0,
+      "bones": {
+        "body": {
+          "rotation": {
+            "0.0": [
+              -14,
+              -45,
+              0
+            ],
+            "2.0": [
+              -14,
+              45,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.roar": {
+      "loop": false,
+      "animation_length": 1.8,
+      "bones": {
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              -30,
+              0,
+              0
+            ],
+            "1.4": [
+              -30,
+              0,
+              0
+            ],
+            "1.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              -40,
+              0,
+              65
+            ],
+            "1.4": [
+              -40,
+              0,
+              65
+            ],
+            "1.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              -40,
+              0,
+              -65
+            ],
+            "1.4": [
+              -40,
+              0,
+              -65
+            ],
+            "1.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "orbitals": {
+          "scale": {
+            "0.0": 1,
+            "0.6": 1.5,
+            "1.8": 1
+          }
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.vent": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 0.5,
+      "bones": {
+        "vent_r": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              0,
+              75,
+              0
+            ]
+          }
+        },
+        "vent_l": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              0,
+              -75,
+              0
+            ]
+          }
+        },
+        "core": {
+          "scale": "1.1 + math.sin(query.anim_time * 540) * 0.08"
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              12,
+              0,
+              0
+            ]
+          }
+        },
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              20,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.null_colossus.collapse": {
+      "loop": false,
+      "animation_length": 2.5,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.0": [
+              -90,
+              0,
+              70
+            ],
+            "2.0": [
+              -90,
+              0,
+              15
+            ],
+            "2.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.0": [
+              -90,
+              0,
+              -70
+            ],
+            "2.0": [
+              -90,
+              0,
+              -15
+            ],
+            "2.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "orbitals": {
+          "scale": {
+            "0.0": 1,
+            "2.0": 0.4,
+            "2.5": 1
+          },
+          "rotation": [
+            0,
+            "query.anim_time * 600",
+            0
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "apocalypse:riftwalker_helmet",
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.helmet"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "apocalypse_riftwalker_helmet"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.apocalypse:riftwalker_helmet.name"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:wearable": {
+        "slot": "slot.armor.head",
+        "protection": 2
+      },
+      "minecraft:durability": {
+        "max_durability": 260
+      },
+      "minecraft:enchantable": {
+        "slot": "armor_head",
+        "value": 12
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "apocalypse:rift_shard"
+            ],
+            "repair_amount": "query.max_durability * 0.25"
+          }
+        ]
+      },
+      "minecraft:rarity": "uncommon",
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_armor",
+          "apocalypse:armor_riftwalker"
+        ]
+      }
+    }
+  }
+}

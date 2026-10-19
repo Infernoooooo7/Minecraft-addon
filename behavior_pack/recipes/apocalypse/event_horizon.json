@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:event_horizon"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DCD",
+      " I ",
+      " I "
+    ],
+    "key": {
+      "D": {
+        "item": "apocalypse:stardust"
+      },
+      "C": {
+        "item": "apocalypse:star_eater_core"
+      },
+      "I": {
+        "item": "apocalypse:star_metal_ingot"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:star_eater_core"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:event_horizon",
+      "count": 1
+    }
+  }
+}

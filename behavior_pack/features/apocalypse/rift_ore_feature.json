@@ -1,0 +1,27 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "apocalypse:rift_ore_feature"
+    },
+    "count": 6,
+    "replace_rules": [
+      {
+        "places_block": "apocalypse:rift_ore",
+        "may_replace": [
+          "minecraft:stone",
+          "minecraft:andesite",
+          "minecraft:diorite",
+          "minecraft:granite"
+        ]
+      },
+      {
+        "places_block": "apocalypse:deepslate_rift_ore",
+        "may_replace": [
+          "minecraft:deepslate",
+          "minecraft:tuff"
+        ]
+      }
+    ]
+  }
+}

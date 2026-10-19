@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:rift_blade"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "A",
+      "R",
+      "S"
+    ],
+    "key": {
+      "A": {
+        "item": "apocalypse:aether_crystal"
+      },
+      "R": {
+        "item": "apocalypse:rift_shard"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:rift_shard"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:rift_blade",
+      "count": 1
+    }
+  }
+}

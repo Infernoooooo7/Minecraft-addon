@@ -1,0 +1,191 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.apocalypse.null_colossus.action": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "gravity_lift": "query.property('apocalypse:action') == 1"
+            },
+            {
+              "gravity_slam": "query.property('apocalypse:action') == 2"
+            },
+            {
+              "beam_charge": "query.property('apocalypse:action') == 3"
+            },
+            {
+              "beam_fire": "query.property('apocalypse:action') == 4"
+            },
+            {
+              "roar": "query.property('apocalypse:action') == 5"
+            },
+            {
+              "vent": "query.property('apocalypse:action') == 6"
+            },
+            {
+              "collapse": "query.property('apocalypse:action') == 7"
+            }
+          ]
+        },
+        "gravity_lift": {
+          "animations": [
+            "gravity_lift"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 1"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "gravity_slam": {
+          "animations": [
+            "gravity_slam"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 2"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "beam_charge": {
+          "animations": [
+            "beam_charge"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 3"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "beam_fire": {
+          "animations": [
+            "beam_fire"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 4"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "roar": {
+          "animations": [
+            "roar"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 5"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "vent": {
+          "animations": [
+            "vent"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 6"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "collapse": {
+          "animations": [
+            "collapse"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 7"
+            }
+          ],
+          "blend_transition": 0.15
+        }
+      }
+    },
+    "controller.animation.apocalypse.null_colossus.attack": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "swing": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "swing": {
+          "animations": [
+            "attack"
+          ],
+          "transitions": [
+            {
+              "default": "!query.is_delayed_attacking && query.all_animations_finished"
+            }
+          ],
+          "blend_transition": 0.1
+        }
+      }
+    },
+    "controller.animation.apocalypse.null_colossus.phase": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "phase2": "query.property('apocalypse:phase') == 2"
+            },
+            {
+              "phase3": "query.property('apocalypse:phase') == 3"
+            }
+          ]
+        },
+        "phase2": {
+          "particle_effects": [
+            {
+              "effect": "aura2",
+              "locator": "core"
+            }
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:phase') != 2"
+            }
+          ],
+          "blend_transition": 0.0
+        },
+        "phase3": {
+          "particle_effects": [
+            {
+              "effect": "aura3",
+              "locator": "core"
+            }
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:phase') != 3"
+            }
+          ],
+          "blend_transition": 0.0
+        }
+      }
+    },
+    "controller.animation.apocalypse.null_colossus.ambient": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "particle_effects": [
+            {
+              "effect": "aura1",
+              "locator": "eye"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

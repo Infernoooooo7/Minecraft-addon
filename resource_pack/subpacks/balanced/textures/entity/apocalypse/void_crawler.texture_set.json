@@ -1,0 +1,7 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:texture_set": {
+    "color": "void_crawler",
+    "metalness_emissive_roughness": "void_crawler_mer"
+  }
+}

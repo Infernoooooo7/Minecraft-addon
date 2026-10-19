@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:star_bolt",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/star_bolt",
+        "glow": "textures/entity/apocalypse/star_bolt_glow",
+        "null": "textures/entity/apocalypse/star_bolt_null",
+        "glow_null": "textures/entity/apocalypse/star_bolt_null_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.star_bolt"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.star_bolt",
+        "controller.render.apocalypse.star_bolt_glow"
+      ],
+      "animations": {
+        "spin": "animation.apocalypse.star_bolt.spin",
+        "trail_controller": "controller.animation.apocalypse.star_bolt.trail"
+      },
+      "scripts": {
+        "animate": [
+          "spin",
+          "trail_controller"
+        ]
+      },
+      "particle_effects": {
+        "trail": "apocalypse:bolt_trail"
+      }
+    }
+  }
+}

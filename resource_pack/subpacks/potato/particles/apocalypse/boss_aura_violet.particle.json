@@ -1,0 +1,82 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "apocalypse:boss_aura_violet",
+      "basic_render_parameters": {
+        "material": "particles_add",
+        "texture": "textures/particle/apocalypse_particles"
+      }
+    },
+    "components": {
+      "minecraft:emitter_rate_steady": {
+        "spawn_rate": 4.2,
+        "max_particles": 13
+      },
+      "minecraft:emitter_lifetime_looping": {
+        "active_time": 1
+      },
+      "minecraft:emitter_shape_sphere": {
+        "radius": 1.6,
+        "direction": "outwards",
+        "surface_only": false
+      },
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": "1.4 + variable.particle_random_1 * 0.6"
+      },
+      "minecraft:particle_initial_speed": 0.15,
+      "minecraft:particle_motion_dynamic": {
+        "linear_acceleration": [
+          0,
+          0.5,
+          0
+        ],
+        "linear_drag_coefficient": 1.5
+      },
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          "0.22 * (1 - (variable.particle_age / variable.particle_lifetime) * 0.7)",
+          "0.22 * (1 - (variable.particle_age / variable.particle_lifetime) * 0.7)"
+        ],
+        "facing_camera_mode": "rotate_xyz",
+        "uv": {
+          "texture_width": 128,
+          "texture_height": 128,
+          "uv": [
+            0,
+            0
+          ],
+          "uv_size": [
+            16,
+            16
+          ]
+        }
+      },
+      "minecraft:particle_appearance_tinting": {
+        "color": {
+          "gradient": {
+            "0.00": [
+              0.608,
+              0.361,
+              1.0,
+              0.0
+            ],
+            "0.15": [
+              0.608,
+              0.361,
+              1.0,
+              0.9
+            ],
+            "1.00": [
+              0.608,
+              0.361,
+              1.0,
+              0.0
+            ]
+          },
+          "interpolant": "variable.particle_age / variable.particle_lifetime"
+        }
+      }
+    }
+  }
+}

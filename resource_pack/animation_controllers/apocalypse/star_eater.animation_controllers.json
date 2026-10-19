@@ -1,0 +1,168 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.apocalypse.star_eater.action": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "bolt_volley": "query.property('apocalypse:action') == 1"
+            },
+            {
+              "gravity_well": "query.property('apocalypse:action') == 2"
+            },
+            {
+              "supernova_charge": "query.property('apocalypse:action') == 3"
+            },
+            {
+              "supernova_release": "query.property('apocalypse:action') == 4"
+            },
+            {
+              "roar": "query.property('apocalypse:action') == 5"
+            },
+            {
+              "dive": "query.property('apocalypse:action') == 6"
+            },
+            {
+              "brood": "query.property('apocalypse:action') == 7"
+            }
+          ]
+        },
+        "bolt_volley": {
+          "animations": [
+            "bolt_volley"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 1"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "gravity_well": {
+          "animations": [
+            "gravity_well"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 2"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "supernova_charge": {
+          "animations": [
+            "supernova_charge"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 3"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "supernova_release": {
+          "animations": [
+            "supernova_release"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 4"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "roar": {
+          "animations": [
+            "roar"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 5"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "dive": {
+          "animations": [
+            "dive"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 6"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "brood": {
+          "animations": [
+            "brood"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 7"
+            }
+          ],
+          "blend_transition": 0.15
+        }
+      }
+    },
+    "controller.animation.apocalypse.star_eater.phase": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "phase2": "query.property('apocalypse:phase') == 2"
+            },
+            {
+              "phase3": "query.property('apocalypse:phase') == 3"
+            }
+          ]
+        },
+        "phase2": {
+          "particle_effects": [
+            {
+              "effect": "aura2",
+              "locator": "core"
+            }
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:phase') != 2"
+            }
+          ],
+          "blend_transition": 0.0
+        },
+        "phase3": {
+          "particle_effects": [
+            {
+              "effect": "aura3",
+              "locator": "core"
+            }
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:phase') != 3"
+            }
+          ],
+          "blend_transition": 0.0
+        }
+      }
+    },
+    "controller.animation.apocalypse.star_eater.ambient": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "particle_effects": [
+            {
+              "effect": "aura1",
+              "locator": "maw"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

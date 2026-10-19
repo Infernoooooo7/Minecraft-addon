@@ -1,0 +1,58 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "apocalypse:blight_sprout",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:geometry": "minecraft:geometry.cross",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "apocalypse_blight_sprout",
+          "render_method": "alpha_test",
+          "ambient_occlusion": 0.0,
+          "face_dimming": false
+        }
+      },
+      "minecraft:collision_box": false,
+      "minecraft:selection_box": {
+        "origin": [
+          -6,
+          0,
+          -6
+        ],
+        "size": [
+          12,
+          12,
+          12
+        ]
+      },
+      "minecraft:light_dampening": 0,
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.0
+      },
+      "minecraft:light_emission": 4,
+      "minecraft:map_color": "#3b2a4a",
+      "minecraft:replaceable": {},
+      "minecraft:placement_filter": {
+        "conditions": [
+          {
+            "allowed_faces": [
+              "up"
+            ],
+            "block_filter": [
+              "apocalypse:blighted_grass",
+              "apocalypse:blighted_soil",
+              "minecraft:grass_block",
+              "minecraft:dirt"
+            ]
+          }
+        ]
+      },
+      "minecraft:loot": "loot_tables/blocks/apocalypse/blight_sprout.json"
+    }
+  }
+}

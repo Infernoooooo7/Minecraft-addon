@@ -1,0 +1,18 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:single_block_feature": {
+    "description": {
+      "identifier": "apocalypse:aether_cluster_feature"
+    },
+    "places_block": "apocalypse:aether_cluster",
+    "enforce_placement_rules": true,
+    "enforce_survivability_rules": true,
+    "may_attach_to": {
+      "bottom": [
+        "apocalypse:blighted_grass",
+        "apocalypse:blighted_soil",
+        "minecraft:stone"
+      ]
+    }
+  }
+}

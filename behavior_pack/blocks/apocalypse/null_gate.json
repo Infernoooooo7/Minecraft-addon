@@ -1,0 +1,35 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "apocalypse:null_gate",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "apocalypse_null_gate_side",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        },
+        "up": {
+          "texture": "apocalypse_null_gate_top",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        },
+        "down": {
+          "texture": "apocalypse_null_gate_side",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        }
+      },
+      "minecraft:destructible_by_mining": false,
+      "minecraft:destructible_by_explosion": false,
+      "minecraft:light_emission": 10,
+      "minecraft:map_color": "#3ff3ff",
+      "apocalypse:null_gate": {}
+    }
+  }
+}

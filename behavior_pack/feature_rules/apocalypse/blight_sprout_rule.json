@@ -1,0 +1,38 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:feature_rules": {
+    "description": {
+      "identifier": "apocalypse:blight_sprout_rule",
+      "places_feature": "apocalypse:blight_sprout_feature"
+    },
+    "conditions": {
+      "placement_pass": "surface_pass",
+      "minecraft:biome_filter": [
+        {
+          "test": "has_biome_tag",
+          "operator": "==",
+          "value": "apocalypse_blight"
+        }
+      ]
+    },
+    "distribution": {
+      "iterations": 8,
+      "coordinate_eval_order": "zxy",
+      "x": {
+        "distribution": "uniform",
+        "extent": [
+          0,
+          16
+        ]
+      },
+      "y": "query.heightmap(variable.worldx, variable.worldz)",
+      "z": {
+        "distribution": "uniform",
+        "extent": [
+          0,
+          16
+        ]
+      }
+    }
+  }
+}

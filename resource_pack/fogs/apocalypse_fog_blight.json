@@ -1,0 +1,50 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:fog_settings": {
+    "description": {
+      "identifier": "apocalypse:fog_blight"
+    },
+    "distance": {
+      "air": {
+        "fog_start": 12.0,
+        "fog_end": 110.0,
+        "fog_color": "#3b3046",
+        "render_distance_type": "fixed"
+      },
+      "weather": {
+        "fog_start": 8.399999999999999,
+        "fog_end": 82.5,
+        "fog_color": "#3b3046",
+        "render_distance_type": "fixed"
+      }
+    },
+    "volumetric": {
+      "density": {
+        "air": {
+          "max_density": 0.12,
+          "zero_density_height": 140.0,
+          "max_density_height": 62.0
+        }
+      },
+      "media_coefficients": {
+        "air": {
+          "scattering": [
+            0.05,
+            0.06,
+            0.04
+          ],
+          "absorption": [
+            0.01,
+            0.0,
+            0.02
+          ]
+        }
+      },
+      "henyey_greenstein_g": {
+        "air": {
+          "henyey_greenstein_g": 0.6
+        }
+      }
+    }
+  }
+}

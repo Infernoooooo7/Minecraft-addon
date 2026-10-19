@@ -1,0 +1,71 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.apocalypse.astral_mite.walk": {
+      "loop": true,
+      "bones": {
+        "leg_r0": {
+          "rotation": [
+            0,
+            "math.cos(query.modified_distance_moved * 90) * 25 * query.modified_move_speed",
+            0
+          ]
+        },
+        "leg_l0": {
+          "rotation": [
+            0,
+            "math.cos(query.modified_distance_moved * 90 + 180) * 25 * query.modified_move_speed",
+            0
+          ]
+        },
+        "leg_r1": {
+          "rotation": [
+            0,
+            "math.cos(query.modified_distance_moved * 90 + 120) * 25 * query.modified_move_speed",
+            0
+          ]
+        },
+        "leg_l1": {
+          "rotation": [
+            0,
+            "math.cos(query.modified_distance_moved * 90 + 300) * 25 * query.modified_move_speed",
+            0
+          ]
+        },
+        "leg_r2": {
+          "rotation": [
+            0,
+            "math.cos(query.modified_distance_moved * 90 + 240) * 25 * query.modified_move_speed",
+            0
+          ]
+        },
+        "leg_l2": {
+          "rotation": [
+            0,
+            "math.cos(query.modified_distance_moved * 90 + 60) * 25 * query.modified_move_speed",
+            0
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.astral_mite.idle": {
+      "loop": true,
+      "bones": {
+        "shell": {
+          "rotation": [
+            0,
+            "query.life_time * 20",
+            0
+          ]
+        },
+        "body": {
+          "position": [
+            0,
+            "math.sin(query.life_time * 360.00) * 0.3",
+            0
+          ]
+        }
+      }
+    }
+  }
+}

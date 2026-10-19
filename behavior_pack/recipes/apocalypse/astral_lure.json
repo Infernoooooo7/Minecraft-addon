@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:astral_lure"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DDD",
+      "DAD",
+      "DID"
+    ],
+    "key": {
+      "D": {
+        "item": "apocalypse:stardust"
+      },
+      "A": {
+        "item": "apocalypse:aether_crystal"
+      },
+      "I": {
+        "item": "apocalypse:star_metal_ingot"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:stardust"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:astral_lure",
+      "count": 1
+    }
+  }
+}

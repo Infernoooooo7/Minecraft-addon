@@ -1,0 +1,55 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:star_eater",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/star_eater",
+        "glow": "textures/entity/apocalypse/star_eater_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.star_eater"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.boss",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "idle": "animation.apocalypse.star_eater.idle",
+        "look_at_target": "animation.apocalypse.star_eater.look_at_target",
+        "bolt_volley": "animation.apocalypse.star_eater.bolt_volley",
+        "gravity_well": "animation.apocalypse.star_eater.gravity_well",
+        "supernova_charge": "animation.apocalypse.star_eater.supernova_charge",
+        "supernova_release": "animation.apocalypse.star_eater.supernova_release",
+        "roar": "animation.apocalypse.star_eater.roar",
+        "dive": "animation.apocalypse.star_eater.dive",
+        "brood": "animation.apocalypse.star_eater.brood",
+        "action_controller": "controller.animation.apocalypse.star_eater.action",
+        "phase_controller": "controller.animation.apocalypse.star_eater.phase",
+        "ambient_controller": "controller.animation.apocalypse.star_eater.ambient"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          "look_at_target",
+          "action_controller",
+          "phase_controller",
+          "ambient_controller"
+        ]
+      },
+      "particle_effects": {
+        "aura1": "apocalypse:star_spark",
+        "aura2": "apocalypse:boss_aura_gold",
+        "aura3": "apocalypse:boss_aura_crimson"
+      },
+      "spawn_egg": {
+        "base_color": "#05030b",
+        "overlay_color": "#ffd36a"
+      }
+    }
+  }
+}

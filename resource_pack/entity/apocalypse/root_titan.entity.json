@@ -1,0 +1,62 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:root_titan",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/root_titan",
+        "glow": "textures/entity/apocalypse/root_titan_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.root_titan"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.boss",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "idle": "animation.apocalypse.root_titan.idle",
+        "walk": "animation.apocalypse.root_titan.walk",
+        "look_at_target": "animation.apocalypse.root_titan.look_at_target",
+        "attack": "animation.apocalypse.root_titan.attack",
+        "eruption": "animation.apocalypse.root_titan.eruption",
+        "brood": "animation.apocalypse.root_titan.brood",
+        "slam_windup": "animation.apocalypse.root_titan.slam_windup",
+        "slam": "animation.apocalypse.root_titan.slam",
+        "roar": "animation.apocalypse.root_titan.roar",
+        "sap_shield": "animation.apocalypse.root_titan.sap_shield",
+        "vine_pull": "animation.apocalypse.root_titan.vine_pull",
+        "action_controller": "controller.animation.apocalypse.root_titan.action",
+        "attack_controller": "controller.animation.apocalypse.root_titan.attack",
+        "phase_controller": "controller.animation.apocalypse.root_titan.phase",
+        "ambient_controller": "controller.animation.apocalypse.root_titan.ambient"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          {
+            "walk": "query.modified_move_speed"
+          },
+          "look_at_target",
+          "action_controller",
+          "attack_controller",
+          "phase_controller",
+          "ambient_controller"
+        ]
+      },
+      "particle_effects": {
+        "aura1": "apocalypse:spore_drift",
+        "aura2": "apocalypse:boss_aura_green",
+        "aura3": "apocalypse:boss_aura_crimson"
+      },
+      "spawn_egg": {
+        "base_color": "#1e140c",
+        "overlay_color": "#9cff5a"
+      }
+    }
+  }
+}

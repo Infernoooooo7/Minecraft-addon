@@ -1,0 +1,42 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:color_grading_settings": {
+    "description": {
+      "identifier": "apocalypse:blight_color_grading"
+    },
+    "color_grading": {
+      "midtones": {
+        "contrast": [
+          1.18,
+          1.14,
+          1.2
+        ],
+        "gain": [
+          0.98,
+          1.0,
+          1.04
+        ],
+        "gamma": [
+          2.2,
+          2.2,
+          2.2
+        ],
+        "offset": [
+          0.0,
+          0.0,
+          0.01
+        ],
+        "saturation": [
+          0.86,
+          0.9,
+          0.95
+        ]
+      },
+      "temperature": {
+        "enabled": true,
+        "temperature": 7200,
+        "type": "color_temperature"
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "APOCALYPSE ENGINE [Behavior]",
+    "description": "Colossal bosses, dynamic world events, a custom dimension and endgame progression. Requires the APOCALYPSE ENGINE resource pack.",
+    "uuid": "50211098-caf2-49a5-9acd-51a75b0a8795",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      30
+    ]
+  },
+  "modules": [
+    {
+      "description": "APOCALYPSE ENGINE gameplay data",
+      "type": "data",
+      "uuid": "362c4446-3eb3-460a-be56-4f450ff425e4",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "description": "APOCALYPSE ENGINE scripted systems",
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "d500adaa-a0bc-4bd4-b6cb-0eb5fff1ad7b",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "54b47954-21db-4175-bec6-9abe254127a1",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.8.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.0.0"
+    }
+  ],
+  "metadata": {
+    "authors": [
+      "APOCALYPSE ENGINE project"
+    ],
+    "license": "All rights reserved by the add-on author",
+    "product_type": "addon",
+    "generated_with": {
+      "apocalypse_build": [
+        "1.0.0"
+      ]
+    }
+  }
+}

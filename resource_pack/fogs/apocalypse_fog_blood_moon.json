@@ -1,0 +1,50 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:fog_settings": {
+    "description": {
+      "identifier": "apocalypse:fog_blood_moon"
+    },
+    "distance": {
+      "air": {
+        "fog_start": 6.0,
+        "fog_end": 72.0,
+        "fog_color": "#4a0b14",
+        "render_distance_type": "fixed"
+      },
+      "weather": {
+        "fog_start": 4.199999999999999,
+        "fog_end": 54.0,
+        "fog_color": "#4a0b14",
+        "render_distance_type": "fixed"
+      }
+    },
+    "volumetric": {
+      "density": {
+        "air": {
+          "max_density": 0.22,
+          "zero_density_height": 140.0,
+          "max_density_height": 62.0
+        }
+      },
+      "media_coefficients": {
+        "air": {
+          "scattering": [
+            0.09,
+            0.01,
+            0.015
+          ],
+          "absorption": [
+            0.0,
+            0.03,
+            0.03
+          ]
+        }
+      },
+      "henyey_greenstein_g": {
+        "air": {
+          "henyey_greenstein_g": 0.6
+        }
+      }
+    }
+  }
+}

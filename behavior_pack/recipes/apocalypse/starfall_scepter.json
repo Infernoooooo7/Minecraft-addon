@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:starfall_scepter"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "DID",
+      " S ",
+      " S "
+    ],
+    "key": {
+      "D": {
+        "item": "apocalypse:stardust"
+      },
+      "I": {
+        "item": "apocalypse:star_metal_ingot"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:star_metal_ingot"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:starfall_scepter",
+      "count": 1
+    }
+  }
+}

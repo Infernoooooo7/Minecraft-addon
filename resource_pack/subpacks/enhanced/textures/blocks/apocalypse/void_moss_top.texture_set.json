@@ -1,0 +1,8 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:texture_set": {
+    "color": "void_moss_top",
+    "metalness_emissive_roughness": "void_moss_top_mer",
+    "normal": "void_moss_top_normal"
+  }
+}

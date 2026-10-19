@@ -1,0 +1,39 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:engine_key"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "HCT",
+      " A ",
+      " A "
+    ],
+    "key": {
+      "H": {
+        "item": "apocalypse:hollow_crown_shard"
+      },
+      "C": {
+        "item": "apocalypse:star_eater_core"
+      },
+      "T": {
+        "item": "apocalypse:titan_heartwood"
+      },
+      "A": {
+        "item": "apocalypse:aether_crystal"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:star_eater_core"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:engine_key",
+      "count": 1
+    }
+  }
+}

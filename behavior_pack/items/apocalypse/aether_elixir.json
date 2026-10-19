@@ -1,0 +1,36 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "apocalypse:aether_elixir",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "apocalypse_aether_elixir"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.apocalypse:aether_elixir.name"
+      },
+      "minecraft:max_stack_size": 16,
+      "minecraft:rarity": "uncommon",
+      "minecraft:food": {
+        "nutrition": 2,
+        "saturation_modifier": 0.6,
+        "can_always_eat": true,
+        "using_converts_to": "minecraft:glass_bottle"
+      },
+      "minecraft:use_animation": "drink",
+      "minecraft:use_modifiers": {
+        "use_duration": 1.6,
+        "movement_modifier": 0.35,
+        "start_using": "if_first"
+      },
+      "apocalypse:elixir": {}
+    }
+  }
+}

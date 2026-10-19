@@ -1,0 +1,28 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "apocalypse:blighted_soil",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "apocalypse_blighted_soil",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        }
+      },
+      "minecraft:tags": [
+        "minecraft:is_shovel_item_destructible"
+      ],
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.7
+      },
+      "minecraft:map_color": "#2b1f1c",
+      "minecraft:loot": "loot_tables/blocks/apocalypse/blighted_soil.json"
+    }
+  }
+}

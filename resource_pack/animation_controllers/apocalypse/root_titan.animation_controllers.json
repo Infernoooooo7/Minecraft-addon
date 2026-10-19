@@ -1,0 +1,191 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.apocalypse.root_titan.action": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "eruption": "query.property('apocalypse:action') == 1"
+            },
+            {
+              "brood": "query.property('apocalypse:action') == 2"
+            },
+            {
+              "slam_windup": "query.property('apocalypse:action') == 3"
+            },
+            {
+              "slam": "query.property('apocalypse:action') == 4"
+            },
+            {
+              "roar": "query.property('apocalypse:action') == 5"
+            },
+            {
+              "sap_shield": "query.property('apocalypse:action') == 6"
+            },
+            {
+              "vine_pull": "query.property('apocalypse:action') == 7"
+            }
+          ]
+        },
+        "eruption": {
+          "animations": [
+            "eruption"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 1"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "brood": {
+          "animations": [
+            "brood"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 2"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "slam_windup": {
+          "animations": [
+            "slam_windup"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 3"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "slam": {
+          "animations": [
+            "slam"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 4"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "roar": {
+          "animations": [
+            "roar"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 5"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "sap_shield": {
+          "animations": [
+            "sap_shield"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 6"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "vine_pull": {
+          "animations": [
+            "vine_pull"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 7"
+            }
+          ],
+          "blend_transition": 0.15
+        }
+      }
+    },
+    "controller.animation.apocalypse.root_titan.attack": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "swing": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "swing": {
+          "animations": [
+            "attack"
+          ],
+          "transitions": [
+            {
+              "default": "!query.is_delayed_attacking && query.all_animations_finished"
+            }
+          ],
+          "blend_transition": 0.1
+        }
+      }
+    },
+    "controller.animation.apocalypse.root_titan.phase": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "phase2": "query.property('apocalypse:phase') == 2"
+            },
+            {
+              "phase3": "query.property('apocalypse:phase') == 3"
+            }
+          ]
+        },
+        "phase2": {
+          "particle_effects": [
+            {
+              "effect": "aura2",
+              "locator": "heart"
+            }
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:phase') != 2"
+            }
+          ],
+          "blend_transition": 0.0
+        },
+        "phase3": {
+          "particle_effects": [
+            {
+              "effect": "aura3",
+              "locator": "heart"
+            }
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:phase') != 3"
+            }
+          ],
+          "blend_transition": 0.0
+        }
+      }
+    },
+    "controller.animation.apocalypse.root_titan.ambient": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "particle_effects": [
+            {
+              "effect": "aura1",
+              "locator": "heart"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

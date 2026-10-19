@@ -1,0 +1,20 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.apocalypse.rift_portal.spin": {
+      "loop": true,
+      "bones": {
+        "stones": {
+          "rotation": [
+            0,
+            0,
+            "query.life_time * 25"
+          ]
+        },
+        "gate": {
+          "scale": "1 + math.sin(query.life_time * 120) * 0.03"
+        }
+      }
+    }
+  }
+}

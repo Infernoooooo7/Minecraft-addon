@@ -1,0 +1,64 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.apocalypse.rift_sentinel.idle": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "position": [
+            0,
+            "math.sin(query.life_time * 144.00) * 1.5",
+            0
+          ]
+        },
+        "shards": {
+          "rotation": [
+            0,
+            "query.life_time * 90",
+            0
+          ]
+        },
+        "right_hand": {
+          "position": [
+            0,
+            "math.sin(query.life_time * 180.00 + 90) * 0.8",
+            0
+          ]
+        },
+        "left_hand": {
+          "position": [
+            0,
+            "math.sin(query.life_time * 180.00 + 270) * 0.8",
+            0
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.rift_sentinel.charge": {
+      "loop": true,
+      "bones": {
+        "right_hand": {
+          "position": [
+            0,
+            0,
+            -3
+          ]
+        },
+        "left_hand": {
+          "position": [
+            0,
+            0,
+            -3
+          ]
+        },
+        "shards": {
+          "rotation": [
+            0,
+            "query.life_time * 400",
+            0
+          ]
+        }
+      }
+    }
+  }
+}

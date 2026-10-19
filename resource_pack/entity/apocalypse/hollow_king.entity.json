@@ -1,0 +1,62 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:hollow_king",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/hollow_king",
+        "glow": "textures/entity/apocalypse/hollow_king_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.hollow_king"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.boss",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "idle": "animation.apocalypse.hollow_king.idle",
+        "walk": "animation.apocalypse.hollow_king.walk",
+        "look_at_target": "animation.apocalypse.hollow_king.look_at_target",
+        "attack": "animation.apocalypse.hollow_king.attack",
+        "summon": "animation.apocalypse.hollow_king.summon",
+        "quake_windup": "animation.apocalypse.hollow_king.quake_windup",
+        "quake_slam": "animation.apocalypse.hollow_king.quake_slam",
+        "phantom_step": "animation.apocalypse.hollow_king.phantom_step",
+        "roar": "animation.apocalypse.hollow_king.roar",
+        "soul_chains": "animation.apocalypse.hollow_king.soul_chains",
+        "crown_of_ruin": "animation.apocalypse.hollow_king.crown_of_ruin",
+        "action_controller": "controller.animation.apocalypse.hollow_king.action",
+        "attack_controller": "controller.animation.apocalypse.hollow_king.attack",
+        "phase_controller": "controller.animation.apocalypse.hollow_king.phase",
+        "ambient_controller": "controller.animation.apocalypse.hollow_king.ambient"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          {
+            "walk": "query.modified_move_speed"
+          },
+          "look_at_target",
+          "action_controller",
+          "attack_controller",
+          "phase_controller",
+          "ambient_controller"
+        ]
+      },
+      "particle_effects": {
+        "aura1": "apocalypse:soul_wisp",
+        "aura2": "apocalypse:boss_aura_violet",
+        "aura3": "apocalypse:boss_aura_crimson"
+      },
+      "spawn_egg": {
+        "base_color": "#140a24",
+        "overlay_color": "#b98cff"
+      }
+    }
+  }
+}

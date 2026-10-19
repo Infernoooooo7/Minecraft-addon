@@ -1,0 +1,16 @@
+{
+  "behavior_pack": {
+    "header": "50211098-caf2-49a5-9acd-51a75b0a8795",
+    "data_module": "362c4446-3eb3-460a-be56-4f450ff425e4",
+    "script_module": "d500adaa-a0bc-4bd4-b6cb-0eb5fff1ad7b"
+  },
+  "resource_pack": {
+    "header": "54b47954-21db-4175-bec6-9abe254127a1",
+    "resources_module": "d22de523-0581-43f1-b217-480c9d0cf36c"
+  },
+  "version": [
+    1,
+    0,
+    0
+  ]
+}

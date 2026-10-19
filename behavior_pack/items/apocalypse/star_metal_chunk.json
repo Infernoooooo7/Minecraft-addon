@@ -1,0 +1,22 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "apocalypse:star_metal_chunk",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "apocalypse_star_metal_chunk"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.apocalypse:star_metal_chunk.name"
+      },
+      "minecraft:max_stack_size": 64
+    }
+  }
+}

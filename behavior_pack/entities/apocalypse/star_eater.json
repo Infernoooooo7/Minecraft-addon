@@ -1,0 +1,251 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "apocalypse:star_eater",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "spawn_category": "monster",
+      "properties": {
+        "apocalypse:action": {
+          "type": "int",
+          "range": [
+            0,
+            15
+          ],
+          "default": 0,
+          "client_sync": true
+        },
+        "apocalypse:phase": {
+          "type": "int",
+          "range": [
+            1,
+            3
+          ],
+          "default": 1,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "apocalypse",
+          "apocalypse_boss",
+          "monster",
+          "mob",
+          "cosmic",
+          "star_eater"
+        ]
+      },
+      "minecraft:health": {
+        "value": 750,
+        "max": 750
+      },
+      "minecraft:collision_box": {
+        "width": 3.0,
+        "height": 2.6
+      },
+      "minecraft:movement": {
+        "value": 0.32
+      },
+      "minecraft:follow_range": {
+        "value": 64,
+        "max": 64
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1.0
+      },
+      "minecraft:boss": {
+        "hud_range": 80,
+        "should_darken_sky": true
+      },
+      "minecraft:persistent": {},
+      "minecraft:physics": {
+        "has_gravity": false
+      },
+      "minecraft:pushable_by_block": {},
+      "minecraft:fire_immune": {},
+      "minecraft:nameable": {},
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:breathable": {
+        "breathes_water": true,
+        "suffocate_time": 0,
+        "total_supply": 15
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "fall",
+            "deals_damage": "no"
+          },
+          {
+            "cause": "suffocation",
+            "deals_damage": "no"
+          },
+          {
+            "cause": "drowning",
+            "deals_damage": "no"
+          },
+          {
+            "on_damage": {
+              "filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "apocalypse_boss"
+              }
+            },
+            "deals_damage": "no"
+          },
+          {
+            "on_damage": {
+              "filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "apocalypse"
+              }
+            },
+            "deals_damage": "no"
+          }
+        ]
+      },
+      "minecraft:mob_effect_immunity": {
+        "mob_effects": [
+          "poison",
+          "wither",
+          "slowness",
+          "levitation",
+          "weakness"
+        ]
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 2,
+        "must_see": false,
+        "reselect_targets": true,
+        "within_radius": 48,
+        "entity_types": [
+          {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "value": "player"
+            },
+            "max_dist": 48
+          }
+        ]
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 8,
+        "look_distance": 24,
+        "look_time": {
+          "min": 2,
+          "max": 4
+        }
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 9
+      },
+      "minecraft:experience_reward": {
+        "on_death": "250"
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/apocalypse/star_eater.json"
+      },
+      "minecraft:attack": {
+        "damage": 9
+      },
+      "minecraft:scale": {
+        "value": 1.5
+      },
+      "minecraft:can_fly": {},
+      "minecraft:flying_speed": {
+        "value": 0.18
+      },
+      "minecraft:navigation.hover": {
+        "can_path_over_water": true,
+        "can_path_from_air": true,
+        "avoid_water": true,
+        "avoid_damage_blocks": true,
+        "can_sink": false
+      },
+      "minecraft:movement.hover": {},
+      "minecraft:behavior.melee_box_attack": {
+        "priority": 4,
+        "speed_multiplier": 1.2,
+        "track_target": true,
+        "horizontal_reach": 2.5,
+        "cooldown_time": 1.6
+      },
+      "minecraft:behavior.random_hover": {
+        "priority": 7,
+        "xz_dist": 12,
+        "y_dist": 6,
+        "y_offset": -1,
+        "interval": 60,
+        "hover_height": {
+          "min": 6,
+          "max": 12
+        }
+      }
+    },
+    "component_groups": {
+      "apocalypse:tier_1": {
+        "minecraft:health": {
+          "value": 750,
+          "max": 750
+        }
+      },
+      "apocalypse:tier_2": {
+        "minecraft:health": {
+          "value": 1125,
+          "max": 1125
+        }
+      },
+      "apocalypse:tier_3": {
+        "minecraft:health": {
+          "value": 1500,
+          "max": 1500
+        }
+      },
+      "apocalypse:tier_4": {
+        "minecraft:health": {
+          "value": 1950,
+          "max": 1950
+        }
+      }
+    },
+    "events": {
+      "apocalypse:tier_1": {
+        "add": {
+          "component_groups": [
+            "apocalypse:tier_1"
+          ]
+        }
+      },
+      "apocalypse:tier_2": {
+        "add": {
+          "component_groups": [
+            "apocalypse:tier_2"
+          ]
+        }
+      },
+      "apocalypse:tier_3": {
+        "add": {
+          "component_groups": [
+            "apocalypse:tier_3"
+          ]
+        }
+      },
+      "apocalypse:tier_4": {
+        "add": {
+          "component_groups": [
+            "apocalypse:tier_4"
+          ]
+        }
+      }
+    }
+  }
+}

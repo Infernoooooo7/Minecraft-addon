@@ -1,0 +1,44 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:astral_mite",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/astral_mite",
+        "glow": "textures/entity/apocalypse/astral_mite_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.astral_mite"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.default",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "walk": "animation.apocalypse.astral_mite.walk",
+        "idle": "animation.apocalypse.astral_mite.idle",
+        "ambient_controller": "controller.animation.apocalypse.astral_mite.ambient"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          {
+            "walk": "query.modified_move_speed"
+          },
+          "ambient_controller"
+        ]
+      },
+      "particle_effects": {
+        "spark": "apocalypse:star_spark"
+      },
+      "spawn_egg": {
+        "base_color": "#3a2608",
+        "overlay_color": "#ffe58a"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "apocalypse:titan_heartwood",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "apocalypse_titan_heartwood"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.apocalypse:titan_heartwood.name"
+      },
+      "minecraft:max_stack_size": 16,
+      "minecraft:rarity": "epic",
+      "minecraft:glint": true
+    }
+  }
+}

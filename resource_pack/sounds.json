@@ -1,0 +1,115 @@
+{
+  "entity_sounds": {
+    "entities": {
+      "apocalypse:astral_mite": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.astral_mite.ambient",
+          "hurt": "mob.apocalypse.astral_mite.hurt",
+          "death": "mob.apocalypse.astral_mite.death"
+        }
+      },
+      "apocalypse:hollow_king": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.hollow_king.ambient",
+          "hurt": "mob.apocalypse.hollow_king.hurt",
+          "death": "mob.apocalypse.hollow_king.death"
+        }
+      },
+      "apocalypse:hollow_shade": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.hollow_shade.ambient",
+          "hurt": "mob.apocalypse.hollow_shade.hurt",
+          "death": "mob.apocalypse.hollow_shade.death"
+        }
+      },
+      "apocalypse:null_colossus": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.null_colossus.ambient",
+          "hurt": "mob.apocalypse.null_colossus.hurt",
+          "death": "mob.apocalypse.null_colossus.death"
+        }
+      },
+      "apocalypse:rift_sentinel": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.rift_sentinel.ambient",
+          "hurt": "mob.apocalypse.rift_sentinel.hurt",
+          "death": "mob.apocalypse.rift_sentinel.death",
+          "shoot": "apocalypse.rift_sentinel.shoot"
+        }
+      },
+      "apocalypse:root_titan": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.root_titan.ambient",
+          "hurt": "mob.apocalypse.root_titan.hurt",
+          "death": "mob.apocalypse.root_titan.death"
+        }
+      },
+      "apocalypse:star_eater": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.star_eater.ambient",
+          "hurt": "mob.apocalypse.star_eater.hurt",
+          "death": "mob.apocalypse.star_eater.death"
+        }
+      },
+      "apocalypse:thornling": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.thornling.ambient",
+          "hurt": "mob.apocalypse.thornling.hurt",
+          "death": "mob.apocalypse.thornling.death"
+        }
+      },
+      "apocalypse:void_crawler": {
+        "volume": 1.0,
+        "pitch": [
+          0.9,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.apocalypse.void_crawler.ambient",
+          "hurt": "mob.apocalypse.void_crawler.hurt",
+          "death": "mob.apocalypse.void_crawler.death"
+        }
+      }
+    }
+  }
+}

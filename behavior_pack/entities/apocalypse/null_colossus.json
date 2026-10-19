@@ -1,0 +1,245 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "apocalypse:null_colossus",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "spawn_category": "monster",
+      "properties": {
+        "apocalypse:action": {
+          "type": "int",
+          "range": [
+            0,
+            15
+          ],
+          "default": 0,
+          "client_sync": true
+        },
+        "apocalypse:phase": {
+          "type": "int",
+          "range": [
+            1,
+            3
+          ],
+          "default": 1,
+          "client_sync": true
+        },
+        "apocalypse:vented": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "apocalypse",
+          "apocalypse_boss",
+          "monster",
+          "mob",
+          "construct",
+          "null_colossus"
+        ]
+      },
+      "minecraft:health": {
+        "value": 1200,
+        "max": 1200
+      },
+      "minecraft:collision_box": {
+        "width": 3.2,
+        "height": 6.8
+      },
+      "minecraft:movement": {
+        "value": 0.2
+      },
+      "minecraft:follow_range": {
+        "value": 64,
+        "max": 64
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1.0
+      },
+      "minecraft:boss": {
+        "hud_range": 96,
+        "should_darken_sky": true
+      },
+      "minecraft:persistent": {},
+      "minecraft:physics": {},
+      "minecraft:pushable_by_block": {},
+      "minecraft:fire_immune": {},
+      "minecraft:nameable": {},
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:breathable": {
+        "breathes_water": true,
+        "suffocate_time": 0,
+        "total_supply": 15
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "fall",
+            "deals_damage": "no"
+          },
+          {
+            "cause": "suffocation",
+            "deals_damage": "no"
+          },
+          {
+            "cause": "drowning",
+            "deals_damage": "no"
+          },
+          {
+            "on_damage": {
+              "filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "apocalypse_boss"
+              }
+            },
+            "deals_damage": "no"
+          },
+          {
+            "on_damage": {
+              "filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "apocalypse"
+              }
+            },
+            "deals_damage": "no"
+          }
+        ]
+      },
+      "minecraft:mob_effect_immunity": {
+        "mob_effects": [
+          "poison",
+          "wither",
+          "slowness",
+          "levitation",
+          "weakness"
+        ]
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 2,
+        "must_see": false,
+        "reselect_targets": true,
+        "within_radius": 48,
+        "entity_types": [
+          {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "value": "player"
+            },
+            "max_dist": 48
+          }
+        ]
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 8,
+        "look_distance": 24,
+        "look_time": {
+          "min": 2,
+          "max": 4
+        }
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 9
+      },
+      "minecraft:experience_reward": {
+        "on_death": "250"
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/apocalypse/null_colossus.json"
+      },
+      "minecraft:attack": {
+        "damage": 18
+      },
+      "minecraft:navigation.walk": {
+        "can_path_over_water": true,
+        "avoid_water": false,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:variable_max_auto_step": {
+        "base_value": 1.5625,
+        "jump_prevented_value": 1.5625
+      },
+      "minecraft:behavior.delayed_attack": {
+        "priority": 3,
+        "attack_duration": 1.4,
+        "hit_delay_pct": 0.6,
+        "reach_multiplier": 2.0,
+        "speed_multiplier": 1.0,
+        "track_target": true
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 7,
+        "speed_multiplier": 0.5,
+        "xz_dist": 5
+      }
+    },
+    "component_groups": {
+      "apocalypse:tier_1": {
+        "minecraft:health": {
+          "value": 1200,
+          "max": 1200
+        }
+      },
+      "apocalypse:tier_2": {
+        "minecraft:health": {
+          "value": 1800,
+          "max": 1800
+        }
+      },
+      "apocalypse:tier_3": {
+        "minecraft:health": {
+          "value": 2400,
+          "max": 2400
+        }
+      },
+      "apocalypse:tier_4": {
+        "minecraft:health": {
+          "value": 3120,
+          "max": 3120
+        }
+      }
+    },
+    "events": {
+      "apocalypse:tier_1": {
+        "add": {
+          "component_groups": [
+            "apocalypse:tier_1"
+          ]
+        }
+      },
+      "apocalypse:tier_2": {
+        "add": {
+          "component_groups": [
+            "apocalypse:tier_2"
+          ]
+        }
+      },
+      "apocalypse:tier_3": {
+        "add": {
+          "component_groups": [
+            "apocalypse:tier_3"
+          ]
+        }
+      },
+      "apocalypse:tier_4": {
+        "add": {
+          "component_groups": [
+            "apocalypse:tier_4"
+          ]
+        }
+      }
+    }
+  }
+}

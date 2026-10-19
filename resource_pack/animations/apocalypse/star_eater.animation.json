@@ -1,0 +1,584 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.apocalypse.star_eater.idle": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "position": [
+            0,
+            "math.sin(query.life_time * 120.00) * 1.5",
+            0
+          ]
+        },
+        "fin_l": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.life_time * 225.00) * 18"
+          ]
+        },
+        "fin_r": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.life_time * 225.00) * -18"
+          ]
+        },
+        "fin_l2": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.life_time * 225.00 + 60) * 14"
+          ]
+        },
+        "fin_r2": {
+          "rotation": [
+            0,
+            0,
+            "math.sin(query.life_time * 225.00 + 60) * -14"
+          ]
+        },
+        "tail0": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 120 - 0) * 8",
+            0
+          ]
+        },
+        "tail1": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 120 - 55) * 10",
+            0
+          ]
+        },
+        "tail2": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 120 - 110) * 12",
+            0
+          ]
+        },
+        "tail3": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 120 - 165) * 14",
+            0
+          ]
+        },
+        "tail_fin": {
+          "rotation": [
+            "math.sin(query.life_time * 120 - 220) * 10",
+            0,
+            0
+          ]
+        },
+        "jaw_l": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 144.00) * -6",
+            0
+          ]
+        },
+        "jaw_r": {
+          "rotation": [
+            0,
+            "math.sin(query.life_time * 144.00) * 6",
+            0
+          ]
+        },
+        "tendrils": {
+          "rotation": [
+            "math.sin(query.life_time * 180.00) * 12",
+            0,
+            "math.sin(query.life_time * 120.00) * 6"
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.star_eater.look_at_target": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "rotation": [
+            "query.target_x_rotation * 0.5",
+            "query.target_y_rotation * 0.5",
+            0
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.star_eater.bolt_volley": {
+      "loop": false,
+      "animation_length": 1.0,
+      "bones": {
+        "jaw_l": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.2": [
+              0,
+              -32,
+              0
+            ],
+            "0.8": [
+              0,
+              -32,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "jaw_r": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.2": [
+              0,
+              32,
+              0
+            ],
+            "0.8": [
+              0,
+              32,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.25": [
+              -12,
+              0,
+              0
+            ],
+            "0.4": [
+              6,
+              0,
+              0
+            ],
+            "0.55": [
+              -12,
+              0,
+              0
+            ],
+            "0.7": [
+              6,
+              0,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.star_eater.gravity_well": {
+      "loop": false,
+      "animation_length": 2.0,
+      "bones": {
+        "body": {
+          "rotation": [
+            0,
+            0,
+            "query.anim_time * 360"
+          ]
+        },
+        "fin_l": {
+          "rotation": [
+            0,
+            0,
+            40
+          ]
+        },
+        "fin_r": {
+          "rotation": [
+            0,
+            0,
+            -40
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.star_eater.supernova_charge": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 3.0,
+      "bones": {
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.5": [
+              35,
+              0,
+              0
+            ]
+          }
+        },
+        "tail0": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.5": [
+              -30,
+              0,
+              0
+            ]
+          }
+        },
+        "tail1": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.5": [
+              -35,
+              0,
+              0
+            ]
+          }
+        },
+        "tail2": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.5": [
+              -40,
+              0,
+              0
+            ]
+          }
+        },
+        "fin_l": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              -70
+            ]
+          }
+        },
+        "fin_r": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              70
+            ]
+          }
+        },
+        "jaw_l": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "3.0": [
+              0,
+              -40,
+              0
+            ]
+          }
+        },
+        "jaw_r": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "3.0": [
+              0,
+              40,
+              0
+            ]
+          }
+        },
+        "body": {
+          "scale": {
+            "0.0": 1,
+            "3.0": 1.12
+          }
+        }
+      }
+    },
+    "animation.apocalypse.star_eater.supernova_release": {
+      "loop": false,
+      "animation_length": 0.8,
+      "bones": {
+        "fin_l": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              -70
+            ],
+            "0.15": [
+              0,
+              0,
+              55
+            ],
+            "0.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "fin_r": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              70
+            ],
+            "0.15": [
+              0,
+              0,
+              -55
+            ],
+            "0.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "head": {
+          "rotation": {
+            "0.0": [
+              35,
+              0,
+              0
+            ],
+            "0.15": [
+              -30,
+              0,
+              0
+            ],
+            "0.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "scale": {
+            "0.0": 1.12,
+            "0.15": 1.25,
+            "0.8": 1
+          }
+        }
+      }
+    },
+    "animation.apocalypse.star_eater.roar": {
+      "loop": false,
+      "animation_length": 1.5,
+      "bones": {
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              -35,
+              0,
+              0
+            ],
+            "1.2": [
+              -35,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "jaw_l": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              0,
+              -40,
+              0
+            ],
+            "1.2": [
+              0,
+              -40,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "jaw_r": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              0,
+              40,
+              0
+            ],
+            "1.2": [
+              0,
+              40,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.star_eater.dive": {
+      "loop": false,
+      "animation_length": 1.0,
+      "bones": {
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              35,
+              0,
+              0
+            ],
+            "0.8": [
+              35,
+              0,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.star_eater.brood": {
+      "loop": false,
+      "animation_length": 1.2,
+      "bones": {
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.2": [
+              0,
+              15,
+              0
+            ],
+            "0.4": [
+              0,
+              -15,
+              0
+            ],
+            "0.6": [
+              0,
+              15,
+              0
+            ],
+            "0.8": [
+              0,
+              -15,
+              0
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "jaw_l": {
+          "rotation": [
+            0,
+            -25,
+            0
+          ]
+        },
+        "jaw_r": {
+          "rotation": [
+            0,
+            25,
+            0
+          ]
+        }
+      }
+    }
+  }
+}

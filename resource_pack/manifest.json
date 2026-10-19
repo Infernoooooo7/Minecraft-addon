@@ -1,0 +1,62 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "APOCALYPSE ENGINE [Resources]",
+    "description": "HD textures, models, animations, particles, fog and audio for APOCALYPSE ENGINE. Vibrant Visuals (PBR) ready.",
+    "uuid": "54b47954-21db-4175-bec6-9abe254127a1",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      30
+    ]
+  },
+  "modules": [
+    {
+      "description": "APOCALYPSE ENGINE resources",
+      "type": "resources",
+      "uuid": "d22de523-0581-43f1-b217-480c9d0cf36c",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "capabilities": [
+    "pbr"
+  ],
+  "subpacks": [
+    {
+      "folder_name": "potato",
+      "name": "Potato (low memory)",
+      "memory_tier": 0
+    },
+    {
+      "folder_name": "balanced",
+      "name": "Balanced (HD + PBR)",
+      "memory_tier": 8
+    },
+    {
+      "folder_name": "enhanced",
+      "name": "Enhanced (max detail)",
+      "memory_tier": 24
+    }
+  ],
+  "metadata": {
+    "authors": [
+      "APOCALYPSE ENGINE project"
+    ],
+    "license": "All rights reserved by the add-on author",
+    "product_type": "addon",
+    "generated_with": {
+      "apocalypse_build": [
+        "1.0.0"
+      ]
+    }
+  }
+}

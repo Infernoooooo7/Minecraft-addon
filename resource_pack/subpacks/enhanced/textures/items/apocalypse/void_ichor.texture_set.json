@@ -1,0 +1,7 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:texture_set": {
+    "color": "void_ichor",
+    "metalness_emissive_roughness": "void_ichor_mer"
+  }
+}

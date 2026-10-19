@@ -1,0 +1,52 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:hollow_shade",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/hollow_shade",
+        "glow": "textures/entity/apocalypse/hollow_shade_glow",
+        "crimson": "textures/entity/apocalypse/hollow_shade_crimson",
+        "glow_crimson": "textures/entity/apocalypse/hollow_shade_crimson_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.hollow_shade"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.hollow_shade",
+        "controller.render.apocalypse.hollow_shade_glow"
+      ],
+      "animations": {
+        "idle": "animation.apocalypse.hollow_shade.idle",
+        "move": "animation.apocalypse.hollow_shade.move",
+        "look_at_target": "animation.apocalypse.hollow_shade.look_at_target",
+        "attack": "animation.apocalypse.hollow_shade.attack",
+        "ambient_controller": "controller.animation.apocalypse.hollow_shade.ambient"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          {
+            "move": "query.modified_move_speed"
+          },
+          "look_at_target",
+          {
+            "attack": "variable.attack_time > 0"
+          },
+          "ambient_controller"
+        ]
+      },
+      "particle_effects": {
+        "wisp": "apocalypse:soul_wisp"
+      },
+      "spawn_egg": {
+        "base_color": "#0b0614",
+        "overlay_color": "#7ff6ff"
+      }
+    }
+  }
+}

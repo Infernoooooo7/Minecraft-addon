@@ -1,0 +1,7 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:texture_set": {
+    "color": "star_bolt_null",
+    "metalness_emissive_roughness": "star_bolt_null_mer"
+  }
+}

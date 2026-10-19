@@ -1,0 +1,7 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:texture_set": {
+    "color": "engine_codex",
+    "metalness_emissive_roughness": "engine_codex_mer"
+  }
+}

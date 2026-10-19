@@ -1,0 +1,38 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "apocalypse:blighted_grass",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "apocalypse_blighted_grass_side",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        },
+        "up": {
+          "texture": "apocalypse_blighted_grass_top",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        },
+        "down": {
+          "texture": "apocalypse_blighted_soil",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        }
+      },
+      "minecraft:tags": [
+        "minecraft:is_shovel_item_destructible"
+      ],
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.8
+      },
+      "minecraft:map_color": "#3b2a4a",
+      "minecraft:loot": "loot_tables/blocks/apocalypse/blighted_grass.json"
+    }
+  }
+}

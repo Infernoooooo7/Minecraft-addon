@@ -1,0 +1,17 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:single_block_feature": {
+    "description": {
+      "identifier": "apocalypse:blight_sprout_feature"
+    },
+    "places_block": "apocalypse:blight_sprout",
+    "enforce_placement_rules": true,
+    "enforce_survivability_rules": true,
+    "may_attach_to": {
+      "bottom": [
+        "apocalypse:blighted_grass",
+        "apocalypse:blighted_soil"
+      ]
+    }
+  }
+}

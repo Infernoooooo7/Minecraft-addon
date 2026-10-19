@@ -1,0 +1,25 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.apocalypse.void_rift.swirl": {
+      "loop": true,
+      "bones": {
+        "tear": {
+          "rotation": [
+            0,
+            "query.life_time * 40",
+            0
+          ],
+          "scale": "1 + math.sin(query.life_time * 180) * 0.06"
+        },
+        "core": {
+          "rotation": [
+            "query.life_time * 120",
+            "query.life_time * 200",
+            0
+          ]
+        }
+      }
+    }
+  }
+}

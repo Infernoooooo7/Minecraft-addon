@@ -1,0 +1,7 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:texture_set": {
+    "color": "starfall_scepter",
+    "metalness_emissive_roughness": "starfall_scepter_mer"
+  }
+}

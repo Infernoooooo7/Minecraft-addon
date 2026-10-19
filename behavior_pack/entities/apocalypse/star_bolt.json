@@ -1,0 +1,87 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "apocalypse:star_bolt",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "spawn_category": "misc",
+      "properties": {
+        "apocalypse:variant": {
+          "type": "enum",
+          "values": [
+            "star",
+            "null"
+          ],
+          "default": "star",
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "projectile",
+          "apocalypse",
+          "star_bolt"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.35,
+        "height": 0.35
+      },
+      "minecraft:physics": {},
+      "minecraft:pushable_by_block": {},
+      "minecraft:conditional_bandwidth_optimization": {
+        "default_values": {
+          "max_optimized_distance": 80.0,
+          "max_dropped_ticks": 7,
+          "use_motion_prediction_hints": true
+        }
+      },
+      "minecraft:projectile": {
+        "anchor": "middle",
+        "gravity": 0.0,
+        "inertia": 1,
+        "liquid_inertia": 1,
+        "power": 1.4,
+        "uncertainty_base": 4.0,
+        "reflect_on_hurt": true,
+        "offset": [
+          0,
+          0.4,
+          0
+        ],
+        "on_hit": {
+          "impact_damage": {
+            "damage": 6,
+            "knockback": true,
+            "apply_knockback_to_blocking_targets": true
+          },
+          "remove_on_hit": {}
+        }
+      },
+      "minecraft:timer": {
+        "looping": false,
+        "time": 8,
+        "time_down_event": {
+          "event": "apocalypse:expire"
+        }
+      }
+    },
+    "component_groups": {
+      "apocalypse:expire": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "events": {
+      "apocalypse:expire": {
+        "add": {
+          "component_groups": [
+            "apocalypse:expire"
+          ]
+        }
+      }
+    }
+  }
+}

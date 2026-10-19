@@ -1,0 +1,51 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "apocalypse:null_aegis_boots",
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.boots"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "apocalypse_null_aegis_boots"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.apocalypse:null_aegis_boots.name"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:wearable": {
+        "slot": "slot.armor.feet",
+        "protection": 3
+      },
+      "minecraft:durability": {
+        "max_durability": 660
+      },
+      "minecraft:enchantable": {
+        "slot": "armor_feet",
+        "value": 12
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "apocalypse:null_fragment"
+            ],
+            "repair_amount": "query.max_durability * 0.25"
+          }
+        ]
+      },
+      "minecraft:rarity": "epic",
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_armor",
+          "apocalypse:armor_null_aegis"
+        ]
+      }
+    }
+  }
+}

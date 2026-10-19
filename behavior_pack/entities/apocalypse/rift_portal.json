@@ -1,0 +1,58 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "apocalypse:rift_portal",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "spawn_category": "misc"
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "apocalypse",
+          "portal",
+          "inanimate"
+        ]
+      },
+      "minecraft:health": {
+        "value": 100,
+        "max": 100
+      },
+      "minecraft:collision_box": {
+        "width": 0.5,
+        "height": 0.5
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1.0
+      },
+      "minecraft:fire_immune": {},
+      "minecraft:persistent": {},
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "deals_damage": "no"
+          }
+        ]
+      }
+    },
+    "component_groups": {
+      "apocalypse:expire": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "events": {
+      "apocalypse:expire": {
+        "add": {
+          "component_groups": [
+            "apocalypse:expire"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:null_aegis_boots"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "NNN",
+      "NPN",
+      "NNN"
+    ],
+    "key": {
+      "N": {
+        "item": "apocalypse:null_fragment"
+      },
+      "P": {
+        "item": "apocalypse:starforged_boots"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:null_fragment"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:null_aegis_boots",
+      "count": 1
+    }
+  }
+}

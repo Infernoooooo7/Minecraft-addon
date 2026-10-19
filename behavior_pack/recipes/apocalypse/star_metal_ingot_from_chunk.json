@@ -1,0 +1,19 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "apocalypse:star_metal_ingot_from_chunk"
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:star_metal_chunk"
+      }
+    ],
+    "tags": [
+      "furnace",
+      "blast_furnace"
+    ],
+    "input": "apocalypse:star_metal_chunk",
+    "output": "apocalypse:star_metal_ingot"
+  }
+}

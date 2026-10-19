@@ -1,0 +1,31 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "apocalypse:aether_elixir"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:glass_bottle"
+      },
+      {
+        "item": "apocalypse:aether_crystal"
+      },
+      {
+        "item": "minecraft:glow_berries"
+      }
+    ],
+    "unlock": [
+      {
+        "item": "apocalypse:aether_crystal"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:aether_elixir",
+      "count": 1
+    }
+  }
+}

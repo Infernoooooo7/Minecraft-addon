@@ -1,0 +1,191 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.apocalypse.hollow_king.action": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "summon": "query.property('apocalypse:action') == 1"
+            },
+            {
+              "quake_windup": "query.property('apocalypse:action') == 2"
+            },
+            {
+              "quake_slam": "query.property('apocalypse:action') == 3"
+            },
+            {
+              "phantom_step": "query.property('apocalypse:action') == 4"
+            },
+            {
+              "roar": "query.property('apocalypse:action') == 5"
+            },
+            {
+              "soul_chains": "query.property('apocalypse:action') == 6"
+            },
+            {
+              "crown_of_ruin": "query.property('apocalypse:action') == 7"
+            }
+          ]
+        },
+        "summon": {
+          "animations": [
+            "summon"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 1"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "quake_windup": {
+          "animations": [
+            "quake_windup"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 2"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "quake_slam": {
+          "animations": [
+            "quake_slam"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 3"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "phantom_step": {
+          "animations": [
+            "phantom_step"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 4"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "roar": {
+          "animations": [
+            "roar"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 5"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "soul_chains": {
+          "animations": [
+            "soul_chains"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 6"
+            }
+          ],
+          "blend_transition": 0.15
+        },
+        "crown_of_ruin": {
+          "animations": [
+            "crown_of_ruin"
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:action') != 7"
+            }
+          ],
+          "blend_transition": 0.15
+        }
+      }
+    },
+    "controller.animation.apocalypse.hollow_king.attack": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "swing": "query.is_delayed_attacking"
+            }
+          ]
+        },
+        "swing": {
+          "animations": [
+            "attack"
+          ],
+          "transitions": [
+            {
+              "default": "!query.is_delayed_attacking && query.all_animations_finished"
+            }
+          ],
+          "blend_transition": 0.1
+        }
+      }
+    },
+    "controller.animation.apocalypse.hollow_king.phase": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "phase2": "query.property('apocalypse:phase') == 2"
+            },
+            {
+              "phase3": "query.property('apocalypse:phase') == 3"
+            }
+          ]
+        },
+        "phase2": {
+          "particle_effects": [
+            {
+              "effect": "aura2",
+              "locator": "core"
+            }
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:phase') != 2"
+            }
+          ],
+          "blend_transition": 0.0
+        },
+        "phase3": {
+          "particle_effects": [
+            {
+              "effect": "aura3",
+              "locator": "core"
+            }
+          ],
+          "transitions": [
+            {
+              "default": "query.property('apocalypse:phase') != 3"
+            }
+          ],
+          "blend_transition": 0.0
+        }
+      }
+    },
+    "controller.animation.apocalypse.hollow_king.ambient": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "particle_effects": [
+            {
+              "effect": "aura1",
+              "locator": "crown"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:rift_portal",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/rift_portal",
+        "glow": "textures/entity/apocalypse/rift_portal_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.rift_portal"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.default",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "spin": "animation.apocalypse.rift_portal.spin",
+        "fx_controller": "controller.animation.apocalypse.rift_portal.fx"
+      },
+      "scripts": {
+        "animate": [
+          "spin",
+          "fx_controller"
+        ]
+      },
+      "particle_effects": {
+        "glow": "apocalypse:portal_glow"
+      }
+    }
+  }
+}

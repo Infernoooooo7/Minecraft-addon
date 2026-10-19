@@ -1,0 +1,39 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:cursed_crown"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "S S",
+      "SGS",
+      "ERE"
+    ],
+    "key": {
+      "S": {
+        "item": "apocalypse:soul_essence"
+      },
+      "G": {
+        "item": "minecraft:gold_ingot"
+      },
+      "E": {
+        "item": "apocalypse:soul_essence"
+      },
+      "R": {
+        "item": "apocalypse:rift_shard"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:soul_essence"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:cursed_crown",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "apocalypse:meteorite",
+      "menu_category": {
+        "category": "nature",
+        "group": "minecraft:itemGroup.name.ore"
+      }
+    },
+    "components": {
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "apocalypse_meteorite",
+          "render_method": "opaque",
+          "ambient_occlusion": 1.0
+        }
+      },
+      "minecraft:tags": [
+        "minecraft:is_pickaxe_item_destructible"
+      ],
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 3.5
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 9.0
+      },
+      "minecraft:light_emission": 6,
+      "minecraft:map_color": "#5a2a12",
+      "apocalypse:ore_xp": {
+        "min": 3,
+        "max": 7
+      },
+      "minecraft:loot": "loot_tables/blocks/apocalypse/meteorite.json"
+    }
+  }
+}

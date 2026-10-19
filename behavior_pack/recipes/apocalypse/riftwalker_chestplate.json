@@ -1,0 +1,30 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:riftwalker_chestplate"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "X X",
+      "XXX",
+      "XXX"
+    ],
+    "key": {
+      "X": {
+        "item": "apocalypse:rift_shard"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:rift_shard"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:riftwalker_chestplate",
+      "count": 1
+    }
+  }
+}

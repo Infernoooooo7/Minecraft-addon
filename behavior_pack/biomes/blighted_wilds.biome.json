@@ -1,0 +1,54 @@
+{
+  "format_version": "1.21.110",
+  "minecraft:biome": {
+    "description": {
+      "identifier": "apocalypse:blighted_wilds"
+    },
+    "components": {
+      "minecraft:climate": {
+        "downfall": 0.6,
+        "snow_accumulation": [
+          0.0,
+          0.125
+        ],
+        "temperature": 0.6
+      },
+      "minecraft:humidity": {
+        "is_humid": true
+      },
+      "minecraft:surface_builder": {
+        "builder": {
+          "type": "minecraft:overworld",
+          "sea_floor_depth": 7,
+          "sea_floor_material": "minecraft:gravel",
+          "foundation_material": "minecraft:stone",
+          "mid_material": "apocalypse:blighted_soil",
+          "top_material": "apocalypse:blighted_grass",
+          "sea_material": "minecraft:water"
+        }
+      },
+      "minecraft:replace_biomes": {
+        "replacements": [
+          {
+            "dimension": "minecraft:overworld",
+            "targets": [
+              "roofed_forest",
+              "forest",
+              "birch_forest"
+            ],
+            "amount": 0.22,
+            "noise_frequency_scale": 14.0
+          }
+        ]
+      },
+      "minecraft:tags": {
+        "tags": [
+          "overworld",
+          "monster",
+          "forest",
+          "apocalypse_blight"
+        ]
+      }
+    }
+  }
+}

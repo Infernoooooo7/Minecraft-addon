@@ -1,0 +1,36 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:meteor",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/meteor",
+        "glow": "textures/entity/apocalypse/meteor_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.meteor"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.default",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "tumble": "animation.apocalypse.meteor.tumble",
+        "trail_controller": "controller.animation.apocalypse.meteor.trail"
+      },
+      "scripts": {
+        "animate": [
+          "tumble",
+          "trail_controller"
+        ]
+      },
+      "particle_effects": {
+        "trail": "apocalypse:meteor_trail"
+      }
+    }
+  }
+}

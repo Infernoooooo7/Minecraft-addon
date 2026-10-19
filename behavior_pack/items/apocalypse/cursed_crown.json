@@ -1,0 +1,27 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "apocalypse:cursed_crown",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "apocalypse_cursed_crown"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.apocalypse:cursed_crown.name"
+      },
+      "minecraft:max_stack_size": 16,
+      "minecraft:rarity": "epic",
+      "minecraft:glint": true,
+      "apocalypse:relic": {
+        "boss": "hollow_king"
+      }
+    }
+  }
+}

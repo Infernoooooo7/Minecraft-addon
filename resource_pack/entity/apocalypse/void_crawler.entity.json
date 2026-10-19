@@ -1,0 +1,41 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "apocalypse:void_crawler",
+      "materials": {
+        "default": "entity_alphatest",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/apocalypse/void_crawler",
+        "glow": "textures/entity/apocalypse/void_crawler_glow"
+      },
+      "geometry": {
+        "default": "geometry.apocalypse.void_crawler"
+      },
+      "render_controllers": [
+        "controller.render.apocalypse.default",
+        "controller.render.apocalypse.glow"
+      ],
+      "animations": {
+        "walk": "animation.apocalypse.void_crawler.walk",
+        "idle": "animation.apocalypse.void_crawler.idle",
+        "look_at_target": "animation.apocalypse.void_crawler.look_at_target"
+      },
+      "scripts": {
+        "animate": [
+          "idle",
+          {
+            "walk": "query.modified_move_speed"
+          },
+          "look_at_target"
+        ]
+      },
+      "spawn_egg": {
+        "base_color": "#07060c",
+        "overlay_color": "#b98cff"
+      }
+    }
+  }
+}

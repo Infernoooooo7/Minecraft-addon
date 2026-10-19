@@ -1,0 +1,49 @@
+{
+  "format_version": [
+    1,
+    1,
+    0
+  ],
+  "apocalypse:aether_cluster": {
+    "sound": "amethyst_cluster"
+  },
+  "apocalypse:aether_crystal_block": {
+    "sound": "amethyst_block"
+  },
+  "apocalypse:blight_sprout": {
+    "sound": "grass"
+  },
+  "apocalypse:blighted_grass": {
+    "sound": "grass"
+  },
+  "apocalypse:blighted_soil": {
+    "sound": "gravel"
+  },
+  "apocalypse:chiseled_runestone": {
+    "sound": "stone"
+  },
+  "apocalypse:deepslate_rift_ore": {
+    "sound": "deepslate"
+  },
+  "apocalypse:engine_cache": {
+    "sound": "metal"
+  },
+  "apocalypse:meteorite": {
+    "sound": "stone"
+  },
+  "apocalypse:null_gate": {
+    "sound": "stone"
+  },
+  "apocalypse:rift_ore": {
+    "sound": "stone"
+  },
+  "apocalypse:runestone_bricks": {
+    "sound": "stone"
+  },
+  "apocalypse:shattered_stone": {
+    "sound": "stone"
+  },
+  "apocalypse:void_moss": {
+    "sound": "moss_block"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "apocalypse:starforged_leggings"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "XXX",
+      "X X",
+      "X X"
+    ],
+    "key": {
+      "X": {
+        "item": "apocalypse:star_metal_ingot"
+      }
+    },
+    "unlock": [
+      {
+        "item": "apocalypse:star_metal_ingot"
+      }
+    ],
+    "result": {
+      "item": "apocalypse:starforged_leggings",
+      "count": 1
+    }
+  }
+}

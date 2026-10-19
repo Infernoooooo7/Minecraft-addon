@@ -1,0 +1,591 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.apocalypse.hollow_king.idle": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "rotation": [
+            "math.sin(query.life_time * 90.00) * 1.5",
+            0,
+            0
+          ]
+        },
+        "head": {
+          "rotation": [
+            "math.sin(query.life_time * 90.00 + 40) * 2.0",
+            "math.sin(query.life_time * 51.43) * 4.0",
+            0
+          ]
+        },
+        "halo": {
+          "rotation": [
+            0,
+            "query.life_time * 45",
+            0
+          ],
+          "position": [
+            0,
+            "math.sin(query.life_time * 120.00) * 1.0",
+            0
+          ]
+        },
+        "right_arm": {
+          "rotation": [
+            "math.sin(query.life_time * 90.00 + 90) * 2.0",
+            0,
+            3
+          ]
+        },
+        "left_arm": {
+          "rotation": [
+            "math.sin(query.life_time * 90.00 + 180) * 2.0",
+            0,
+            -3
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.walk": {
+      "loop": true,
+      "bones": {
+        "right_leg": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 38.17) * 28 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "left_leg": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 38.17 + 180) * 28 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "left_arm": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 38.17) * 16 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "right_arm": {
+          "rotation": [
+            "math.cos(query.modified_distance_moved * 38.17 + 180) * 8 * query.modified_move_speed",
+            0,
+            0
+          ]
+        },
+        "body": {
+          "position": [
+            0,
+            "math.abs(math.cos(query.modified_distance_moved * 38.17)) * 0.8 * query.modified_move_speed",
+            0
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.look_at_target": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "rotation": [
+            "query.target_x_rotation * 0.6",
+            "query.target_y_rotation * 0.8",
+            0
+          ]
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.attack": {
+      "loop": false,
+      "animation_length": 1.0,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.45": [
+              -160,
+              10,
+              15
+            ],
+            "0.6": [
+              30,
+              -10,
+              -10
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              8,
+              0,
+              0
+            ],
+            "0.45": [
+              0,
+              15,
+              0
+            ],
+            "0.6": [
+              18,
+              -15,
+              0
+            ],
+            "1.0": [
+              8,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.summon": {
+      "loop": false,
+      "animation_length": 1.6,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -130,
+              0,
+              50
+            ],
+            "1.3": [
+              -130,
+              0,
+              50
+            ],
+            "1.6": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -130,
+              0,
+              -50
+            ],
+            "1.3": [
+              -130,
+              0,
+              -50
+            ],
+            "1.6": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.5": [
+              -25,
+              0,
+              0
+            ],
+            "1.3": [
+              -25,
+              0,
+              0
+            ],
+            "1.6": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "halo": {
+          "rotation": [
+            0,
+            "query.anim_time * 720",
+            0
+          ],
+          "scale": {
+            "0.0": 1,
+            "0.6": 1.6,
+            "1.6": 1
+          }
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.quake_windup": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 0.8,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.8": [
+              -175,
+              0,
+              -20
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.8": [
+              -175,
+              0,
+              20
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              8,
+              0,
+              0
+            ],
+            "0.8": [
+              -14,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.quake_slam": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 0.6,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              -175,
+              0,
+              -20
+            ],
+            "0.15": [
+              25,
+              0,
+              -10
+            ],
+            "0.6": [
+              10,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              -175,
+              0,
+              20
+            ],
+            "0.15": [
+              25,
+              0,
+              10
+            ],
+            "0.6": [
+              10,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              -14,
+              0,
+              0
+            ],
+            "0.15": [
+              32,
+              0,
+              0
+            ],
+            "0.6": [
+              20,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.phantom_step": {
+      "loop": false,
+      "animation_length": 0.5,
+      "bones": {
+        "root": {
+          "scale": {
+            "0.0": 1,
+            "0.25": [
+              0.15,
+              1.2,
+              0.15
+            ],
+            "0.5": 1
+          }
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.roar": {
+      "loop": false,
+      "animation_length": 1.5,
+      "bones": {
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              -38,
+              0,
+              0
+            ],
+            "1.2": [
+              -38,
+              0,
+              0
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              -40,
+              0,
+              75
+            ],
+            "1.2": [
+              -40,
+              0,
+              75
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              -40,
+              0,
+              -75
+            ],
+            "1.2": [
+              -40,
+              0,
+              -75
+            ],
+            "1.5": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              8,
+              0,
+              0
+            ],
+            "0.3": [
+              -12,
+              0,
+              0
+            ],
+            "1.2": [
+              -12,
+              0,
+              0
+            ],
+            "1.5": [
+              8,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.soul_chains": {
+      "loop": false,
+      "animation_length": 1.0,
+      "bones": {
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              -95,
+              -15,
+              0
+            ],
+            "0.9": [
+              -95,
+              -15,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.3": [
+              10,
+              -10,
+              0
+            ],
+            "1.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.apocalypse.hollow_king.crown_of_ruin": {
+      "loop": false,
+      "animation_length": 2.0,
+      "bones": {
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.6": [
+              -165,
+              0,
+              25
+            ],
+            "1.8": [
+              -165,
+              0,
+              25
+            ],
+            "2.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "left_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.6": [
+              -165,
+              0,
+              -25
+            ],
+            "1.8": [
+              -165,
+              0,
+              -25
+            ],
+            "2.0": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "halo": {
+          "rotation": [
+            0,
+            "query.anim_time * 1080",
+            0
+          ],
+          "scale": {
+            "0.0": 1,
+            "1.0": 2.2,
+            "2.0": 1
+          }
+        }
+      }
+    }
+  }
+}

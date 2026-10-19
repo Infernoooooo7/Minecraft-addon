@@ -1,0 +1,14 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "apocalypse:blighted_soil",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

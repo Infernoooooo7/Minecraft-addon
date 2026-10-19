@@ -1,0 +1,50 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:fog_settings": {
+    "description": {
+      "identifier": "apocalypse:fog_eclipse"
+    },
+    "distance": {
+      "air": {
+        "fog_start": 2.0,
+        "fog_end": 44.0,
+        "fog_color": "#0b0a10",
+        "render_distance_type": "fixed"
+      },
+      "weather": {
+        "fog_start": 1.4,
+        "fog_end": 33.0,
+        "fog_color": "#0b0a10",
+        "render_distance_type": "fixed"
+      }
+    },
+    "volumetric": {
+      "density": {
+        "air": {
+          "max_density": 0.3,
+          "zero_density_height": 140.0,
+          "max_density_height": 62.0
+        }
+      },
+      "media_coefficients": {
+        "air": {
+          "scattering": [
+            0.02,
+            0.02,
+            0.025
+          ],
+          "absorption": [
+            0.03,
+            0.03,
+            0.02
+          ]
+        }
+      },
+      "henyey_greenstein_g": {
+        "air": {
+          "henyey_greenstein_g": 0.6
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "apocalypse:starfall_scepter",
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.sword"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "apocalypse_starfall_scepter"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.apocalypse:starfall_scepter.name"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:damage": 4,
+      "minecraft:durability": {
+        "max_durability": 800
+      },
+      "minecraft:enchantable": {
+        "slot": "sword",
+        "value": 15
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "apocalypse:star_metal_ingot"
+            ],
+            "repair_amount": "query.max_durability * 0.25"
+          },
+          {
+            "items": [
+              "apocalypse:starfall_scepter"
+            ],
+            "repair_amount": "context.other->query.remaining_durability + 0.05 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:can_destroy_in_creative": false,
+      "minecraft:rarity": "rare",
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_tool"
+        ]
+      },
+      "apocalypse:ability": {
+        "kind": "star_bolt",
+        "cooldown": 1.5
+      },
+      "minecraft:cooldown": {
+        "category": "apocalypse_starfall_scepter",
+        "duration": 1.5,
+        "type": "use"
+      }
+    }
+  }
+}

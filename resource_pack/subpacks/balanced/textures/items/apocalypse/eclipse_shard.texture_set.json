@@ -1,0 +1,7 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:texture_set": {
+    "color": "eclipse_shard",
+    "metalness_emissive_roughness": "eclipse_shard_mer"
+  }
+}

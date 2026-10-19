@@ -8,6 +8,7 @@ import { isTargetable, playersNear } from "../core/players.js";
 import { every, later } from "../core/scheduler.js";
 import { readWorld, writeWorld } from "../core/state.js";
 import { BLOCKS, ENTITIES, FOGS, ITEMS, PARTICLES, SOUNDS } from "../generated/ids.js";
+import { wearsSet } from "../items/armor.js";
 import { Rng } from "../logic/rng.js";
 import { add, V3 } from "../logic/vec.js";
 import { activeEvent, eventEntities, EventCtx, registerEvent, spawnEventMobAt, spawnForEvent } from "./runtime.js";
@@ -146,7 +147,7 @@ function riftHazard(r: Entity, s: number): void {
   try {
     const center = add(r.location, { x: 0, y: 1.1, z: 0 });
     for (const p of r.dimension.getPlayers({ location: center, maxDistance: 7 })) {
-      if (!isTargetable(p)) continue;
+      if (!isTargetable(p) || wearsSet(p, "null_aegis")) continue; // full Null Aegis anchors its wearer
       const dx = center.x - p.location.x;
       const dz = center.z - p.location.z;
       const d = Math.hypot(dx, dz) || 1;

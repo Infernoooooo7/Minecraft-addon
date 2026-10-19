@@ -621,7 +621,6 @@ def hollow_shade():
         "minecraft:fire_immune": {},
         "minecraft:damage_sensor": {"triggers": [{"cause": "fall", "deals_damage": "no"}]},
     })
-    comps["minecraft:type_family"]["family"].append("undead")
     groups = {
         f"{NS}:crimson": {"minecraft:attack": {"damage": 7}, "minecraft:movement": {"value": 0.31},
                           "minecraft:health": {"value": 30, "max": 30},

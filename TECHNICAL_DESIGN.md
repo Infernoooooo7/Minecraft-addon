@@ -40,14 +40,15 @@ Authoritative sources consulted (all fetched during development, not recalled fr
 | BP blocks | `1.26.30` | Parsed with the 1.26.20 block parser: `minecraft:tags` is an array, strict light/material validation |
 | Recipes | `1.20.10` | Same as current vanilla recipes |
 | Spawn rules | `1.8.0` | Same as vanilla |
-| Features / feature rules | `1.21.20` | Scatter features use the `distribution` object layout |
-| Biome (BP) / client biome | `1.21.120` | Same as vanilla biome files |
+| Features / feature rules | `1.21.20` (structure template features `1.26.30`) | Scatter features use the `distribution` object layout |
+| Biome (BP) / client biome | `1.26.0` / `1.21.120` | BP biome validated against the official 1.26.0 biome schema (`minecraft:replace_biomes`) |
 | Client entity / attachables | `1.10.0` | Same as vanilla |
 | Geometry | `1.12.0` | Widely supported Bedrock geometry schema |
 | Animations / controllers / render controllers | `1.8.0` / `1.10.0` / `1.8.0` | Same as vanilla |
 | Particles | `1.10.0` | Classic particle schema, still parsed |
 | Texture sets (Vibrant Visuals) | `1.21.30` | Texture-set schema with MER/MERS layers |
-| Fog | `1.16.100` | Vanilla fog schema |
+| Fog | `1.21.90` | Distance fog for every renderer + volumetric media coefficients for Vibrant Visuals |
+| Vibrant Visuals atmosphere / lighting / color grading | `1.21.40` / `1.21.70` / `1.21.90` | Biome-scoped (referenced by the Blighted Wilds client biome only) |
 
 ---
 
@@ -94,12 +95,14 @@ Scripts are written in TypeScript (`src/scripts`), compiled by `tsc` with `stric
 main.ts                 startup registration (custom components, commands, custom dimension)
 core/    config, scheduler (tick-sliced tasks), persistent state (dynamic properties), fx helpers
 logic/   PURE modules with no @minecraft imports — unit tested in Node:
-         bossMachine (phases, attack selection, cooldowns), eventScheduler, rewardLedger,
-         progression, profiles, islandGen (dimension terrain), rng, vec
-bosses/  bossRuntime + hollowKing, starEater, rootTitan, nullColossus
-events/  eventRuntime + bloodMoon, voidStorm, meteorShower, realityFracture, eclipse
-items/   weapon abilities (custom components), relics (boss summons), armor set bonuses
-world/   expanse (custom dimension: registration, island generation, portals, sentinels), ores
+         boss_machine (phases, attack selection, cooldowns), event_scheduler, reward_ledger,
+         progression, profiles, island_gen (dimension terrain), rng, vec
+bosses/  runtime + hollow_king, star_eater, root_titan, null_colossus, kit
+events/  runtime (rolls, persistence, fog, bounded spawns, kill drops) + defs (the 7 events)
+items/   weapon abilities + on-hit effects, relics/Engine Key/Codex/elixir, armor set bonuses
+world/   expanse (custom dimension: registration, island generation, portals, sentinels),
+         blocks (ore drops with Silk Touch/Fortune, Engine Cache, Null Gate)
+commands custom slash commands (/apocalypse:codex|event|profile|summon)
 ui/      Engine Codex (journal, settings, admin)
 ```
 
@@ -127,9 +130,11 @@ plus a scripted **brain** ticked every 4 game ticks (5 Hz):
 * **Phases**: thresholds per boss (e.g. 66 % / 33 %). Crossing one triggers an invulnerable
   transition (damage cancelled via `world.beforeEvents.entityHurt`), a roar, add summons and a new
   attack pool. Phase is synced to clients (`apocalypse:phase`) for enrage visuals.
-* **Vulnerability windows** (Null Colossus): armored stance reduces incoming damage by 75 %
-  (`beforeEvents.entityHurt` damage scaling); periodic core vents take 150 % damage.
-* **Leash**: bosses remember their arena center; straying > 48 blocks teleports them back.
+* **Vulnerability windows** (Null Colossus): armored stance takes only 35 % of incoming damage
+  (`beforeEvents.entityHurt` damage scaling); core vents (after gravity slams, collapses, phase
+  changes and every ~25 s) take 150 %. The Star Eater is exhausted for 4 s after a Supernova (150 %).
+* **Leash**: bosses remember their arena center; straying 30–56 blocks (per boss) or falling 16
+  blocks below it teleports them back.
 * **Multiplayer**: health tier chosen at spawn from nearby player count × difficulty setting
   (component-group events); AoE hits all players in range; rewards go to every contributor.
 * **Death & rewards**: base drops come from JSON loot tables. Script rewards are keyed by the boss
@@ -143,20 +148,26 @@ tick, per-event cooldowns, last roll day. A scheduler task runs every 100 ticks 
 
 * Rolls only when no event is active, the global cooldown has elapsed and the event's time window
   matches (night / day / any). Weighted pick; frequency is a world setting (off/rare/normal/frequent).
-* Each event implements `onStart / onPulse (every 20 ticks) / onEnd` with **real gameplay changes**:
+* Each event implements `onStart / onPulse (every 20 ticks) / onEnd` with **real gameplay changes**,
+  optional bonus drops on player kills of hostile mobs, and full cleanup at the end:
 
-| Event | Window | Gameplay |
+| Event | Window · from day · duration · cooldown | Gameplay |
 |---|---|---|
-| Blood Moon | night | crimson fog; hostile mobs near players gain Strength/Speed; Crimson Shades hunt players; Blood Crystal drops |
-| Void Storm | any (thunder) | violet fog, thunderstorm; Void Rifts open near players (pull + damage hazard, destroyable for Null Fragments); Void Crawlers |
-| Meteor Shower | night | meteors strike near (not on) players, explode (block damage optional) and leave Meteorite ore; Astral Mites; Star Metal economy |
-| Reality Fracture | any | gravity anomalies (levitation / slow-fall pulses), unstable blink of mobs, Rift Sentinels leak from the Expanse, Fracture Shards |
-| Eclipse | day | darkness fog, Darkness pulses, Hollow Shades walk in daylight, Eclipse Shards; boosts Hollow King summon |
+| Blood Moon | night · 2 · 4–6 min · 2 days | crimson fog; hostile mobs near players gain Strength (II when brutal) and Speed; Crimson Shades hunt players (Blood Crystals); 12 % Blood Crystal kill drop |
+| Void Storm | any · 3 · 3–4.5 min · 2 days | violet fog + thunderstorm; Void Rifts open near players (pull within 7 blocks, magic damage + Wither on contact, destroy for Null Fragments; full Null Aegis is immune); Void Crawlers; optional lightning 12–30 blocks away |
+| Meteor Shower | night · 1 · 3–5 min · 1.5 days | telegraphed meteors strike 16–40 blocks from players (ballistic aim), explode (block damage only with terrain damage on) and leave Meteorite ore; Astral Mites swarm craters |
+| Reality Fracture | any · 5 · 2.5–3.5 min · 2 days | teal fog; gravity anomalies (low gravity, heavy gravity, levitation surge) and monster blinks; Rift Sentinels leak in (Fracture Shards) |
+| Eclipse | day · 6 · 3–4.5 min · 3 days | darkness fog; Darkness pulses under open sky; undead gain fire resistance; Hollow Shades walk by day; Eclipse Shards; the Cursed Crown works during an Eclipse |
+| Ancient Awakening | any · 3 · 3–4 min · 2.5 days | golden haze; Sealed Engine Caches surface near players, guarded by Rift Sentinels; Haste near caches; unopened caches sink back at the end (persisted, swept even after reload) |
+| Corruption Surge | any · 4 · 2.5–4 min · 2 days | blight fog; Thornlings erupt; monsters regenerate and harden; spores poison players in the open; with terrain damage on, grass turns to Blighted Grass |
 
+* One event at a time; a 5-minute global quiet period follows any event; night events fade at dawn
+  and day events at dusk. Event state (active id, end tick, cooldowns) is persisted and **rebased on
+  load**, so a reload neither extends nor shortens an event.
 * **Performance safeguards**: no world scans — only `getEntities` queries centred on players with
   `maxDistance` and type/family filters; per-player and global spawn caps from the performance
-  profile; event mobs carry the `apocalypse:event_mob` tag and are despawned at event end if no
-  player is near; all hazards self-expire.
+  profile; event mobs carry the `apocalypse:event_mob` tag and are despawned at event end; all
+  hazards (rifts, meteors) self-expire via entity timers.
 
 ### 3.3 Progression loop
 
@@ -167,9 +178,13 @@ Hollow Shades / Void Crawlers / Astral Mites / Thornlings ─▶ Soul Essence / 
         └─▶ summoning relics: Cursed Crown, Astral Lure, Heartseed
 Bosses ─▶ Hollow Crown Shard, Star Eater Core, Titan Heartwood ─▶ legendary weapons + Starforged gear
         └─▶ Engine Key (all three cores) ─▶ portal to the Shattered Expanse (custom dimension)
-Shattered Expanse ─▶ Rift Sentinels (Null Fragments) ─▶ Null Gate ─▶ Null Colossus ─▶ Null Heart
+Shattered Expanse ─▶ Rift Sentinels (Null Fragments) ─▶ Null Gate (Engine Key + 8 fragments) ─▶ Null Colossus ─▶ Null Heart
         └─▶ Null Edge + Null Aegis armor (endgame)
 ```
+
+Event materials also open alternative routes: 2 Eclipse Shards replace the Rift Shard/extra Soul
+Essence of the Cursed Crown, Fracture Shards substitute in the Astral Lure, and Void Ichor brews two
+Aether Elixirs at once.
 
 The **Engine Codex** (given on first join) shows a per-player journal (discoveries, kills, events
 survived, boss first-kills) and recipe hints, and exposes world settings to operators.
@@ -180,19 +195,40 @@ survived, boss first-kills) and recipe hints, and exposes world settings to oper
   "apocalypse:shattered_expanse")` — stable since `@minecraft/server` 2.8.0. The engine creates it
   with the **void generator**; it is a genuine engine dimension, not an arena in the Overworld.
 * Terrain is generated by script: a deterministic jittered grid of floating islands
-  (`logic/islandGen`, unit tested) built column-by-column with `Dimension.fillBlocks`, budgeted per tick
+  (`logic/island_gen`, unit tested) built column-by-column with `Dimension.fillBlocks`, budgeted per tick
   through `system.runJob`, only around players. Generated cells are persisted so they are built once.
 * The Nexus island (arrival + permanent return portal) and the Colossus Arena are generated inside
   temporary ticking areas (`world.tickingAreaManager`, stable 2.6.0) exactly as the official
   custom-dimension tutorial recommends.
-* Fog for the dimension is pushed per player with `/fog push` on arrival and popped on departure.
+* Fog for the dimension is pushed per player with `/fog push` on arrival and removed on departure
+  (re-synchronised on join). Falling below the islands returns the player to the Nexus with 3 hearts
+  of damage instead of killing them in the void.
 
 ### 3.5 Weapons, armor and abilities
 
 Abilities use **Custom Components V2** registered in `system.beforeEvents.startup` and referenced
-directly in item JSON (e.g. `"apocalypse:ability": { "kind": "rift_dash" }`). Cooldowns use
-`minecraft:cooldown` (native cooldown UI) + `ItemCooldownComponent.startCooldown`. Set bonuses are
-checked every 2 s from the equippable component.
+directly in item JSON (e.g. `"apocalypse:ability": { "kind": "rift_dash", "cooldown": 5 }`).
+Cooldowns: an in-script per-player cooldown plus `Player.startItemCooldown` for the native cooldown
+UI (the item's `minecraft:cooldown` category); each use costs 2 durability.
+
+| Item | Ability |
+|---|---|
+| Rift Blade | Rift Dash: blink up to 7 blocks (stops before walls), cutting enemies on the path |
+| Soulreaver Scythe | Soul Reap: 360° sweep, each soul heals 1 heart (max 4) |
+| Titan's Wrath | Earthsplitter: shockwave launches and slows grounded foes |
+| Null Edge | hits mark foes, a second hit detonates the mark; Gravity Crush pulls foes together then crushes |
+| Starfall Scepter | Star Bolt projectile (owner = wielder, so kills and boss contributions count) |
+| Event Horizon | Gravity Well where you aim: 4 s of pull + grinding, then implosion |
+| Bloodfang Cleaver | lifesteal (25 % of base damage) and bleed (Wither) |
+
+Set bonuses (full set, refreshed every 2 s without flicker): **Riftwalker** Speed I + fall-damage
+immunity (cancelled in `beforeEvents.entityHurt`), **Starforged** Fire Resistance + Night Vision,
+**Null Aegis** Resistance I + immunity to the Colossus' gravity lift and Void Rift pull.
+
+Ores (Rift Ore, Deepslate Rift Ore, Meteorite, Aether Cluster): the loot table only handles Silk
+Touch (drops the block); the `apocalypse:ore_xp` component rolls the regular drops with a pickaxe,
+applies Fortune and spawns XP — loot conditions cannot express "not Silk Touch", and two pools would
+otherwise pay both.
 
 ---
 
@@ -205,10 +241,16 @@ Art direction: *ancient machine-civilization meets cosmic decay*. Palette famili
 * **Original assets only**: every texture, model, animation, particle sprite and sound is generated
   by our own tools (`tools/`) — noise fields, layered shading, panel lines, runic glyphs, emissive
   veins, FM/noise sound synthesis. No vanilla or third-party art is copied.
-* Resolutions (mobile-conscious): bosses 256×256 (enhanced) / 128×128 (balanced) / 64×64 (potato);
-  mobs 128/64; items 32×32 (2× vanilla); blocks 32×32 (16×16 in potato); armor 128×64.
-* **Vibrant Visuals (native PBR)**: resource pack declares the `pbr` capability; every custom block,
-  entity and item ships a `*.texture_set.json` with a MER layer (and normal maps for blocks), so
+* Resolutions (mobile-conscious, measured from the built packs):
+  | Tier | Bosses | Mobs | Items | Blocks | Armor | PBR |
+  |---|---|---|---|---|---|---|
+  | Potato (= base pack) | 256² | 64² | 16² | 16² | 64×32 | none |
+  | Balanced subpack | 512² | 128² | 32² | 32² | 128×64 | 74 texture sets (MER; normals for blocks) |
+  | Enhanced subpack | 512² | 256² | 64² | 32² | 256×128 | same 74 texture sets |
+  The largest texture is 512² (the validator enforces a 1024 px mobile budget).
+* **Vibrant Visuals (native PBR)**: resource pack declares the `pbr` capability; in the Balanced and
+  Enhanced subpacks every custom block, entity and item has a `*.texture_set.json` with a MER layer
+  (and normal maps for blocks), so
   crystals, runes, eyes and meteorite veins are **truly emissive** under Vibrant Visuals on supported
   devices. In the classic renderer, glowing parts use the documented `entity_emissive_alpha`
   material overlay plus bright baked colors.
@@ -241,7 +283,8 @@ Art direction: *ancient machine-civilization meets cosmic decay*. Palette famili
 | Meteors per wave | 1 | 2 | 4 |
 | Ambient FX interval | 40 t | 20 t | 10 t |
 | Expanse generation budget | 24 columns / tick | 48 | 96 |
-| Resource subpack | Potato (16× blocks, 64× mobs, sparse particles) | Balanced | Enhanced (256× bosses, dense particles) |
+| Resource subpack | Potato: base textures, sparse particles | Balanced: 2× textures + PBR | Enhanced: up to 4× textures + PBR, dense particles |
+| Boss brain update | every 5 ticks | every 4 ticks | every 4 ticks |
 
 * Script work is tick-sliced through one scheduler; heavy work uses generators via `system.runJob`.
 * Queries are always position-bounded; bosses only process when a player is within 64 blocks.
@@ -253,17 +296,38 @@ Art direction: *ancient machine-civilization meets cosmic decay*. Palette famili
 
 ## 6. Build, validation and tests
 
-* `python3 build.py` → regenerates assets (optional `--no-generate`), compiles TypeScript (when `tsc`
-  is available, otherwise uses committed JS), runs unit tests, runs `validate.py`, optionally runs
-  Mojang's Creator Tools validator, packages and re-inspects the archives, writes the report.
+* `python3 build.py` is the single regenerate command: generate assets → compile TypeScript → run
+  all tests (plus the runtime simulation under extra random seeds) → static validation → optional
+  official-schema and Creator Tools validation → package → reopen and inspect every archive → write
+  the validation report and installation guide. It exits non-zero on any failure.
 * `validate.py` checks: JSON syntax, manifests (format, UUID uniqueness, module types, dependency
-  links, script entry), official JSON-schema validation of entities/items/blocks, cross references
-  (client entities ↔ entities, geometry ids, textures, animations, controllers, render controllers,
-  particles, sounds, loot tables, recipes, spawn rules, features, structures, item icons, terrain
-  textures, attachables, lang keys), texture-set layer validity, image sizes/alpha, script imports.
-* Unit tests (Node `node:test`): boss phase transitions, attack selection with range/cooldowns,
-  telegraph timing, event scheduling/cooldowns/time windows, reward de-duplication, progression
-  gating, profile values, island generation determinism.
+  links, script entry, subpacks, capabilities), official JSON-schema validation of
+  entities/items/blocks/biomes (when a `bedrock-samples` checkout is supplied), component whitelists
+  per format version, cross references (client entities ↔ entities, geometry ids/bones/locators,
+  textures, animations, controllers, render controllers, particles, sounds, loot tables, recipes,
+  spawn rules, features, structures, item icons, terrain textures, attachables, lang keys), every
+  bare `minecraft:<id>` value against `@minecraft/vanilla-data`, texture-set layer validity, image
+  sizes, script imports/identifiers/custom-component coverage/sound ids.
+* Tests:
+  * `tests/logic.test.mjs` — pure logic: boss state machine, event scheduler, reward ledger,
+    progression, profiles, island generation (incl. continuity of the Nexus→Arena causeway).
+  * `tests/runtime.smoke.test.mjs` + `tests/mock/` — the compiled scripts run on a **strict mock of
+    `@minecraft/server`** that rejects unknown identifiers, undeclared entity properties/events,
+    out-of-range property values, unknown effects/sounds/particles/fogs/structures, world access in
+    early execution and the documented restricted-execution APIs in before-events and command
+    callbacks, and that requires every custom component in JSON to be registered. Scenarios cover
+    every event, every boss fight, abilities, relics, armor, ores, the Expanse (including a
+    flood-fill proving the Arena is reachable on foot), the Codex UI, commands and 6 in-game days of
+    natural scheduling.
+  * `tests/runtime.reload.test.mjs` — save/reload persistence (event rebase, boss brain restore,
+    reward ledger).
+  * `tests/test_tools.py` — `.mcstructure` codec, lenient JSON, validator clean run and
+    **injected-defect detection** (the validator must catch six planted errors).
+* These tests found and fixed real defects during development: unjumpable bridge gaps, a Null
+  Colossus vent window shorter than its visual, overlapping vents closing early, a post-mortem vent
+  callback, the event tick rebase silently skipped after reload, ore double drops with Silk Touch, and
+  an invalid vanilla block id.
+* None of this replaces playing the game: see the validation report for what remains untested.
 
 ---
 
@@ -282,6 +346,8 @@ Art direction: *ancient machine-civilization meets cosmic decay*. Palette famili
 * Custom dimensions use the engine's void generator; terrain inside is script-built.
 * Vibrant Visuals rendering depends on device support and the player's video settings.
 * Boss bars come from the vanilla `minecraft:boss` component (one style).
+* Manifests use `format_version` 2 (as Mojang's own samples do), so subpacks use `memory_tier`;
+  pack settings (manifest v3) are not used — configuration lives in the Engine Codex instead.
 
 ## 9. Experimental-feature audit
 

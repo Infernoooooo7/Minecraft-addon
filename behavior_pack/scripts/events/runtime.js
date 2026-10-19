@@ -8,7 +8,7 @@ import { allPlayers, isTargetable } from "../core/players.js";
 import { every, now } from "../core/scheduler.js";
 import { readEntity, readWorld, readWorldNumber, writeEntity, writeWorld } from "../core/state.js";
 import { PARTICLES, SOUNDS } from "../generated/ids.js";
-import { end, eligible, parseState, pick, rebase, rollChance, ROLL_INTERVAL_TICKS, shouldEnd, start, } from "../logic/eventScheduler.js";
+import { end, eligible, parseState, pick, rebase, rollChance, ROLL_INTERVAL_TICKS, shouldEnd, start, } from "../logic/event_scheduler.js";
 import { parseJournal, recordEvent } from "../logic/progression.js";
 import { Rng } from "../logic/rng.js";
 const events = new Map();

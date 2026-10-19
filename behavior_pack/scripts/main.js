@@ -1,10 +1,10 @@
 // APOCALYPSE ENGINE — script entry point.
 // Startup: custom components, commands and the custom dimension. World load: config, runtimes, scheduler.
 import { ItemStack, system, world } from "@minecraft/server";
-import "./bosses/hollowKing.js";
-import "./bosses/starEater.js";
-import "./bosses/rootTitan.js";
-import "./bosses/nullColossus.js";
+import "./bosses/hollow_king.js";
+import "./bosses/star_eater.js";
+import "./bosses/root_titan.js";
+import "./bosses/null_colossus.js";
 import "./events/defs.js";
 import { initBossRuntime } from "./bosses/runtime.js";
 import { registerCommands } from "./commands.js";

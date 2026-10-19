@@ -12,9 +12,8 @@ import re
 from functools import lru_cache
 from urllib.parse import urljoin
 
-from jsonschema import Draft7Validator
-from referencing import Registry, Resource
-from referencing.jsonschema import DRAFT7
+# jsonschema/referencing are only needed when official schemas are supplied; import them lazily so
+# the rest of the validator works without them.
 
 
 def _relax(node):
@@ -40,7 +39,9 @@ class SchemaSet:
         self.root = root  # .../metadata/json_schemas
         self._registry = self._load_registry()
 
-    def _load_registry(self) -> Registry:
+    def _load_registry(self):
+        from referencing import Registry, Resource
+        from referencing.jsonschema import DRAFT7
         resources = []
         for dirpath, _, files in os.walk(self.root):
             for fn in files:
@@ -56,8 +57,9 @@ class SchemaSet:
                     doc["$id"] = sid
                 resources.append((sid, Resource(contents=doc, specification=DRAFT7)))
                 # also index the un-escaped and %20-escaped variants used by relative refs
-                if " " in sid:
-                    resources.append((sid.replace(" ", "%20"), Resource(contents=doc, specification=DRAFT7)))
+                # (older schema versions use spaces in $id, newer ones %20)
+                for alias in {sid.replace(" ", "%20"), sid.replace("%20", " ")} - {sid}:
+                    resources.append((alias, Resource(contents=doc, specification=DRAFT7)))
         return Registry().with_resources(resources)
 
     def component_names(self, area: str, fmt: str, components_file: str) -> set[str] | None:
@@ -95,7 +97,8 @@ class SchemaSet:
         return best
 
     @lru_cache(maxsize=None)
-    def validator(self, schema_id: str) -> Draft7Validator:
+    def validator(self, schema_id: str):
+        from jsonschema import Draft7Validator
         schema = self._registry.contents(schema_id)
         return Draft7Validator(schema, registry=self._registry)
 

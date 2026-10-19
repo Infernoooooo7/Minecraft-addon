@@ -26,8 +26,7 @@
           "mob",
           "undead",
           "hollow",
-          "shade",
-          "undead"
+          "shade"
         ]
       },
       "minecraft:health": {

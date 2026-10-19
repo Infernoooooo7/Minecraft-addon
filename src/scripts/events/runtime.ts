@@ -10,7 +10,7 @@ import { readEntity, readWorld, readWorldNumber, writeEntity, writeWorld } from 
 import { PARTICLES, SOUNDS } from "../generated/ids.js";
 import {
   end, EventMeta, eligible, EventState, parseState, pick, rebase, rollChance, ROLL_INTERVAL_TICKS, shouldEnd, start,
-} from "../logic/eventScheduler.js";
+} from "../logic/event_scheduler.js";
 import { parseJournal, recordEvent } from "../logic/progression.js";
 import { Rng } from "../logic/rng.js";
 

@@ -5,7 +5,7 @@ import { actionbar, burst, gravityPull, line, playerSound, ring, shake, shockwav
 import { damageHeld } from "../core/players.js";
 import { now } from "../core/scheduler.js";
 import { PARTICLES, SOUNDS } from "../generated/ids.js";
-import { fireBolt } from "../bosses/starEater.js";
+import { fireBolt } from "../bosses/star_eater.js";
 import { add, dirTo, distToSegment, flat, norm, scale } from "../logic/vec.js";
 const cooldowns = new Map();
 const nullMarks = new Map();

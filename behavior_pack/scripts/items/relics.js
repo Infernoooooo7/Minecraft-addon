@@ -7,7 +7,7 @@ import { bossCount, spawnBoss } from "../bosses/runtime.js";
 import { groundAt } from "../bosses/kit.js";
 import { activeEvent } from "../events/runtime.js";
 import { ENTITIES, PARTICLES, SOUNDS } from "../generated/ids.js";
-import { isNight } from "../logic/eventScheduler.js";
+import { isNight } from "../logic/event_scheduler.js";
 import { add, flat, norm, scale } from "../logic/vec.js";
 import { openCodex } from "../ui/codex.js";
 import { GATE_AT, inExpanse, openRiftPortal } from "../world/expanse.js";

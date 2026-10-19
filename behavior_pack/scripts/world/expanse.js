@@ -10,7 +10,7 @@ import { allPlayers, isTargetable } from "../core/players.js";
 import { every, later } from "../core/scheduler.js";
 import { readEntity, readWorld, writeEntity, writeWorld } from "../core/state.js";
 import { BLOCKS, ENTITIES, FOGS, PARTICLES, SOUNDS, STRUCTURES } from "../generated/ids.js";
-import { ARENA, bridgeIslands, cellKey, cellsNear, columns, islandForCell, NEXUS, } from "../logic/islandGen.js";
+import { ARENA, bridgeIslands, cellKey, cellsNear, columns, islandForCell, NEXUS, } from "../logic/island_gen.js";
 import { discover, parseJournal } from "../logic/progression.js";
 import { Rng } from "../logic/rng.js";
 const OVERWORLD = "minecraft:overworld";

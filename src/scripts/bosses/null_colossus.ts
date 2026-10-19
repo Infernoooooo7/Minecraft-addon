@@ -1,14 +1,15 @@
 // THE NULL COLOSSUS — endgame construct of the Shattered Expanse.
 // Armored stance (incoming damage x0.35) broken only by timed core vents (x1.5): a real
 // vulnerability-window fight, plus gravity lift/slam, a sweeping null beam, collapse and orbitals.
-import { EquipmentSlot, Player } from "@minecraft/server";
+import { Player } from "@minecraft/server";
 import { actionbar, burst, gravityPull, line, particle, ring, shake, sound, title } from "../core/fx.js";
 import { PROP } from "../core/keys.js";
-import { equipment, isTargetable, playersNear, targetablePlayers } from "../core/players.js";
+import { isTargetable, playersNear, targetablePlayers } from "../core/players.js";
+import { wearsSet } from "../items/armor.js";
 import { later, now } from "../core/scheduler.js";
 import { ACTIONS_NULL_COLOSSUS as A, ENTITIES, ITEMS, PARTICLES, SOUNDS } from "../generated/ids.js";
 import { add, dirTo, ringPoint, rotY, scale, V3 } from "../logic/vec.js";
-import { fireBolt } from "./starEater.js";
+import { fireBolt } from "./star_eater.js";
 import { hitLine, hitRadius, strike, summonAdds } from "./kit.js";
 import { registerBoss } from "./runtime.js";
 import type { BossAttack, Brain, Ctx } from "./types.js";
@@ -16,12 +17,10 @@ import type { BossAttack, Brain, Ctx } from "./types.js";
 const act = (k: keyof typeof A): number => Number(A[k]);
 const VENT_TICKS = 120;
 
-function wearsFullAegis(p: Player): boolean {
-  return [EquipmentSlot.Head, EquipmentSlot.Chest, EquipmentSlot.Legs, EquipmentSlot.Feet]
-    .every((s) => equipment(p, s)?.typeId?.startsWith("apocalypse:null_aegis_"));
-}
+const wearsFullAegis = (p: Player): boolean => wearsSet(p, "null_aegis");
 
 function openVent(c: Ctx, ticks = VENT_TICKS): void {
+  if (!c.boss.isValid) return; // delayed callers may outlive the boss
   // always the current tick: openVent is often called from delayed callbacks holding an older ctx
   c.brain.vulnerableUntil = now() + ticks;
   c.brain.memory.ventOpen = true;
@@ -34,6 +33,7 @@ function openVent(c: Ctx, ticks = VENT_TICKS): void {
   sound(c.dim, SOUNDS.NULL_COLOSSUS_VENT, c.boss.location, 1.2);
   title(playersNear(c.dim, c.boss.location, 48), "§b§lCORE EXPOSED", "§fStrike the Colossus now!", 2, 40, 10);
   later(ticks, () => {
+    if (now() < c.brain.vulnerableUntil) return; // a newer vent extended the window: it closes the core itself
     c.brain.memory.ventOpen = false;
     try {
       if (c.boss.isValid) {

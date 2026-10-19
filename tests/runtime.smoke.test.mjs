@@ -13,10 +13,10 @@ const M = await import("./mock/server.mjs");
 const { ui } = await import("./mock/server-ui.mjs");
 const {
   ARENA, NEXUS, bridgeIslands,
-} = await import("../behavior_pack/scripts/logic/islandGen.js");
+} = await import("../behavior_pack/scripts/logic/island_gen.js");
 
 // determinism: seeded Math.random, and a fixed clock while the add-on seeds its own RNGs at import
-let seed = 0x2f6b9a1d;
+let seed = Number(process.env.APOCALYPSE_SEED ?? 0x2f6b9a1d) >>> 0;
 Math.random = () => {
   seed = (seed + 0x6d2b79f5) >>> 0;
   let t = seed;
@@ -38,7 +38,8 @@ const P1 = M.addPlayer("Alex", { x: 0.5, y: 64, z: 0.5 });
 const P2 = M.addPlayer("Sam", { x: 6.5, y: 64, z: 2.5 });
 const stats = { ticks: 0, started: realNow() };
 
-Date.now = () => 1767225600000;
+const frozenNow = 1767225600000 + (seed % 100000) * 7919;
+Date.now = () => frozenNow;
 await import("../behavior_pack/scripts/main.js");
 Date.now = realNow;
 M.boot();
@@ -59,7 +60,8 @@ function clean(label) {
 const wdp = (k) => JSON.parse(M.mock.worldDP.get(k) ?? "null");
 const pdp = (p, k) => JSON.parse(p._dp.get(k) ?? "null");
 const live = (typeId) => M.entitiesOf(typeId);
-const eventMobs = () => [...M.mock.entities.values()].filter((e) => e._valid && e._tags.has("apocalypse:event_mob"));
+// living event mobs (entities playing their death animation no longer count toward caps)
+const eventMobs = () => [...M.mock.entities.values()].filter((e) => e._valid && !e._dead && e._tags.has("apocalypse:event_mob"));
 const ow = () => M.mock.dims.get(OW);
 const exp = () => M.mock.dims.get(EXPANSE);
 const blocksOf = (dim, id) => [...dim.blocks].filter(([, v]) => v === id).map(([k]) => k.split(",").map(Number));
@@ -146,6 +148,16 @@ describe("APOCALYPSE ENGINE runtime simulation", { concurrency: false }, () => {
         const hp = P1._hp;
         await run(40);
         assert.ok(P1._hp < hp || P1._knockback.length > 0, "rift drags/burns players in reach");
+        // a full Null Aegis anchors its wearer against the rift
+        for (const [slot, piece] of [["Head", "helmet"], ["Chest", "chestplate"], ["Legs", "leggings"], ["Feet", "boots"]]) {
+          P1.armor[slot] = new M.ItemStack(`apocalypse:null_aegis_${piece}`);
+        }
+        heal(P1);
+        P1._knockback.length = 0;
+        await run(40);
+        assert.equal(P1._knockback.length, 0, "Null Aegis wearer is not pulled");
+        assert.equal(P1._hp, P1._maxHp, "Null Aegis wearer is not burned");
+        P1.armor = {};
         P1._loc = { x: 0.5, y: 64, z: 0.5 };
       }
       if (id === "meteor_shower") {
@@ -236,18 +248,18 @@ describe("APOCALYPSE ENGINE runtime simulation", { concurrency: false }, () => {
 
       // Null Colossus: armored outside vents
       if (key === "null_colossus") {
-        await run(40);
-        boss._props.set("apocalypse:vented", false);
-        let vented = false;
-        for (let i = 0; i < 900 && !vented; i++) {
-          await run(1);
-          vented = boss._props.get("apocalypse:vented") === true;
-        }
-        assert.ok(vented, "core vents open periodically");
+        const waitVent = async (open) => {
+          for (let i = 0; i < 2000; i++) {
+            if ((boss._props.get("apocalypse:vented") === true) === open) return true;
+            await run(1, watch);
+          }
+          return false;
+        };
+        assert.ok(await waitVent(true), "core vents open periodically");
         const hp0 = boss._hp;
         M.attack(P1, boss, 10);
         assert.ok(Math.abs(hp0 - boss._hp - 15) < 1e-6, `vented core takes x1.5 damage (${hp0 - boss._hp})`);
-        await run(160);
+        assert.ok(await waitVent(false), "vent closes again");
         const hp1 = boss._hp;
         M.attack(P1, boss, 10);
         assert.ok(Math.abs(hp1 - boss._hp - 3.5) < 1e-6, `closed armor takes x0.35 damage (${hp1 - boss._hp})`);
@@ -299,6 +311,7 @@ describe("APOCALYPSE ENGINE runtime simulation", { concurrency: false }, () => {
   // items, relics, armor, blocks
   // ------------------------------------------------------------------------------------------------
   it("weapon abilities and on-hit effects", async () => {
+    await killAllBosses();
     M.setTime(6000);
     heal(P1, P2);
     P1._loc = { x: 0.5, y: 64, z: 0.5 };
@@ -650,16 +663,22 @@ describe("APOCALYPSE ENGINE runtime simulation", { concurrency: false }, () => {
     clean("codex");
   });
 
-  it("natural event scheduling over two in-game days", async () => {
+  it("natural event scheduling over six in-game days", async () => {
+    // every event was just force-run, so per-event cooldowns (1.5-3 days) apply first, as in a real world
     heal(P1, P2);
     const before = wdp("apocalypse:event_state").completed;
     const startedAt = realNow();
-    await run(48000, () => {
+    const DAYS = 6;
+    let maxMobs = 0;
+    await run(24000 * DAYS, () => {
       if (stats.ticks % 200 === 0) heal(P1, P2);
+      if (stats.ticks % 100 === 0) maxMobs = Math.max(maxMobs, eventMobs().length);
     });
     const st = wdp("apocalypse:event_state");
-    assert.ok(st.completed > before, `events occur naturally (completed ${before} -> ${st.completed})`);
-    stats.msPerTick = (realNow() - startedAt) / 48000;
+    assert.ok(st.completed - before >= 2, `events occur naturally (completed ${before} -> ${st.completed})`);
+    assert.ok(maxMobs <= 18, `caps hold during natural events (${maxMobs})`);
+    stats.naturalEvents = st.completed - before;
+    stats.msPerTick = (realNow() - startedAt) / (24000 * DAYS);
     clean("scheduler");
   });
 

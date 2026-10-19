@@ -3,12 +3,12 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { BossMachine, computePhase, perPhase } from "../behavior_pack/scripts/logic/bossMachine.js";
+import { BossMachine, computePhase, perPhase } from "../behavior_pack/scripts/logic/boss_machine.js";
 import {
   eligible, end, GLOBAL_COOLDOWN_TICKS, isNight, newState, parseState, pick, rebase, rollChance, shouldEnd, start,
   windowOk,
-} from "../behavior_pack/scripts/logic/eventScheduler.js";
-import { Contributions, RewardLedger } from "../behavior_pack/scripts/logic/rewardLedger.js";
+} from "../behavior_pack/scripts/logic/event_scheduler.js";
+import { Contributions, RewardLedger } from "../behavior_pack/scripts/logic/reward_ledger.js";
 import {
   bossesDefeated, canForgeEngineKey, completion, discover, newJournal, nextObjective, parseJournal, recordBossKill,
   recordEvent,
@@ -16,7 +16,7 @@ import {
 import { getProfile, PROFILES, scaledCount } from "../behavior_pack/scripts/logic/profiles.js";
 import {
   ARENA, BRIDGE_COUNT, bridgeIslands, CELL, cellsNear, columns, EDGE_MIN, islandForCell, NEXUS, WORLD_RADIUS,
-} from "../behavior_pack/scripts/logic/islandGen.js";
+} from "../behavior_pack/scripts/logic/island_gen.js";
 import { hash2, Rng, weightedPick } from "../behavior_pack/scripts/logic/rng.js";
 import { dirTo, distToSegment, ringPoint, rotY } from "../behavior_pack/scripts/logic/vec.js";
 
@@ -32,7 +32,7 @@ function run(m, from, to, hp, dist, roll = () => 0) {
   return events;
 }
 
-describe("bossMachine", () => {
+describe("boss state machine", () => {
   it("computes phases from health thresholds", () => {
     assert.equal(computePhase(1, [0.66, 0.33]), 1);
     assert.equal(computePhase(0.66, [0.66, 0.33]), 2);
@@ -123,7 +123,7 @@ describe("bossMachine", () => {
   });
 });
 
-describe("eventScheduler", () => {
+describe("event scheduler", () => {
   const meta = (id, extra = {}) => ({
     id, name: id, window: "any", minTicks: 100, maxTicks: 200, cooldownTicks: 1000, weight: 1, minDay: 0, ...extra,
   });
@@ -205,7 +205,7 @@ describe("eventScheduler", () => {
   });
 });
 
-describe("rewardLedger", () => {
+describe("reward ledger", () => {
   it("claims each id exactly once, across serialization", () => {
     const l = new RewardLedger();
     assert.equal(l.claim("boss1"), true);
@@ -320,7 +320,7 @@ describe("performance profiles", () => {
   });
 });
 
-describe("islandGen", () => {
+describe("island generation", () => {
   it("is deterministic per seed and cell", () => {
     const a = islandForCell(3, -2, 12345);
     const b = islandForCell(3, -2, 12345);

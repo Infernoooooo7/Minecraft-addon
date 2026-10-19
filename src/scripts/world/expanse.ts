@@ -14,7 +14,7 @@ import { readEntity, readWorld, writeEntity, writeWorld } from "../core/state.js
 import { BLOCKS, ENTITIES, FOGS, PARTICLES, SOUNDS, STRUCTURES } from "../generated/ids.js";
 import {
   ARENA, bridgeIslands, cellKey, cellsNear, Column, columns, Island, islandForCell, NEXUS,
-} from "../logic/islandGen.js";
+} from "../logic/island_gen.js";
 import { discover, parseJournal } from "../logic/progression.js";
 import { Rng } from "../logic/rng.js";
 

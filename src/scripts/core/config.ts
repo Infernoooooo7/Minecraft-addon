@@ -1,5 +1,5 @@
 // World configuration (operators edit it from the Engine Codex or /apocalypse:profile).
-import type { Frequency } from "../logic/eventScheduler.js";
+import type { Frequency } from "../logic/event_scheduler.js";
 import { getProfile, Profile, ProfileId } from "../logic/profiles.js";
 import { DP } from "./keys.js";
 import { log } from "./log.js";

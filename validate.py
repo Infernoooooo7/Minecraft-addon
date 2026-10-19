@@ -64,6 +64,16 @@ class Results:
         self.warnings.append(f"[{check}] {msg}")
 
 
+
+def read_text(path: str) -> str:
+    with open(path, encoding="utf-8") as f:
+        return f.read()
+
+
+def read_bytes(path: str) -> bytes:
+    with open(path, "rb") as f:
+        return f.read()
+
 def load_json(path: str, R: Results, check="JSON"):
     try:
         with open(path, encoding="utf-8") as f:
@@ -102,7 +112,7 @@ def load_vanilla_ids(root: str):
     p = os.path.join(root, "node_modules", "@minecraft", "vanilla-data", "lib", "index.js")
     if not os.path.isfile(p):
         return None
-    txt = open(p, encoding="utf-8").read()
+    txt = read_text(p)
     out = {}
     for m in re.finditer(r"var (Minecraft\w+Types)=\(\w+=>\{(.*?)\}\)\(", txt, re.S):
         out[m.group(1)] = set(re.findall(r'="(minecraft:[a-z0-9_.]+)"', m.group(2)))
@@ -136,7 +146,7 @@ class Validator:
             self.R.notes.append("Vanilla id checks skipped (node_modules/@minecraft/vanilla-data not installed)")
         else:
             self.R.notes.append("Vanilla ids checked against @minecraft/vanilla-data "
-                                + json.load(open(os.path.join(root, "node_modules", "@minecraft", "vanilla-data", "package.json")))["version"])
+                                + json.loads(read_text(os.path.join(root, "node_modules", "@minecraft", "vanilla-data", "package.json")))["version"])
 
     # helpers -----------------------------------------------------------------------------------
     def rel(self, p):
@@ -196,6 +206,7 @@ class Validator:
         self.check_texture_sets()
         self.check_images()
         self.check_scripts()
+        self.check_vanilla_literals()
         self.check_empty_dirs()
         return R
 
@@ -293,7 +304,7 @@ class Validator:
         if not os.path.isfile(p):
             self.R.err("LANG", "resource_pack/texts/en_US.lang missing")
             return lang
-        for line in open(p, encoding="utf-8"):
+        for line in read_text(p).splitlines():
             line = line.rstrip("\n")
             if not line or line.startswith("##"):
                 continue
@@ -785,7 +796,7 @@ class Validator:
                 R.ok("WORLD feature rules")
         for p in sorted(glob.glob(os.path.join(self.bp, "structures", "**", "*.mcstructure"), recursive=True)):
             try:
-                st = read_structure(open(p, "rb").read())
+                st = read_structure(read_bytes(p))
                 size = st["size"]
                 prim, sec = st["structure"]["block_indices"]
                 n = size[0] * size[1] * size[2]
@@ -906,7 +917,7 @@ class Validator:
             return
         literals = set()
         for f in files:
-            src = open(f, encoding="utf-8").read()
+            src = read_text(f)
             for m in re.finditer(r"""(?:import|export)\s[^'"]*?from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]""", src):
                 mod = m.group(1) or m.group(2)
                 if mod.startswith("."):
@@ -941,7 +952,7 @@ class Validator:
         unknown = sorted(l for l in literals if l not in known)
         # script-only identifiers (commands, dynamic properties, tags, ticking areas) are declared in scripts/core/keys
         keys_file = os.path.join(sdir, "core", "keys.js")
-        declared = set(re.findall(r"""['"](apocalypse:[a-z0-9_]+)['"]""", open(keys_file).read())) if os.path.isfile(keys_file) else set()
+        declared = set(re.findall(r"""['"](apocalypse:[a-z0-9_]+)['"]""", read_text(keys_file))) if os.path.isfile(keys_file) else set()
         for l in unknown:
             if l not in declared:
                 R.warn("SCRIPT", f"identifier {l} used by scripts is not defined by pack content")
@@ -949,14 +960,14 @@ class Validator:
         # custom components used in JSON must be registered in scripts
         registered = set()
         for f in files:
-            registered |= set(re.findall(r"registerCustomComponent\(\s*['\"]([^'\"]+)['\"]", open(f, encoding="utf-8").read()))
-            registered |= set(re.findall(r"registerCustomComponent\(\s*(\w+)\.(\w+)", open(f, encoding="utf-8").read()) and [])
+            registered |= set(re.findall(r"registerCustomComponent\(\s*['\"]([^'\"]+)['\"]", read_text(f)))
+            registered |= set(re.findall(r"registerCustomComponent\(\s*(\w+)\.(\w+)", read_text(f)) and [])
         comps_used = set()
         for it in list(self.items.values()) + list(self.blocks.values()):
             for k in it["components"]:
                 if k.startswith(f"{NS}:"):
                     comps_used.add(k)
-        all_js = "\n".join(open(f, encoding="utf-8").read() for f in files)
+        all_js = "\n".join(read_text(f) for f in files)
         for c in sorted(comps_used):
             if c not in all_js:
                 R.err("SCRIPT", f"custom component {c} is used in JSON but never registered by scripts")
@@ -968,6 +979,52 @@ class Validator:
                 R.err("SCRIPT", f"script plays undefined sound {sid}")
             else:
                 R.ok("SCRIPT sounds")
+
+    TAG_KEYS = {"tags", "minecraft:tags", "minecraft:match_tool_filter_any", "minecraft:match_tool_filter_all",
+                "minecraft:match_tool_filter_none"}
+    EVENT_KEYS = {"event", "time_down_event", "on_death", "on_damage", "on_spawn"}
+
+    def check_vanilla_literals(self):
+        """Every bare 'minecraft:<id>' string value in the behavior pack must name real vanilla content
+        (block, item, entity, effect or biome) — catches typos the schemas cannot (e.g. dead_bush vs deadbush)."""
+        R = self.R
+        if self.vanilla is None:
+            return
+        known = set()
+        for t in ("MinecraftBlockTypes", "MinecraftItemTypes", "MinecraftEntityTypes", "MinecraftEffectTypes",
+                  "MinecraftBiomeTypes", "MinecraftDimensionTypes"):
+            known |= self.vanilla.get(t, set())
+        known.add("minecraft:air")
+        pat = re.compile(r"^minecraft:[a-z0-9_]+$")
+        found = 0
+
+        def walk(node, path, key):
+            nonlocal found
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    walk(v, f"{path}/{k}", k)
+            elif isinstance(node, list):
+                for i, v in enumerate(node):
+                    walk(v, f"{path}[{i}]", key)
+            elif isinstance(node, str) and pat.match(node):
+                if key in self.TAG_KEYS:
+                    if not node.startswith("minecraft:is_"):
+                        R.warn("VANILLA", f"{path}: unusual vanilla tag {node}")
+                    return
+                if key in self.EVENT_KEYS:
+                    return
+                found += 1
+                if node not in known:
+                    R.err("VANILLA", f"{path}: '{node}' is not a vanilla block/item/entity/effect/biome id")
+                else:
+                    R.ok("VANILLA literal ids")
+
+        for p in sorted(glob.glob(os.path.join(self.bp, "**", "*.json"), recursive=True)):
+            d = load_json(p, Results())
+            if d is not None:
+                walk(d, self.rel(p), None)
+        if not found:
+            R.notes.append("no vanilla literal ids found in the behavior pack")
 
     def check_empty_dirs(self):
         for base in (self.bp, self.rp):

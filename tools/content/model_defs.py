@@ -210,7 +210,7 @@ def root_titan() -> geo.Model:
 # ================================================================================================
 NULL_STONE = {"kind": "chitin", "palette": [(0.0, "#020205"), (0.5, "#0e0d18"), (0.85, "#24223a"), (1.0, "#4a4670")],
               "ops": [{"op": "cracks", "glow": True, "color": "#3ff3ff", "points": 5, "width": 0.035, "emissive": 0.9}]}
-NULL_BRONZE = {"kind": "bronze", "palette": [(0.0, "#140c05"), (0.5, "#4f3515"), (0.85, "#93692c"), (1.0, "#d6ad5c")],
+NULL_PLATE = {"kind": "metal", "palette": [(0.0, "#06070d"), (0.5, "#1c2232"), (0.85, "#36455e"), (1.0, "#8aa2c2")],
                "ops": [{"op": "rim", "color": "#3ff3ff", "width": 1, "glow": True, "emissive": 0.6},
                        {"op": "runes", "color": "#3ff3ff", "size": 4, "faces": ["north"]}]}
 NULL_CORE = {"kind": "crystal", "palette": [(0.0, "#1a0533"), (0.5, "#8a3dff"), (0.85, "#e0c4ff"), (1.0, "#ffffff")]}
@@ -224,33 +224,33 @@ def null_colossus() -> geo.Model:
     body = m.bone("body", (0, 46, 0), parent="root")
     body.cube((-14, 38, -9), (28, 10, 18), NULL_STONE)                                 # pelvis
     body.cube((-20, 48, -12), (40, 36, 24), NULL_STONE)                                # torso
-    body.cube((-24, 78, -10), (12, 10, 20), NULL_BRONZE)                               # shoulder r
-    body.cube((12, 78, -10), (12, 10, 20), NULL_BRONZE)                                # shoulder l
+    body.cube((-24, 78, -10), (12, 10, 20), NULL_PLATE)                               # shoulder r
+    body.cube((12, 78, -10), (12, 10, 20), NULL_PLATE)                                # shoulder l
     for i, x in enumerate((-10, -2, 6)):
         body.cube((x, 84, 6), (4, 14 - i * 2 if i != 1 else 18, 3), NULL_CORE, pivot=(x + 2, 84, 7), rotation=(18, 0, 0))
     core = m.bone("core", (0, 66, -12), parent="body")
     core.cube((-7, 58, -14), (14, 16, 3), NULL_CORE, deco={"north": emblem("#ffffff", "diamond", 0.7)})
     core.locators["core"] = (0, 66, -15)
     vent_r = m.bone("vent_r", (-18, 66, -13), parent="body")
-    vent_r.cube((-18, 54, -16), (17, 26, 3), NULL_BRONZE)
+    vent_r.cube((-18, 54, -16), (17, 26, 3), NULL_PLATE)
     vent_l = m.bone("vent_l", (18, 66, -13), parent="body")
-    vent_l.cube((1, 54, -16), (17, 26, 3), NULL_BRONZE)
+    vent_l.cube((1, 54, -16), (17, 26, 3), NULL_PLATE)
     head = m.bone("head", (0, 84, -2), parent="body")
     head.cube((-7, 84, -9), (14, 12, 14), NULL_STONE, deco={"north": eyes("#3ff3ff", count=1, size=0.22, y=0.48)})
-    head.cube((-9, 92, -6), (18, 2, 8), NULL_BRONZE)
+    head.cube((-9, 92, -6), (18, 2, 8), NULL_PLATE)
     head.locators["eye"] = (0, 90, -10)
     r_arm = m.bone("right_arm", (-26, 80, 0), parent="body")
     r_arm.cube((-36, 40, -8), (14, 40, 16), NULL_STONE)
-    r_arm.cube((-38, 26, -10), (18, 14, 20), NULL_BRONZE)
+    r_arm.cube((-38, 26, -10), (18, 14, 20), NULL_PLATE)
     l_arm = m.bone("left_arm", (26, 80, 0), parent="body")
     l_arm.cube((22, 40, -8), (14, 40, 16), NULL_STONE)
-    l_arm.cube((20, 26, -10), (18, 14, 20), NULL_BRONZE)
+    l_arm.cube((20, 26, -10), (18, 14, 20), NULL_PLATE)
     r_leg = m.bone("right_leg", (-9, 40, 0), parent="root")
     r_leg.cube((-17, 4, -8), (13, 36, 16), NULL_STONE)
-    r_leg.cube((-19, 0, -12), (17, 4, 22), NULL_BRONZE)
+    r_leg.cube((-19, 0, -12), (17, 4, 22), NULL_PLATE)
     l_leg = m.bone("left_leg", (9, 40, 0), parent="root")
     l_leg.cube((4, 4, -8), (13, 36, 16), NULL_STONE)
-    l_leg.cube((2, 0, -12), (17, 4, 22), NULL_BRONZE)
+    l_leg.cube((2, 0, -12), (17, 4, 22), NULL_PLATE)
     orb = m.bone("orbitals", (0, 72, 0), parent="root")
     for x, z in ((-40, 0), (34, 0), (0, -38), (0, 32)):
         orb.cube((x, 69, z), (6, 6, 6), ORBITAL)
@@ -373,14 +373,14 @@ def rift_sentinel() -> geo.Model:
     body.cube((-5, 12, -5), (10, 12, 10), NULL_STONE, pivot=(0, 18, 0), rotation=(0, 45, 0),
               deco={"north": eyes("#3ff3ff", count=1, size=0.24, y=0.5)})
     body.cube((-2, 24, -2), (4, 6, 4), NULL_CORE)
-    body.cube((-2, 6, -2), (4, 6, 4), NULL_BRONZE)
+    body.cube((-2, 6, -2), (4, 6, 4), NULL_PLATE)
     body.locators["eye"] = (0, 18, -8)
     shards = m.bone("shards", (0, 18, 0), parent="body")
     for x, z in ((-12, 0), (10, 0), (0, -12), (0, 10)):
         shards.cube((x, 16, z), (2, 5, 2), NULL_CORE, pivot=(x + 1, 18, z + 1), rotation=(20, 45, 0))
     for side, x in (("right_hand", -12), ("left_hand", 8)):
         hnd = m.bone(side, (x + 2, 14, -2), parent="body")
-        hnd.cube((x, 11, -4), (4, 5, 4), NULL_BRONZE)
+        hnd.cube((x, 11, -4), (4, 5, 4), NULL_PLATE)
     m.pack_uv()
     return m
 

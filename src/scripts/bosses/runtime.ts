@@ -12,9 +12,9 @@ import { allPlayers, giveItem, isTargetable, nearestTargetable, playersNear } fr
 import { every, later, now } from "../core/scheduler.js";
 import { readEntity, readWorld, writeEntity, writeWorld } from "../core/state.js";
 import { ENTITIES, PARTICLES, SOUNDS } from "../generated/ids.js";
-import { BossMachine } from "../logic/bossMachine.js";
+import { BossMachine } from "../logic/boss_machine.js";
 import { parseJournal, recordBossKill } from "../logic/progression.js";
-import { Contributions, RewardLedger } from "../logic/rewardLedger.js";
+import { Contributions, RewardLedger } from "../logic/reward_ledger.js";
 import { dist, distXZ } from "../logic/vec.js";
 import { despawnAdds } from "./kit.js";
 import type { BossAttack, BossDef, Brain, Ctx } from "./types.js";

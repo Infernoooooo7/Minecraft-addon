@@ -10,7 +10,7 @@ import { BOSS_TYPES, bossCount, spawnBoss, worldProgress } from "../bosses/runti
 import { activeEvent, allEvents, eventState, startEvent, stopEvent } from "../events/runtime.js";
 import { SET_BONUS } from "../items/armor.js";
 import { SOUNDS } from "../generated/ids.js";
-import type { Frequency } from "../logic/eventScheduler.js";
+import type { Frequency } from "../logic/event_scheduler.js";
 import { PROFILES, ProfileId } from "../logic/profiles.js";
 import { BOSS_ORDER, completion, nextObjective, parseJournal } from "../logic/progression.js";
 import { expanseStatus, inExpanse, travelHome, travelToExpanse } from "../world/expanse.js";

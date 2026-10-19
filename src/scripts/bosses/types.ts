@@ -1,7 +1,7 @@
 // Boss definition contracts shared by the runtime and the four boss modules.
 import { Dimension, Entity, Player, Vector3 } from "@minecraft/server";
-import type { AttackSpec, BossMachine, MachineConfig } from "../logic/bossMachine.js";
-import type { Contributions } from "../logic/rewardLedger.js";
+import type { AttackSpec, BossMachine, MachineConfig } from "../logic/boss_machine.js";
+import type { Contributions } from "../logic/reward_ledger.js";
 
 export interface Brain {
   id: string;

@@ -1,0 +1,295 @@
+APOCALYPSE ENGINE — VALIDATION REPORT
+==============================================================================
+Version         : 1.0.0
+Built (UTC)     : 2026-10-19 11:17
+Source revision : 28f4d83
+Build command   : python3 build.py --schemas <bedrock-samples> --mct <mct>
+Toolchain       : Python 3.13.16, Node v22.22.0, TypeScript 5.9.3
+
+1. TARGET VERSION
+------------------------------------------------------------------------------
+  Minecraft Bedrock (Android) tested against : 1.26.50 (Mojang bedrock-samples 1.26.50.4 reference data)
+  Minimum engine version (manifests)         : 1.26.30
+  Script API                                 : @minecraft/server 2.8.0 (stable), @minecraft/server-ui 2.0.0 (stable)
+  Experimental toggles required              : NONE (no beta APIs, no experimental JSON features)
+  Content format versions                    : entities/items/blocks 1.26.30, BP biome 1.26.0, recipes 1.20.10,
+                                               client entities 1.10.0, geometry 1.12.0, fogs 1.21.90
+
+2. MANIFEST STATUS
+------------------------------------------------------------------------------
+  Behavior pack: APOCALYPSE ENGINE [Behavior]
+    uuid 50211098-caf2-49a5-9acd-51a75b0a8795  version [1, 0, 0]  min_engine_version [1, 26, 30]  format_version 2
+    module data      362c4446-3eb3-460a-be56-4f450ff425e4
+    module script    d500adaa-a0bc-4bd4-b6cb-0eb5fff1ad7b  entry scripts/main.js
+  Resource pack: APOCALYPSE ENGINE [Resources]
+    uuid 54b47954-21db-4175-bec6-9abe254127a1  version [1, 0, 0]  min_engine_version [1, 26, 30]  format_version 2
+    module resources d22de523-0581-43f1-b217-480c9d0cf36c
+    capabilities ['pbr']
+    subpack potato    memory_tier 0   "Potato (low memory)"
+    subpack balanced  memory_tier 8   "Balanced (HD + PBR)"
+    subpack enhanced  memory_tier 24  "Enhanced (max detail)"
+  Static manifest checks passed: 71  (errors: 0)
+
+3. DEPENDENCIES
+------------------------------------------------------------------------------
+  Behavior pack -> resource pack 54b47954-21db-4175-bec6-9abe254127a1 [1, 0, 0] : OK (matches resource pack header)
+  Behavior pack -> @minecraft/server 2.8.0 : OK (declared; all script imports resolve to it)
+  Behavior pack -> @minecraft/server-ui 2.0.0 : OK (declared; all script imports resolve to it)
+  Resource pack dependencies: none (no circular dependency)
+
+4. STATIC VALIDATION (validate.py)
+------------------------------------------------------------------------------
+  Checks passed : 3480
+  Errors        : 0
+  Warnings      : 0
+  note: Official Mojang JSON schemas loaded from /tmp/claude-0/-home-user-Minecraft-addon/e2d2d015-84ea-5f14-a789-a93b23bc0f89/scratchpad/bedrock-samples/metadata/json_schemas
+  note: Vanilla ids checked against @minecraft/vanilla-data 1.26.52
+  Passed checks by category (asset references, schemas, ids, scripts, structure):
+    ATTACHABLE                                       12
+    ATTACHABLE texture                               12
+    BLOCK                                             2
+    BLOCK sounds                                     14
+    BLOCK texture                                    22
+    CLIENT animate                                   51
+    CLIENT animation bones                          186
+    CLIENT controller animations                     31
+    CLIENT locators                                  19
+    CLIENT pairs                                     13
+    CLIENT particles                                 19
+    CLIENT render controllers                        26
+    CLIENT texture                                   30
+    COMPONENT block                                  96
+    COMPONENT entity                                304
+    COMPONENT item                                  281
+    ENTITY event groups                              21
+    ENTITY loot                                      11
+    GEOMETRY models                                  13
+    IMAGE png                                       469
+    ITEM                                              1
+    ITEM texture                                     41
+    JSON                                            453
+    LANG block names                                 14
+    LANG entity names                                13
+    LANG item names                                  41
+    LANG keys                                        84
+    LOOT                                             42
+    LOOT vanilla                                      6
+    MANIFEST                                          2
+    MANIFEST pack icon                                2
+    MANIFEST script entry                             1
+    PACKDEP BP->RP                                    1
+    PACKDEP script modules                            2
+    PARTICLE effects                                 29
+    PARTICLE texture                                 29
+    RECIPE                                          121
+    RECIPE count                                     30
+    RECIPE vanilla                                   17
+    REF                                              26
+    REF blocks                                       27
+    REF vanilla blocks                               18
+    SCHEMA biome                                      1
+    SCHEMA block                                     14
+    SCHEMA entity                                    13
+    SCHEMA item                                      41
+    SCRIPT custom components                          9
+    SCRIPT identifiers                              123
+    SCRIPT imports                                  166
+    SCRIPT module imports                            17
+    SCRIPT sounds                                    72
+    SOUND                                             2
+    SOUND entity events                              28
+    SOUND files                                      73
+    SPAWN                                             2
+    STRUCTURE files                                   4
+    SUBPACK                                           3
+    SUBPACK particle override                        58
+    TEXTURESET                                      148
+    UUID unique                                       5
+    VANILLA literal ids                              56
+    WORLD feature rules                               5
+    WORLD features                                    5
+    WORLD vibrant visuals config                      3
+
+5. INDEPENDENT VALIDATION (Mojang Minecraft Creator Tools)
+------------------------------------------------------------------------------
+  mct validate all --offline (Creator Tools v0.20.0): errors 0, warnings 415, recommendations 197, passed tests 42
+  Every warning category was reviewed against Mojang's vanilla samples:
+     316  texture links across subpack overlays (tool limitation, see analysis)
+      59  atlas entries use the string texture form (as 94% of vanilla entries do)
+      27  vanilla item references unresolved in --offline mode
+       8  render controller uv_anim marked required (absent from 167/173 vanilla controllers)
+       3  subpack objects (documented manifest v2 format)
+       2  places_block single-block string (form used in Mojang's feature documentation)
+    Texture-link warnings were reproduced and explained: removing the subpack overlays from a copy of the
+    resource pack removes all of them, i.e. the tool does not follow subpack overlays; validate.py resolves
+    every texture path against the base pack and each subpack and found no missing file.
+  Recommendations: ENTITYTYPE x13, FORMATVER x113, ITEMTYPE x41, UNLINK x30
+    (format versions 1.26.30 < 1.26.50 are intentional so the packs also load on 1.26.30-1.26.4x devices)
+
+6. AUTOMATED TESTS
+------------------------------------------------------------------------------
+  JavaScript (node --test): 60/60 passed, 0 failed  [tests/logic.test.mjs, tests/runtime.reload.test.mjs, tests/runtime.smoke.test.mjs]
+  Python (unittest)       : 7 tests, all passed
+  Runtime simulation re-run under 8 additional random seeds: all passed
+  Coverage:
+    * pure logic unit tests: boss state machine, event scheduler, reward de-duplication, progression,
+      performance profiles, island generation/causeway walkability, RNG and vector math
+    * strict mock-runtime simulation of the compiled scripts (tests/mock): startup registrations, world
+      load, all 7 world events, all 4 boss fights (phases, invulnerable transitions, vents, rewards,
+      duplicate-death protection), 6 weapon abilities + on-hit effects, relic rites, elixir, 3 armor set
+      bonuses, ore drops with Silk Touch/Fortune, Engine Cache, Engine Key rifts, Shattered Expanse
+      generation + flood-fill walkability to the Arena, void rescue, Null Gate, Codex UI, commands,
+      six in-game days of natural event scheduling, and save/reload persistence
+    * tooling: .mcstructure codec, lenient JSON, validator clean-run and injected-defect detection
+  Simulation totals: 162332 game ticks simulated, 303 entities spawned, 41 meteor impacts, 86900 Expanse blocks generated,
+                     0 API-contract violations, 0 script warnings
+  Test cases:
+    [js] computes phases from health thresholds
+    [js] perPhase indexes arrays and clamps
+    [js] waits for the intro delay, then telegraphs -> executes -> recovers
+    [js] respects range limits and target requirements
+    [js] gates attacks by phase
+    [js] enters an invulnerable transition when a threshold is crossed and never regresses
+    [js] interrupts a telegraphed attack on phase change
+    [js] force() starts a scripted attack but never during a transition
+    [js] serializes phase and restores cooldowns relative to the new clock
+    [js] boss state machine
+    [js] classifies night and windows
+    [js] roll chance scales with frequency and is 0 when off
+    [js] filters by active event, cooldowns, minimum day, window and config
+    [js] start/end lifecycle applies durations and the global cooldown
+    [js] night events end at dawn after a grace period
+    [js] parses persisted state defensively and rebases ticks across sessions
+    [js] weighted pick honours weights
+    [js] event scheduler
+    [js] claims each id exactly once, across serialization
+    [js] is bounded
+    [js] contributions include significant damage dealers and the top dealer
+    [js] reward ledger
+    [js] records first kills once and gates the Engine Key on the three overworld bosses
+    [js] guides the player through the progression in order
+    [js] completion is bounded and monotonic
+    [js] parses journals defensively
+    [js] progression
+    [js] are monotonic from potato to enhanced
+    [js] falls back to balanced and scales counts with a floor
+    [js] performance profiles
+    [js] is deterministic per seed and cell
+    [js] keeps islands inside the world radius and out of the Nexus-Arena corridor
+    [js] produces solid, bounded columns
+    [js] the causeway from the Nexus to the Arena is continuous (walkable without building)
+    [js] cellsNear covers the query square
+    [js] island generation
+    [js] Rng is deterministic and in range
+    [js] weightedPick ignores non-positive weights
+    [js] hash2 is stable and spreads values
+    [js] vector helpers
+    [js] rng and vectors
+    [js] resumes the active event with its remaining time and fixes stale fog
+    [js] restores the boss brain mid-fight without replaying the intro
+    [js] ends the resumed event on schedule and records it
+    [js] pays a reloaded boss exactly once and keeps the ledger bounded
+    [js] save/reload persistence
+    [js] boots: registrations, custom dimension, welcome kit
+    [js] world event: blood_moon
+    [js] world event: void_storm
+    [js] world event: meteor_shower
+    [js] world event: reality_fracture
+    [js] world event: eclipse
+    [js] world event: ancient_awakening
+    [js] world event: corruption_surge
+    [js] boss fight: hollow_king
+    [js] boss fight: star_eater
+    [js] boss fight: root_titan
+    [js] boss fight: null_colossus
+    [js] weapon abilities and on-hit effects
+    [js] summoning relics respect their rites
+    [js] Aether Elixir cleanses event afflictions
+    [js] armor set bonuses
+    [js] ores drop shards/XP (Fortune-aware) unless Silk Touch; caches open
+    [js] Engine Key opens a rift; the Expanse is generated and walkable to the Arena
+    [js] Expanse life: sentinels, void rescue, Null Gate ritual, return home
+    [js] Engine Codex pages, operator settings and admin tools
+    [js] natural event scheduling over six in-game days
+    [js] summary
+    [js] APOCALYPSE ENGINE runtime simulation
+    [py] test_tools.DeterminismTests.test_generators_do_not_use_salted_hash
+    [py] test_tools.JsonTests.test_load_lenient_bom
+    [py] test_tools.JsonTests.test_strip_comments_keeps_strings
+    [py] test_tools.McStructureTests.test_roundtrip
+    [py] test_tools.McStructureTests.test_shipped_structures
+    [py] test_tools.ValidatorTests.test_injected_defects_are_caught
+    [py] test_tools.ValidatorTests.test_shipped_packs_are_clean
+  The mock enforces the documented engine contracts (identifiers, entity properties/events, restricted and
+  early execution, custom-component coverage). It is NOT the game: no rendering, mob AI, physics or
+  networking. Passing it is evidence of correct script/API usage, not proof of in-game behaviour.
+
+7. ARCHIVE INSPECTION (every archive reopened after writing)
+------------------------------------------------------------------------------
+  APOCALYPSE_ENGINE.mcaddon
+    size 7.02 MB (uncompressed 7.46 MB), 1034 entries, sha256 09141f57c579b581d9cd2186e5eb8ea8a78b66bf6ff6a292a26fa3d56498d584
+    contains APOCALYPSE_ENGINE_BP/ and APOCALYPSE_ENGINE_RP/ with manifests: APOCALYPSE ENGINE [Behavior] | APOCALYPSE ENGINE [Resources]
+    packs inside are byte-identical (CRC) to the standalone .mcpack files
+    integrity (CRC) OK, no unsafe paths, entry count matches source tree, manifests parse: PASS
+  APOCALYPSE_ENGINE_BEHAVIOR.mcpack
+    size 210.9 KB (uncompressed 431.7 KB), 174 entries, sha256 21f25efada23afb8f0f8af09db9298557d56f557083974b2285582b595e3881c
+    manifest.json at archive root, reopened: APOCALYPSE ENGINE [Behavior] 50211098-caf2-49a5-9acd-51a75b0a8795 [1, 0, 0]
+    integrity (CRC) OK, no unsafe paths, entry count matches source tree, manifests parse: PASS
+  APOCALYPSE_ENGINE_TEXTURES.mcpack
+    size 6.77 MB (uncompressed 7.04 MB), 860 entries, sha256 f6314768466a1c0e57185117a190c76bc975e7e7f5e6c2b9ebf0dcec605f73d1
+    manifest.json at archive root, reopened: APOCALYPSE ENGINE [Resources] 54b47954-21db-4175-bec6-9abe254127a1 [1, 0, 0]
+    integrity (CRC) OK, no unsafe paths, entry count matches source tree, manifests parse: PASS
+  APOCALYPSE_ENGINE_SOURCE.zip
+    size 8.41 MB (uncompressed 9.34 MB), 1118 entries, sha256 a34a93bace81e1a84a9bb0e40b133e930f7437287f65a667275e807c14679e45
+    single top folder APOCALYPSE_ENGINE/, no node_modules/.git/caches, required project files present
+    integrity (CRC) OK, no unsafe paths, entry count matches source tree, manifests parse: PASS
+
+8. KNOWN ISSUES
+------------------------------------------------------------------------------
+  - Balance (boss health tiers, damage, event spawn rates) is tuned on paper and in simulation only; expect tuning after real play.
+  - Boss movement uses vanilla navigation components; on very rugged terrain bosses may path poorly (scripted leash returns them to the arena).
+  - Event and Expanse fog uses /fog push per player; it is re-synchronised on join, dimension change and event start/end.
+  - The Shattered Expanse is generated by script around players: islands appear a moment after arrival on slow devices (time-budgeted jobs).
+  - Ticking-area capacity is shared with other add-ons/commands; if none is free the first Expanse visit asks the player to retry.
+  - Pre-built structures (Nexus Shrine, Colossus Altar, ruins) are placed via the structure manager; they were generated by our own .mcstructure writer and verified by our reader, not opened in a game editor.
+  - Creator Tools warnings listed in section 5 are tool-side limitations/strictness, documented rather than worked around.
+
+9. NOT IMPLEMENTED / OUT OF SCOPE
+------------------------------------------------------------------------------
+  - Custom shaders/GLSL/HLSL, RenderDragon material overrides and custom post-processing: not possible for Bedrock add-ons.
+  - A biome-based dimension generator: Bedrock only offers script-registered custom dimensions with the void generator, so all Expanse terrain is script-built (documented as such, not presented as engine worldgen).
+  - Custom music tracks and voiced dialogue.
+  - Localisation beyond en_US.
+  - Marketplace-style world template / skin pack.
+
+10. NOT TESTED IN-GAME
+------------------------------------------------------------------------------
+  No Minecraft client or Bedrock Dedicated Server was run while building this release (no Android device
+  or game runtime is available in the build environment, and the Bedrock Dedicated Server license must be
+  accepted by its user). Therefore NOTHING has been verified inside the real game, in particular:
+  - loading of both packs on Android 1.26.30-1.26.50, menu import of the .mcaddon/.mcpack files
+  - model geometry, animations, render controllers and textures as rendered by the game (only offline previews were rendered)
+  - Vibrant Visuals PBR materials (MER/normal), fog volumes, lighting/atmosphere/color grading in the real renderer
+  - boss AI movement, pathing and combat feel; projectile and explosion behaviour; mob spawning in real biomes
+  - world-generation features (ore distribution, ruins, Blighted Wilds biome) in generated worlds
+  - custom dimension registration and travel on real devices, ticking areas and structure placement
+  - sound playback and mixing; UI forms on touch screens; performance (frame time/memory) on low-end phones
+  - multiplayer synchronisation (designed for it: per-player caps, shared world state, contribution-based rewards)
+
+11. GRAPHICS / SHADER LIMITATIONS
+------------------------------------------------------------------------------
+  - Bedrock add-ons cannot ship shaders. This project contains no shader code and does not modify the game.
+  - Visual quality comes from: original HD textures (1x in the base pack, 2x/4x in subpacks), emissive glow layers using the vanilla entity_emissive_alpha material, PBR texture sets (MER + normal maps), custom particles, per-event fog, and Vibrant Visuals atmospherics/lighting/color-grading JSON configs.
+  - PBR texture sets, volumetric fog and the Vibrant Visuals configs only take effect when the device supports and the player enables Vibrant Visuals; on other devices the same packs render with standard (non-PBR) graphics.
+  - The resource pack declares the 'pbr' capability; subpacks: Potato (sparse particles, base textures), Balanced (2x textures + PBR), Enhanced (4x textures + PBR, dense particles).
+
+12. DELIVERABLES
+------------------------------------------------------------------------------
+  APOCALYPSE_ENGINE.mcaddon               7.02 MB  sha256 09141f57c579b581d9cd2186e5eb8ea8a78b66bf6ff6a292a26fa3d56498d584
+  APOCALYPSE_ENGINE_BEHAVIOR.mcpack      210.9 KB  sha256 21f25efada23afb8f0f8af09db9298557d56f557083974b2285582b595e3881c
+  APOCALYPSE_ENGINE_TEXTURES.mcpack       6.77 MB  sha256 f6314768466a1c0e57185117a190c76bc975e7e7f5e6c2b9ebf0dcec605f73d1
+  APOCALYPSE_ENGINE_SOURCE.zip            8.41 MB  sha256 a34a93bace81e1a84a9bb0e40b133e930f7437287f65a667275e807c14679e45
+  APOCALYPSE_ENGINE_VALIDATION.txt     (this file)
+  APOCALYPSE_ENGINE_INSTALLATION.txt   Android install/configure/troubleshoot/uninstall guide
+
+RESULT: BUILD PASSED — static validation 0 errors, all automated tests passed, all archives verified.

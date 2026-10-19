@@ -1,0 +1,151 @@
+APOCALYPSE ENGINE 1.0.0 — INSTALLATION GUIDE (ANDROID)
+==============================================================================
+
+Requirements
+------------
+* Minecraft: Bedrock Edition for Android, version 1.26.30 or newer
+  (built and validated against 1.26.50).
+* About 25 MB of free storage for the packs.
+* No experimental toggles are needed. Cheats are NOT needed to play.
+  (Only the admin command /apocalypse:summon requires cheats + operator.)
+
+Files
+-----
+* APOCALYPSE_ENGINE.mcaddon             -> both packs in one file (recommended)
+* APOCALYPSE_ENGINE_BEHAVIOR.mcpack   -> behavior pack only (gameplay + scripts)
+* APOCALYPSE_ENGINE_TEXTURES.mcpack   -> resource pack only (textures, models, sounds)
+Both packs are required. The behavior pack declares a dependency on the
+resource pack, so Minecraft activates them together.
+
+
+1. DOWNLOAD
+------------------------------------------------------------------------------
+1. Download APOCALYPSE_ENGINE.mcaddon to your phone (it usually lands in "Downloads").
+2. Keep the file name ending in ".mcaddon". Some browsers add ".zip" or
+   rename files; if so, rename it back to "APOCALYPSE_ENGINE.mcaddon" with your file manager.
+
+
+2. IMPORT
+------------------------------------------------------------------------------
+1. Open your Files / My Files app, go to Downloads and tap APOCALYPSE_ENGINE.mcaddon.
+2. Choose "Minecraft" when Android asks which app should open it.
+3. Minecraft starts and shows "Import started..." then
+   "Successfully imported 'APOCALYPSE ENGINE [Behavior]'" and
+   "Successfully imported 'APOCALYPSE ENGINE [Resources]'".
+
+If tapping the file does nothing or opens a zip viewer:
+* Use "Files by Google": long-press the file -> Open with -> Minecraft.
+* Or import the two .mcpack files one after the other (APOCALYPSE_ENGINE_TEXTURES.mcpack first, then APOCALYPSE_ENGINE_BEHAVIOR.mcpack).
+* Make sure Minecraft has been opened at least once since it was installed.
+
+
+3. ACTIVATE IN A WORLD
+------------------------------------------------------------------------------
+Back up an existing world before adding any add-on to it.
+
+1. Play -> Create New World (or tap the pencil icon of an existing world).
+2. Open "Behavior Packs" (in some versions under "Add-Ons").
+   Tap "APOCALYPSE ENGINE [Behavior]" -> Activate.
+   When asked, confirm that its resource pack should be activated too.
+3. Check "Resource Packs": "APOCALYPSE ENGINE [Resources]" must be listed as
+   Active. If another resource pack is above it, move APOCALYPSE ENGINE up.
+4. Experiments: leave them all OFF. None are needed.
+5. Create / load the world. On first join every player receives the
+   Engine Codex and a short welcome message.
+
+
+4. CONFIGURE
+------------------------------------------------------------------------------
+Texture quality (resource pack subpacks):
+  Resource Packs -> Active -> APOCALYPSE ENGINE [Resources] -> gear icon:
+    Potato    base textures, sparse particles      (low-memory phones)
+    Balanced  2x HD textures + PBR maps             (most phones)
+    Enhanced  4x HD textures + PBR, dense particles (flagships; may be
+              unavailable on devices with less memory)
+
+Gameplay settings (operators): open the Engine Codex -> World Settings:
+  * Performance profile: Potato / Balanced / Enhanced
+      (script-side: particle density, event mob caps, boss adds, meteors per
+       wave, Expanse generation speed)
+  * Event frequency (off / rare / normal / frequent) and intensity
+    (mild / normal / brutal)
+  * Boss difficulty (story / normal / nightmare)
+  * Terrain damage (meteors break blocks, Corruption spreads Blighted Grass)
+    - OFF by default
+  * Void Storm lightning, Codex for new players, and each of the 7 world
+    events individually
+
+Commands (type in chat):
+  /apocalypse:codex                         open the Codex
+  /apocalypse:event start <event>           operators: start an event
+  /apocalypse:event stop | status           operators: stop / show events
+  /apocalypse:profile <potato|balanced|enhanced>
+  /apocalypse:summon <boss>                 operators, cheats on
+
+Visual configuration:
+  Settings -> Video -> Graphics: choose "Vibrant Visuals" if your device
+  offers it. PBR materials (glowing crystals, metal, emissive runes),
+  volumetric event fog and the custom atmosphere/lighting/color grading only
+  appear with Vibrant Visuals. Without it the packs render with standard
+  graphics. There are no shaders in this add-on - Bedrock add-ons cannot
+  contain shaders.
+
+Recommended combinations:
+  Low-end phone : subpack Potato  + profile Potato   + Simple/Fancy graphics
+  Mid-range     : subpack Balanced + profile Balanced
+  Flagship      : subpack Enhanced + profile Enhanced + Vibrant Visuals
+
+
+5. FIRST STEPS
+------------------------------------------------------------------------------
+Mine Rift Ore (cyan veins, Y -56 to 40) -> craft gear -> survive world events
+-> craft the summoning relics -> defeat the Hollow King, the Star Eater and
+the Root Titan -> forge the Engine Key -> travel to the Shattered Expanse ->
+wake the Null Colossus at the Null Gate. The Codex always shows your next
+objective.
+
+
+6. TROUBLESHOOTING
+------------------------------------------------------------------------------
+"Import failed" / "duplicate pack":
+  Delete the old copies first: Settings -> Storage -> Resource Packs and
+  Behavior Packs -> select APOCALYPSE ENGINE -> Delete. Then import again.
+"Requires a newer version of Minecraft":
+  Update Minecraft to 1.26.30 or newer.
+Purple/black checkered textures or invisible mobs:
+  The resource pack is not active or another pack overrides it (see 3.3).
+No Codex, no events, bosses do nothing:
+  The behavior pack is not active in this world. Optionally enable
+  Settings -> Creator -> Content Log GUI and look for [APOCALYPSE] messages.
+Lag:
+  Use the Potato subpack and profile, lower render distance, turn off
+  Vibrant Visuals, set event frequency to rare.
+"The rift collapsed" when entering the Expanse:
+  The world's ticking-area capacity is used up by other add-ons or commands.
+  Remove unused ones (/tickingarea list, /tickingarea remove <name>) and retry.
+Fell out of the Expanse:
+  The void returns you to the Nexus. Use the Rift Home at the Nexus centre or
+  your Engine Key to go back to the Overworld.
+Fog stays after an event (should not happen; it is re-synced on join):
+  /fog @s remove apocalypse_event    and    /fog @s remove apocalypse_expanse
+
+
+7. UNINSTALL
+------------------------------------------------------------------------------
+From a world (back it up first):
+  World settings -> Behavior Packs -> Active -> APOCALYPSE ENGINE -> remove,
+  then Resource Packs -> Active -> APOCALYPSE ENGINE -> remove.
+  Custom blocks, items and creatures of the add-on disappear from that world.
+  Run /fog @a remove apocalypse_event and /fog @a remove apocalypse_expanse
+  once before removing it to clear any active fog.
+From the phone:
+  Settings -> Storage -> Resource Packs / Behavior Packs ->
+  APOCALYPSE ENGINE -> Delete.
+
+
+Testing status (honest disclosure)
+----------------------------------
+This release passed static validation and automated script simulations, but
+it has NOT been played inside Minecraft on a real device. Please report any
+in-game problem with your Minecraft version and device model. See
+APOCALYPSE_ENGINE_VALIDATION.txt for exactly what was and was not verified.
